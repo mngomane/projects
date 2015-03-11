@@ -54,7 +54,7 @@ HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall
 
 LIBS = -Llibfts -lfts
 
-INCS = -Iincs -Ilibfts/incs
+INCS = -Iinclude -Ilibfts/include
 
 
 .PHONY: all clean fclean re check lib

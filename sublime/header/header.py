@@ -17,7 +17,7 @@ class Makefile():
 			"FLAGS = -Wall -Wextra -Werror\n\n"
 			"HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89\n\n"
 			"LIB = -Llibfts -lfts\n\n"
-			"INCS = -Iincs -Ilibfts/incs\n\n\n"
+			"INCS = -Iinclude -Ilibfts/include\n\n\n"
 			".PHONY: all clean fclean re check\n\n"
 			"all: $(OBJSDIR) $(NAME) check\n\n"
 			"$(NAME): $(OBJS)\n"

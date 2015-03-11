@@ -64,7 +64,7 @@ FLAGS = -Wall -Wextra -Werror
 
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
-INCS = -Iincs
+INCS = -Iinclude
 
 
 .PHONY: all clean fclean re check

@@ -27,12 +27,12 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:%.c=%.o))
 
 CC = cc
 
-FLAGS = -Weverything -Wextra -I incs
+FLAGS = -Weverything -Wextra -Iinclude
 
 TERM = -L/usr/include/ -ltermcap
 
-.PHONY: all clean fclean re
 
+.PHONY: all clean fclean re
 
 all: $(OBJDIR) $(NAME)
 

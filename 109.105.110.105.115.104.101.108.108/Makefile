@@ -60,9 +60,9 @@ CC1 = /usr/bin/clang
 
 CC2 = gcc
 
-FLAGS1 = -Weverything -Wextra -I incs
+FLAGS1 = -Weverything -Wextra -I include
 
-FLAGS2 = -Werror -Wextra -Wall -I incs
+FLAGS2 = -Werror -Wextra -Wall -I include
 
 .PHONY: all clean fclean re
 
