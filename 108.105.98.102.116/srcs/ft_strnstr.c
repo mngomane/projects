@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
@@ -20,21 +20,19 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	occurrence = (char *)s1;
 	index = 0;
 	if (*s2 == '\0')
-	{
 		return ((char *)s1);
-	}
-	while (*occurrence != '\0' && s2[index] != '\0')
+	while (*occurrence != '\0' && s2[index] != '\0' && (size_t)(occurrence - (char *)s1) < n)
 	{
-		if ((size_t)(occurrence - s1) >= n)
+		if (*occurrence == s2[index])
+			++index;
+		else
 		{
-			return (NULL);
+			occurrence -= index;
+			index = 0;
 		}
-		index = (*occurrence == s2[index] ? index + 1 : 0);
 		++occurrence;
 	}
-	if (s2[index] == '\0')
-	{
+	if (s2[index] == 0)
 		return (occurrence - index);
-	}
 	return (NULL);
 }

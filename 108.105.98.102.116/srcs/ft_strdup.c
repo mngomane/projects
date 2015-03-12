@@ -10,25 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-static size_t	ft_strlen(const char *s)
-{
-	char	*string;
-	char	*origin;
-
-	string = (char *)s;
-	origin = (char *)s;
-	if (string == NULL)
-	{
-		return (0);
-	}
-	while (*string != '\0')
-	{
-		++string;
-	}
-	return ((size_t)(string -origin));
-}
+#include "libft.h"
 
 char		*ft_strdup(const char *s1)
 {

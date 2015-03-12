@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
@@ -23,8 +23,6 @@ char	*ft_strncpy(char *dst, const char *src, size_t n)
 		++index;
 	}
 	while (index < n)
-	{
-		dst[index] = '\0';
-	}
+		dst[index++] = '\0';
 	return (dst);
 }

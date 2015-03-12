@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -20,12 +20,12 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	index = 0;
 	source = (char *)src;
-	destination = dst;
+	destination = (char *)dst;
 	while (index < len)
 	{
 		destination[index] = source[index];
 		++index;
 	}
-	dst = destination;
+	dst = (void *)destination;
 	return (dst);
 }
