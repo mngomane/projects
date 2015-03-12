@@ -5,54 +5,69 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/02/27 09:59:52 by mngomane          #+#    #+#              #
-#    Updated: 2015/02/27 09:59:52 by mngomane         ###   ########.fr        #
+#    Created: 2015/03/11 20:33:11 by mngomane          #+#    #+#              #
+#    Updated: 2015/03/11 20:33:11 by mngomane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
-
-LIBDIR = ../libfts/
 
 OBJSDIR = bins/
 
 SRCSDIR = srcs/
 
-TOOLSDIR = ../tools/
+NAME = libft.a
 
-NAME = ../ft_nm
-
-SRCS = main.c
-
-TOOLSSRCS =
+SRCS = ft_atoi.c\
+		ft_bzero.c\
+		ft_isalnum.c\
+		ft_isalpha.c\
+		ft_isascii.c\
+		ft_isdigit.c\
+		ft_isprint.c\
+		ft_memccpy.c\
+		ft_memchr.c\
+		ft_memcmp.c\
+		ft_memcpy.c\
+		ft_memmove.c\
+		ft_memset.c\
+		ft_strcat.c\
+		ft_strchr.c\
+		ft_strcmp.c\
+		ft_strcpy.c\
+		ft_strdup.c\
+		ft_strlcat.c\
+		ft_strlen.c\
+		ft_strncat.c\
+		ft_strncmp.c\
+		ft_strncpy.c\
+		ft_strnstr.c\
+		ft_strrchr.c\
+		ft_strstr.c\
+		ft_tolower.c\
+		ft_toupper.c
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
-TOOLSOBJS = $(addprefix $(addprefix $(TOOLSDIR), $(OBJSDIR)), $(TOOLSSRCS:%.c=%.o))
-
 CXX = gcc
 
-CC = clang
+CC = /usr/bin/clang
 
 FLAGS = -Wall -Wextra -Werror
 
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
-LIBS = -L../libfts -lfts
-
-INCS = -Iinclude -I../libfts/include -I../tools/include
+INCS = -Iinclude
 
 
-.PHONY: all clean fclean re check lib
+.PHONY: all clean fclean re
 
-all: lib $(OBJSDIR) $(NAME) check
+all: $(OBJSDIR) $(NAME)
 
-$(NAME): $(OBJS) $(TOOLSOBJS)
-	$(CXX) $(FLAGS) $(LIBS) $(INCS) -o $(NAME) $^
+$(NAME): $(OBJS)
+	ar rc $(NAME) $^
+	ranlib $(NAME)
 
 $(OBJSDIR):
 	mkdir $(OBJSDIR)
-
-check: $(OBJS) $(TOOLSOBJS)
-	@$(CC) $(HARDCORESFLAGS) $(LIBS) $(INCS) -o $(NAME) $^
 
 $(OBJSDIR)%.o: $(SRCSDIR)%.c
 	$(CXX) $(FLAGS) $(INCS) -c $< -o $@
@@ -65,7 +80,3 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-
-lib:
-	@$(MAKE) -C $(LIBDIR)
-	@$(MAKE) -C $(TOOLSDIR)

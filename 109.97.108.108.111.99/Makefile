@@ -36,7 +36,7 @@ HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall
 
 LIBS = -Llibfts -lfts
 
-INCS = -Iincs -Ilibfts/incs
+INCS = -Iinclude -Ilibfts/include
 
 ifeq ($(origin HOSTTYPE), undefined)
 	HOSTTYPE := $(shell uname -m)_$(shell uname -s)

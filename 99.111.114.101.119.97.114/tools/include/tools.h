@@ -13,8 +13,8 @@
 #ifndef TOOLS_H
 # define TOOLS_H
 
-# include "../../libfts/incs/libfts.h"
-# include "../../asm_folder/incs/asm.h"
+# include "../../libfts/include/libfts.h"
+# include "../../asm_folder/include/asm.h"
 
 int					fill_entry(t_entry *ent);
 void				link_instruction(t_instruction **i, char *start, char *end);

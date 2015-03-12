@@ -42,7 +42,7 @@ HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
 LIB = -Llibfts -lfts
 
-INCS = -Iincs -Ilibfts/incs
+INCS = -Iinclude -Ilibfts/include
 
 
 .PHONY: all clean fclean re check

@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.h                                               :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/30 21:47:18 by mngomane          #+#    #+#             */
-/*   Updated: 2015/01/30 21:47:18 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/11 20:24:32 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/11 20:24:32 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_H
-# define VM_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../../libfts/incs/libfts.h"
-
-#endif
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+	{
+		return (1);
+	}
+	return (0);
+}

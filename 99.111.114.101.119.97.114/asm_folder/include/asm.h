@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "../../libfts/incs/libfts.h"
+# include "../../libfts/include/libfts.h"
 
 # define COREWAR_EXEC_MAGIC		0xea83f3
 # define READ_MAX				1000000
@@ -53,7 +53,7 @@ typedef struct				s_instruction
 			INDIRECT,
 			COMMENT
 		}					type;
-		// int					padding;
+		int					padding;
 		struct s_parameter	*next;
 	}						*parameter;
 	struct s_instruction	*next;

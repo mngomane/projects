@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libfts/incs/libfts.h"
+# include "../libfts/include/libfts.h"
 
 typedef struct		s_index
 {

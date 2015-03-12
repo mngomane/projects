@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "asm.h"
-#include "../../tools/incs/tools.h"
+#include "../../tools/include/tools.h"
 
 #include <fcntl.h>
 #include <stdio.h>

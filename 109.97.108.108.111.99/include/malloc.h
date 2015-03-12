@@ -16,7 +16,7 @@
 # include <sys/mman.h>
 # include <sys/types.h>
 # include <unistd.h>
-# include "../libfts/incs/libfts.h"
+# include "../libfts/include/libfts.h"
 
 # define NODE_TYPE		0
 # define AREA_TYPE		1

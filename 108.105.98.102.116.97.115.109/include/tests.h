@@ -21,7 +21,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include "../libfts/incs/libfts.h"
+# include "../libfts/include/libfts.h"
 
 # define KO		0
 # define OK		1

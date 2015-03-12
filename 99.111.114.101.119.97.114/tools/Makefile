@@ -34,7 +34,7 @@ FLAGS = -Wall -Wextra -Werror
 
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall
 
-INCS = -Iincs
+INCS = -Iinclude
 
 
 .PHONY: all clean re
