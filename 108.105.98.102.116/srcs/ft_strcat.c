@@ -20,9 +20,7 @@ char	*ft_strcat(char *s1, const char *s2)
 	index = 0;
 	source_index = 0;
 	while (s1[index] != '\0')
-	{
 		++index;
-	}
 	while (s2[source_index] != '\0')
 	{
 		s1[index] = s2[source_index];

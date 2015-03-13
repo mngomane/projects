@@ -46,5 +46,6 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strstr(const char *s1, const char *s2);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+size_t	ft_strnlen(const char *s, size_t size);
 
 #endif

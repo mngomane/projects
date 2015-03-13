@@ -23,7 +23,9 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	source = (char *)src;
 	copy = dst;
 	destination = dst;
-	while (index < n && *copy != '\0')
+	if (!n)
+		return ((void *)0);
+	while (index < n)
 	{
 		destination[index] = source[index];
 		++copy;
@@ -35,5 +37,5 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		++index;
 	}
 	dst = destination;
-	return (NULL);
+	return ((void *)0);
 }

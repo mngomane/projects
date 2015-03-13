@@ -19,13 +19,9 @@ size_t	ft_strlen(const char *s)
 
 	origin = (char *)s;
 	string = (char *)s;
-	if (string == NULL)
-	{
+	if (string == (void *)0)
 		return (0);
-	}
 	while (*string != '\0')
-	{
 		++string;
-	}
 	return ((size_t)(string - origin));
 }
