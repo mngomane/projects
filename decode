@@ -1,1 +1,3 @@
-tools/decode.jl
+#! /bin/zsh
+
+julia tools/decode.jl $@

@@ -1,1 +1,3 @@
-tools/code.jl
+#! /bin/zsh
+
+julia tools/code.jl $@

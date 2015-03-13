@@ -1,5 +1,3 @@
-#! /nfs/zfs-student-3/users/2013/mngomane/.brew/bin/julia
-
 args = length(ARGS)
 
 if	args == 1
