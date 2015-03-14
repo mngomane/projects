@@ -14,11 +14,9 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t	len;
+	unsigned int	index;
 
-	len = ft_strlen(s);
+	index = 0;
 	while (s && *s)
-		++s;
-	while (len--)
-		f((unsigned int)len, s--);
+		f(index++, s++);
 }

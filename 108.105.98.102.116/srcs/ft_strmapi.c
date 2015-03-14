@@ -14,9 +14,15 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*str;
+	char			*str;
+	unsigned int	index;
 
+	index = 0;
 	str = ft_strnew(ft_strlen(s));
-	ft_striteri(str, (void(*)(unsigned int, char *))f);
+	while (s && s[index])
+	{
+		str[index] = f(index, s[index]);
+		++index;
+	}
 	return (str);
 }

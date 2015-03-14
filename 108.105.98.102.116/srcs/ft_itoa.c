@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/13 18:08:13 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/13 18:08:13 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 00:19:46 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 00:19:46 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	*ft_itoa(int n)
 {
 	char	*str;
+	int		decim;
 	size_t	index;
 
-	str = ft_strnew(len);
-	if (!str)
-		return ((void *)0);
 	index = 0;
-	while (*s && start--)
-		s++;
-	while (*s && index < len)
+	decim = ((n == -2147483648) ? 0 : 1);
+	if (n == -2147483648)
+		return ft_strdup("-2147483648");
+	str = ft_strnew(11);
+	if ((n > -2147483648) && (n < 0))
 	{
-		str[index] = *s;
-		++s;
+		str[index++] = '-';
+		n *= -1;
 	}
-	str[index] = '\0';
+	while (decim && (n / decim) > 9)
+		decim *= 10;
+	while (decim > 0)
+	{
+		str[index++] = ((n / decim) % 10) + '0';
+		decim /= 10;
+	}
 	return (str);
 }

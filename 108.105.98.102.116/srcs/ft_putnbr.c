@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/13 18:08:13 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/13 18:08:13 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 00:54:10 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 00:54:10 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+void	ft_putnbr(int n)
 {
-	char	*str;
-	size_t	index;
-
-	str = ft_strnew(len);
-	if (!str)
-		return ((void *)0);
-	index = 0;
-	while (*s && start--)
-		s++;
-	while (*s && index < len)
-	{
-		str[index] = *s;
-		++s;
-	}
-	str[index] = '\0';
-	return (str);
+	ft_putnbr_fd(n, 1);
 }

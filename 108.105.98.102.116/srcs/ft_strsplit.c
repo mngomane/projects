@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/13 18:08:13 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/13 18:08:13 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/13 23:42:32 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/13 23:42:32 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	**ft_strsplit(char const *s, char c)
 {
-	char	*str;
+	char	**tab;
 	size_t	index;
 
-	str = ft_strnew(len);
-	if (!str)
-		return ((void *)0);
 	index = 0;
-	while (*s && start--)
-		s++;
-	while (*s && index < len)
+	tab = (char **)malloc(sizeof(char *) * MAX_SPLIT);
+	ft_bzero(tab, MAX_SPLIT * sizeof(char *));
+	while (s && *s && index++ < MAX_SPLIT)
 	{
-		str[index] = *s;
-		++s;
+		while (s && *s == c)
+			++s;
+		tab[index] = ft_strdup(s);
+		while (s && *s != c)
+		{
+			++s;
+			++(tab[index]);
+		}
+		*(tab[index]) = 0;
 	}
-	str[index] = '\0';
-	return (str);
+	return (tab);
 }

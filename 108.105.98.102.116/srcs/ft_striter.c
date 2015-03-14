@@ -14,11 +14,6 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	size_t	len;
-
-	len = ft_strlen(s);
 	while (s && *s)
-		++s;
-	while (len--)
-		f(s--);
+		f(s++);
 }
