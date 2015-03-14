@@ -16,7 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define MAX_SPLIT	255
+# define FLOOR(x)	x / 2
+# define CEIL(x)	x - FLOOR(x)
 
 typedef __darwin_size_t		size_t;
 

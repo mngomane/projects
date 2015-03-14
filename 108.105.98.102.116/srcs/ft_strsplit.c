@@ -15,22 +15,26 @@
 char	**ft_strsplit(char const *s, char c)
 {
 	char	**tab;
-	size_t	index;
+	size_t	len;
+	size_t	i;
+	size_t	j;
 
-	index = 0;
-	tab = (char **)malloc(sizeof(char *) * MAX_SPLIT);
-	ft_bzero(tab, MAX_SPLIT * sizeof(char *));
-	while (s && *s && index++ < MAX_SPLIT)
+	i = 0;
+	len = ft_strlen(s);
+	tab = (char **)malloc(sizeof(char *) * CEIL(len));
+	while (s && *s && i < CEIL(len))
 	{
-		while (s && *s == c)
+		while (s && *s && *s == c)
 			++s;
-		tab[index] = ft_strdup(s);
-		while (s && *s != c)
+		tab[i] = (*s ?  ft_strdup(s) : (void *)0);
+		j = 0;
+		while (s && *s && *s != c)
 		{
+			++j;
 			++s;
-			++(tab[index]);
 		}
-		*(tab[index]) = 0;
+		if (*s)
+			tab[i++][j] = '\0';
 	}
 	return (tab);
 }

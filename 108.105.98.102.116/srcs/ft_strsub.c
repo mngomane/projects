@@ -21,11 +21,11 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	if (!str)
 		return ((void *)0);
 	index = 0;
-	while (*s && start--)
+	while (s && *s && start--)
 		s++;
-	while (*s && index < len)
+	while (s && *s && index < len)
 	{
-		str[index] = *s;
+		str[index++] = *s;
 		++s;
 	}
 	str[index] = '\0';
