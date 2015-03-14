@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void	ft_bcopy (char *src, char *dst, int len)
+static void	ft_bcopy(char *src, char *dst, int len)
 {
 	char	*last_src;
 	char	*last_dst;

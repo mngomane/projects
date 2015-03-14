@@ -12,12 +12,6 @@
 
 #include "libft.h"
 
-
-
-#include <stdio.h>
-
-
-
 char	*ft_strstr(const char *s1, const char *s2)
 {
 	char	*occurrence;
@@ -29,7 +23,6 @@ char	*ft_strstr(const char *s1, const char *s2)
 		return ((char *)s1);
 	while (*occurrence != '\0' && s2[index] != '\0')
 	{
-
 		if (*occurrence == s2[index])
 			++index;
 		else

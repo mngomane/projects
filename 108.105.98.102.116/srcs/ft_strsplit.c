@@ -26,7 +26,7 @@ char	**ft_strsplit(char const *s, char c)
 	{
 		while (s && *s && *s == c)
 			++s;
-		tab[i] = (*s ?  ft_strdup(s) : (void *)0);
+		tab[i] = (*s ? ft_strdup(s) : (void *)0);
 		j = 0;
 		while (s && *s && *s != c)
 		{
