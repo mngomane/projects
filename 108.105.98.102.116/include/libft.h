@@ -20,6 +20,9 @@
 # define FLOOR(x)	(x / 2)
 # define CEIL(x)	(x - FLOOR(x))
 
+typedef unsigned char	*t_marea;
+typedef unsigned char	t_uint8;
+
 typedef struct		s_list
 {
 	void			*content;
@@ -80,13 +83,13 @@ void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);
-void				*ft_memdup(const void *s1, size_t size);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void				*ft_memdup(const void *s1, size_t size);
 void				ft_lstadd_tail(t_list **alst, t_list *new);
 
 #endif
