@@ -80,5 +80,7 @@ void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 void				ft_putnbr(int n);
+void				*ft_memdup(const void *s1, size_t size);
+t_list				*ft_lstnew(void const *content, size_t content_size);
 
 #endif

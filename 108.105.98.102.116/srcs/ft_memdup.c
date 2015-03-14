@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 03:09:21 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 03:09:21 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strdup(const char *s1)
+void	*ft_memdup(const void *s1, size_t size)
 {
-	return ((char *)ft_memdup(s1, ft_strlen(s1) + 1));
+	char	*dup;
+	size_t	index;
+
+	index = 0;
+	dup = (char *)malloc(size);
+	while (index < size)
+	{
+		dup[index] = ((char *)s1)[index];
+		++index;
+	}
+	return ((void *)dup);
 }
