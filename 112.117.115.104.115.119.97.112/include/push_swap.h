@@ -61,6 +61,21 @@ typedef enum		e_error
 	NOT_INT
 }					t_error;
 
+typedef enum		e_brute
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+}					t_brute;
+
 void				ft_abs(int *n);
 void				ft_filltab(t_list *l_a, size_t *i, char **av);
 void				ft_p(t_list *tab1, t_list *tab2);
