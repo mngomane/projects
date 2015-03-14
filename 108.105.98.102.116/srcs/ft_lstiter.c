@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 03:09:21 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/14 03:09:21 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 03:51:12 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 03:51:12 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memdup(const void *s1, size_t size)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	char	*dup;
-	size_t	index;
-
-	index = 0;
-	if (!size || !s1)
-		return ((void *)0);
-	dup = (char *)malloc(size);
-	while (index < size)
+	while (lst)
 	{
-		dup[index] = ((char *)s1)[index];
-		++index;
+		f(lst);
+		lst = lst->next;
 	}
-	return ((void *)dup);
 }

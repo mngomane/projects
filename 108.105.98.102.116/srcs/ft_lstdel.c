@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 03:09:21 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/14 03:09:21 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 03:39:12 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 03:39:12 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memdup(const void *s1, size_t size)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	char	*dup;
-	size_t	index;
+	t_list	*tmp;
 
-	index = 0;
-	if (!size || !s1)
-		return ((void *)0);
-	dup = (char *)malloc(size);
-	while (index < size)
+	tmp = (void *)0;
+	while (*alst)
 	{
-		dup[index] = ((char *)s1)[index];
-		++index;
+		tmp = *alst;
+		*alst = (*alst)->next;
+		ft_lstdelone(&tmp, del);
 	}
-	return ((void *)dup);
 }

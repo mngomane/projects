@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 03:09:21 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/14 03:09:21 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 03:54:27 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 03:54:27 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memdup(const void *s1, size_t size)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	char	*dup;
-	size_t	index;
+	t_list	*tmp;
 
-	index = 0;
-	if (!size || !s1)
-		return ((void *)0);
-	dup = (char *)malloc(size);
-	while (index < size)
+	tmp = (void *)0;
+	while (lst)
 	{
-		dup[index] = ((char *)s1)[index];
-		++index;
+		ft_lstadd_tail(&tmp, f(lst));
+		lst = lst->next;
 	}
-	return ((void *)dup);
+	return (tmp);
 }
