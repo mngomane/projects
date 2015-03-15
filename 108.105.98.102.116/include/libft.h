@@ -17,9 +17,12 @@
 # include <sys/types.h>
 # include <unistd.h>
 
+# define BUFF_SIZE	32
+# define SECURITY	300001
 # define FLOOR(x)		(x / 2)
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
+
 
 typedef struct		s_list
 {
@@ -92,5 +95,6 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					get_next_line(int const fd, char **line);
 
 #endif
