@@ -19,7 +19,6 @@ LIBDIR = libft/
 NAME = ft_ls
 
 SRCS = main.c\
-		string.c\
 		no_arg.c\
 		l_arg.c\
 		no_file.c\
@@ -42,7 +41,7 @@ HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
 LIB = -Llibft -lft
 
-INCS = -Iinclude -Ilibfts/include
+INCS = -Iinclude -Ilibft/include
 
 
 .PHONY: all clean fclean re check

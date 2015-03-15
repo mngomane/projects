@@ -15,51 +15,51 @@
 
 void		ft_arg(t_list *arg)
 {
-	write(1, arg->dir->fname, ft_strlen(arg->dir->fname));
+	write(1, LCAST(t_var *, arg)->fname, ft_strlen(LCAST(t_var *, arg)->fname));
 	write(1, "    ", 4);
 }
 
 void		sub_nofile(t_list *arg)
 {
-	arg->dir->dirp = opendir(".");
-	if (arg->dir->dirp != NULL)
+	LCAST(t_var *, arg)->dirp = opendir(".");
+	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((arg->dir->dp = readdir(arg->dir->dirp)) != NULL)
+		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
-			if (stat(arg->dir->dp->d_name, &(arg->dir->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
 				write(2, "\nStat Error sub_nolfile\n", 24);
-			else if (arg->dir->dp->d_name[0] != '.')
+			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				arg->dir->fname = arg->dir->dp->d_name;
+				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
 		}
-		(void)closedir(arg->dir->dirp);
+		(void)closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
 void		sub_nofile2(t_list *arg)
 {
-	arg->dir->dirp = opendir("../.");
-	if (arg->dir->dirp != NULL)
+	LCAST(t_var *, arg)->dirp = opendir("../.");
+	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((arg->dir->dp = readdir(arg->dir->dirp)) != NULL)
+		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
-			if (stat(arg->dir->dp->d_name, &(arg->dir->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
 				write(2, "\nStat Error sub_nolfile\n", 24);
-			else if (arg->dir->dp->d_name[0] != '.')
+			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				arg->dir->fname = arg->dir->dp->d_name;
+				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
 		}
-		(void)closedir(arg->dir->dirp);
+		(void)closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
 void		no_file(t_list *arg, void (*fct[3])(t_list *), int ac)
 {
-	if (ac < 2 || arg->dir->fname == NULL)
+	if (ac < 2 || LCAST(t_var *, arg)->fname == NULL)
 		sub_nofile(arg);
 	else
 		apptol(arg, fct);

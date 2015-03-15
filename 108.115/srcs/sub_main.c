@@ -45,7 +45,7 @@ void			fill_list(t_list **arg, t_opt **op, int ac, char **av)
 		}
 		if (i < ac)
 		{
-			(*arg)->dir->fname = av[ac - 1];
+			LCAST(t_var *, (*arg))->fname = av[ac - 1];
 			if (i < ac - 1)
 				fill_arg_list(arg, ac, i, av);
 		}
@@ -59,7 +59,7 @@ int				init_main(t_list **arg, t_opt **op, int ac)
 		write(2, "malloc in main failled (main.c)\n", 32);
 		return (0);
 	}
-	if (((*arg)->dir = (t_var *)malloc(sizeof(t_var))) == NULL)
+	if (((*arg)->content = (t_var *)malloc(sizeof(t_var))) == NULL)
 	{
 		write(2, "malloc in main failled (main.c)\n", 32);
 		return (0);
@@ -69,8 +69,8 @@ int				init_main(t_list **arg, t_opt **op, int ac)
 		write(2, "malloc in main failled (main.c)\n", 32);
 		return (0);
 	}
-	(*arg)->dir->len = 0;
-	(*arg)->dir->ac = ac;
+	LCAST(t_var *, *arg)->len = 0;
+	LCAST(t_var *, *arg)->ac = ac;
 	(*op)->onbr = 0;
 	return (1);
 }
@@ -109,8 +109,8 @@ void			body_main(t_list *arg, t_opt *op, int ac, char **av)
 		if (av[1][0] == '-')
 			op->oname = av[1];
 		else
-			arg->dir->fname = av[ac - 1];
-		if (arg->dir->fname == NULL)
+			LCAST(t_var *, arg)->fname = av[ac - 1];
+		if (LCAST(t_var *, arg)->fname == NULL)
 			fill_list(&arg, &op, ac, av);
 		else
 		{

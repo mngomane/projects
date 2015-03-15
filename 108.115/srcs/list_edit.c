@@ -34,7 +34,7 @@ t_list			*add_link(t_list *arg, char *name)
 
 	if ((tmp = (t_list *)malloc(sizeof(t_list))) != NULL)
 	{
-		tmp->dir = tmpdir(name, arg->dir->ac);
+		tmp->content = tmpdir(name, LCAST(t_var *, arg)->ac);
 		tmp->next = arg;
 	}
 	else
@@ -64,7 +64,7 @@ void			free_link(t_list **arg)
 	save = *arg;
 	while (*arg)
 	{
-		free((*arg)->dir);
+		free(LCAST(t_var *, (*arg)));
 		*arg = (*arg)->next;
 	}
 	*arg = save;

@@ -15,45 +15,45 @@
 
 void		sub_noafile(t_list *arg)
 {
-	arg->dir->dirp = opendir(".");
-	if (arg->dir->dirp != NULL)
+	LCAST(t_var *, arg)->dirp = opendir(".");
+	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((arg->dir->dp = readdir(arg->dir->dirp)) != NULL)
+		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
-			if (stat(arg->dir->dp->d_name, &(arg->dir->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
 				write(2, "\nStat Error sub_nolfile\n", 24);
 			else
 			{
-				arg->dir->fname = arg->dir->dp->d_name;
+				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
 		}
-		(void)closedir(arg->dir->dirp);
+		(void)closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
 void		sub_noafile2(t_list *arg)
 {
-	arg->dir->dirp = opendir("../.");
-	if (arg->dir->dirp != NULL)
+	LCAST(t_var *, arg)->dirp = opendir("../.");
+	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((arg->dir->dp = readdir(arg->dir->dirp)) != NULL)
+		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
-			if (stat(arg->dir->dp->d_name, &(arg->dir->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
 				write(2, "\nStat Error sub_nolfile\n", 24);
 			else
 			{
-				arg->dir->fname = arg->dir->dp->d_name;
+				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
 		}
-		(void)closedir(arg->dir->dirp);
+		(void)closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
 void		no_afile(t_list *arg, void (*fct[3])(t_list *), int ac)
 {
-	if (ac < 3 || arg->dir->fname == NULL)
+	if (ac < 3 || LCAST(t_var *, arg)->fname == NULL)
 		sub_noafile(arg);
 	else
 		apptol(arg, fct);

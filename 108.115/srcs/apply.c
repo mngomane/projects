@@ -17,12 +17,12 @@ static void		apptoone(t_list *arg)
 {
 	while (arg)
 	{
-		if (ft_strcmp(arg->dir->fname, "."))
+		if (ft_strcmp(LCAST(t_var *, arg)->fname, "."))
 		{
-			if (stat(arg->dir->fname, &(arg->dir->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->fname, &(LCAST(t_var *, arg)->filestat)) < 0)
 			{
 				write(2, "ft_ls: ", 7);
-				write(2, arg->dir->fname, ft_strlen(arg->dir->fname));
+				write(2, LCAST(t_var *, arg)->fname, ft_strlen(LCAST(t_var *, arg)->fname));
 				write(2, ": No such file or directory\n", 28);
 			}
 		}
@@ -34,11 +34,11 @@ static void		apptotwo(t_list *arg, void (*fct[3])(t_list *))
 {
 	while (arg)
 	{
-		if (ft_strcmp(arg->dir->fname, ".") && ft_strcmp(arg->dir->fname, ".."))
+		if (ft_strcmp(LCAST(t_var *, arg)->fname, ".") && ft_strcmp(LCAST(t_var *, arg)->fname, ".."))
 		{
-			if (stat(arg->dir->fname, &(arg->dir->filestat)) >= 0)
+			if (stat(LCAST(t_var *, arg)->fname, &(LCAST(t_var *, arg)->filestat)) >= 0)
 			{
-				if (S_ISDIR(arg->dir->filestat.st_mode))
+				if (S_ISDIR(LCAST(t_var *, arg)->filestat.st_mode))
 					appdir(arg, fct);
 				else
 					(fct[0])(arg);
@@ -52,9 +52,9 @@ static void		apptothree(t_list *arg, void (*fct[3])(t_list *))
 {
 	while (arg)
 	{
-		if (!ft_strcmp(arg->dir->fname, "."))
+		if (!ft_strcmp(LCAST(t_var *, arg)->fname, "."))
 		{
-			if (arg->dir->ac > 1)
+			if (LCAST(t_var *, arg)->ac > 1)
 				write(1, "\n.:\n", 4);
 			(fct[1])(arg);
 		}
@@ -66,21 +66,21 @@ void			appdir(t_list *arg, void (*fct[3])(t_list *))
 {
 	char	*dir_name;
 
-	dir_name = arg->dir->fname;
-	arg->dir->dirp = opendir(arg->dir->fname);
-	if (arg->dir->dirp != NULL)
+	dir_name = LCAST(t_var *, arg)->fname;
+	LCAST(t_var *, arg)->dirp = opendir(LCAST(t_var *, arg)->fname);
+	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((arg->dir->dp = readdir(arg->dir->dirp)) != NULL)
+		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
-			if (stat(dir_name, &(arg->dir->filestat)) < 0)
+			if (stat(dir_name, &(LCAST(t_var *, arg)->filestat)) < 0)
 				write(2, "\nStat Error in appdir (apply.c)\n", 32);
-			else if (arg->dir->dp->d_name[0] != '.')
+			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				arg->dir->fname = arg->dir->dp->d_name;
+				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				(fct[0])(arg);
 			}
 		}
-		(void)closedir(arg->dir->dirp);
+		(void)closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
@@ -97,9 +97,9 @@ void			apptol(t_list *arg, void (*fct[3])(t_list *))
 	arg = save;
 	while (arg)
 	{
-		if (!ft_strcmp(arg->dir->fname, ".."))
+		if (!ft_strcmp(LCAST(t_var *, arg)->fname, ".."))
 		{
-			if (arg->dir->ac > 1)
+			if (LCAST(t_var *, arg)->ac > 1)
 				write(1, "\n..:\n", 5);
 			(fct[2])(arg);
 		}

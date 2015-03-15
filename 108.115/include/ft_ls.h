@@ -17,6 +17,8 @@
 # include <sys/stat.h>
 # include <dirent.h>
 
+# include "libft.h"
+
 typedef struct		s_var
 {
 	char			*fname;
@@ -32,12 +34,6 @@ typedef struct		s_var
 	off_t			padding;
 }					t_var;
 
-typedef struct		s_list
-{
-	t_var			*dir;
-	struct s_list	*next;
-}					t_list;
-
 typedef struct		s_opt
 {
 	char			*oname;
@@ -46,10 +42,9 @@ typedef struct		s_opt
 	struct s_opt	*next;
 }					t_opt;
 
-int					ft_strcmp(char *s1, char *s2);
+
 int					init_main(t_list **arg, t_opt **op, int ac);
 int					valid_op(t_opt **op);
-size_t				ft_strlen(char *str);
 t_list				*add_link(t_list *arg, char *name);
 t_opt				*add_opt(t_opt *op, char *name);
 void				body_main(t_list *arg, t_opt *op, int ac, char **av);
@@ -60,7 +55,6 @@ void				ft_arg(t_list *arg);
 void				ft_noarg(t_list *arg);
 void				ft_aarg(t_list *arg);
 void				ft_larg(t_list *arg);
-void				ft_putnbr_off_t(off_t n);
 void				no_file(t_list *arg, void (*fct[3])(t_list *), int ac);
 void				no_lfile(t_list *arg, void (*fct[3])(t_list *), int ac);
 void				no_afile(t_list *arg, void (*fct[3])(t_list *), int ac);
