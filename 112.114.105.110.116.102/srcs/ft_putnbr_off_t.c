@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_putnbr_off_t(off_t n)
+int		ft_putnbr_off_t(off_t n)
 {
-	ft_putnbr_off_t_fd(n, 1);
+	return (ft_putnbr_off_t_fd(n, 1));
 }

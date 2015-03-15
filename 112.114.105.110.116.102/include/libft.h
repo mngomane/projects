@@ -13,6 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdarg.h>
 # include <stdlib.h>
 # include <sys/types.h>
 # include <unistd.h>
@@ -22,7 +23,6 @@
 # define FLOOR(x)		(x / 2)
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
-
 
 typedef struct		s_list
 {
@@ -56,17 +56,17 @@ void				*ft_memdup(const void *s1, size_t size);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 int					ft_printf(const char *format, ...);
-void				ft_putchar(char c);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putendl(char const *s);
-void				ft_putendl_fd(char const *s, int fd);
-void				ft_puterr(char const *s);
-void				ft_putnbr(int n);
-void				ft_putnbr_fd(int n, int fd);
-void				ft_putnbr_off_t(off_t n);
-void				ft_putnbr_off_t_fd(off_t n, int fd);
-void				ft_putstr(char const *s);
-void				ft_putstr_fd(char const *s, int fd);
+int					ft_putchar(char c);
+int					ft_putchar_fd(char c, int fd);
+int					ft_putendl(char const *s);
+int					ft_putendl_fd(char const *s, int fd);
+int					ft_puterr(char const *s);
+int					ft_putnbr(int n);
+int					ft_putnbr_fd(int n, int fd);
+int					ft_putnbr_off_t(off_t n);
+int					ft_putnbr_off_t_fd(off_t n, int fd);
+int					ft_putstr(char const *s);
+int					ft_putstr_fd(char const *s, int fd);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
