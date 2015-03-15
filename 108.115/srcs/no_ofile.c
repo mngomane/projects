@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_ls.h"
 
-void		sub_noafile(t_list *arg)
+void		sub_noofile(t_list *arg)
 {
 	LCAST(t_var *, arg)->dirp = opendir(".");
 	if (LCAST(t_var *, arg)->dirp != NULL)
@@ -24,10 +23,10 @@ void		sub_noafile(t_list *arg)
 			if (stat(LCAST(t_var *, arg)->dp->d_name,
 				&(LCAST(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			else
+			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_arg(arg);
+				ft_putendl(LCAST(t_var *, arg)->fname);
 			}
 			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		}
@@ -35,7 +34,7 @@ void		sub_noafile(t_list *arg)
 	}
 }
 
-void		sub_noafile2(t_list *arg)
+void		sub_noofile2(t_list *arg)
 {
 	LCAST(t_var *, arg)->dirp = opendir("../.");
 	if (LCAST(t_var *, arg)->dirp != NULL)
@@ -46,21 +45,21 @@ void		sub_noafile2(t_list *arg)
 			if (stat(LCAST(t_var *, arg)->dp->d_name,
 				&(LCAST(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			else
+			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_arg(arg);
+				ft_putendl(LCAST(t_var *, arg)->fname);
 			}
 			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		}
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
-void		no_afile(t_list *arg, void (*fct[3])(t_list *), int ac)
+void		no_ofile(t_list *arg, void (*fct[3])(t_list *), int ac)
 {
 	if (ac < 3 || LCAST(t_var *, arg)->fname == NULL)
-		sub_noafile(arg);
+		sub_noofile(arg);
 	else
 		apptol(arg, fct);
 	write(1, "\n", 1);

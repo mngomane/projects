@@ -24,6 +24,7 @@ SRCS = main.c\
 		no_file.c\
 		no_lfile.c\
 		no_afile.c\
+		no_ofile.c\
 		illegal.c\
 		list_edit.c\
 		apply.c\

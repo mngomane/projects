@@ -13,7 +13,6 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
 # include "libft.h"
@@ -63,12 +62,15 @@ void				ft_larg(t_list *arg);
 void				no_file(t_list *arg, void (*fct[3])(t_list *), int ac);
 void				no_lfile(t_list *arg, void (*fct[3])(t_list *), int ac);
 void				no_afile(t_list *arg, void (*fct[3])(t_list *), int ac);
+void				no_ofile(t_list *arg, void (*fct[3])(t_list *), int ac);
 void				sub_nofile(t_list *arg);
 void				sub_nolfile(t_list *arg);
 void				sub_noafile(t_list *arg);
+void				sub_noofile(t_list *arg);
 void				sub_nofile2(t_list *arg);
 void				sub_nolfile2(t_list *arg);
 void				sub_noafile2(t_list *arg);
+void				sub_noofile2(t_list *arg);
 void				whatelse(char *name);
 void				free_link(t_list **arg);
 void				apptol(t_list *arg, void (*fct[3])(t_list *));

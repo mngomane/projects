@@ -64,6 +64,7 @@ void			sub_main(t_list *arg, t_opt *op, int ac)
 {
 	static void	(*l_fct[3])(t_list *) = {ft_larg, sub_nolfile, sub_nolfile2};
 	static void	(*a_fct[3])(t_list *) = {ft_arg, sub_noafile, sub_noafile2};
+	static void	(*o_fct[3])(t_list *) = {ft_arg, sub_noofile, sub_noofile2};
 	static void	(*e_fct[3])(t_list *) = {ft_arg, sub_nofile, sub_nofile2};
 
 	if (op->oname == NULL)
@@ -78,6 +79,8 @@ void			sub_main(t_list *arg, t_opt *op, int ac)
 				no_lfile(arg, l_fct, ac);
 			else if (ft_strcmp(op->oname, "-a") == 0)
 				no_afile(arg, a_fct, ac);
+			else if (ft_strcmp(op->oname, "-1") == 0)
+				no_ofile(arg, o_fct, ac);
 			else
 				whatelse(op->oname);
 		}

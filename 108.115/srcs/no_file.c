@@ -27,7 +27,8 @@ void		sub_nofile(t_list *arg)
 		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		while (LCAST(t_var *, arg)->dp != NULL)
 		{
-			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->dp->d_name,
+				&(LCAST(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
 			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
@@ -48,7 +49,8 @@ void		sub_nofile2(t_list *arg)
 		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		while (LCAST(t_var *, arg)->dp != NULL)
 		{
-			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->dp->d_name,
+				&(LCAST(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
 			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
