@@ -23,7 +23,6 @@
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
 
-
 typedef struct		s_list
 {
 	void			*content;
