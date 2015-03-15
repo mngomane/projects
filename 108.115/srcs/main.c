@@ -22,7 +22,6 @@ int				main(int ac, char **av)
 	if (!init_main(&arg, &op, ac))
 		return (-1);
 	body_main(arg, op, ac, av);
-	free_link(&arg);
 	free_opt(&op);
 	return (0);
 }
