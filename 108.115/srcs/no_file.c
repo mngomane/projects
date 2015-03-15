@@ -15,7 +15,7 @@
 
 void		ft_arg(t_list *arg)
 {
-	write(1, LCAST(t_var *, arg)->fname, ft_strlen(LCAST(t_var *, arg)->fname));
+	ft_putstr(LCAST(t_var *, arg)->fname);
 	write(1, "    ", 4);
 }
 
@@ -24,17 +24,19 @@ void		sub_nofile(t_list *arg)
 	LCAST(t_var *, arg)->dirp = opendir(".");
 	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
+		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+		while (LCAST(t_var *, arg)->dp != NULL)
 		{
 			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
-				write(2, "\nStat Error sub_nolfile\n", 24);
+				ft_puterr(FAILED_STAT);
 			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
+			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		}
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
@@ -43,17 +45,19 @@ void		sub_nofile2(t_list *arg)
 	LCAST(t_var *, arg)->dirp = opendir("../.");
 	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
+		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+		while (LCAST(t_var *, arg)->dp != NULL)
 		{
 			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
-				write(2, "\nStat Error sub_nolfile\n", 24);
+				ft_puterr(FAILED_STAT);
 			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
+			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		}
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 

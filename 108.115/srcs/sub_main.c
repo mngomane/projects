@@ -19,11 +19,8 @@ void			fill_arg_list(t_list **arg, int ac, int j, char **av)
 	int		i;
 
 	i = ac - 2;
-	while (i > j - 1)
-	{
-		*arg = add_link(*arg, av[i]);
-		--i;
-	}
+	while (i > j - 1 && i >= 0)
+		*arg = add_link(*arg, av[i--]);
 }
 
 void			fill_list(t_list **arg, t_opt **op, int ac, char **av)
@@ -34,15 +31,9 @@ void			fill_list(t_list **arg, t_opt **op, int ac, char **av)
 	if (i < ac)
 	{
 		while (av[i][0] == '-' && i < ac - 1)
-		{
-			*op = add_opt(*op, av[i]);
-			++i;
-		}
+			*op = add_opt(*op, av[i++]);
 		if (av[i][0] == '-')
-		{
-			*op = add_opt(*op, av[i]);
-			++i;
-		}
+			*op = add_opt(*op, av[i++]);
 		if (i < ac)
 		{
 			LCAST(t_var *, (*arg))->fname = av[ac - 1];
@@ -54,23 +45,17 @@ void			fill_list(t_list **arg, t_opt **op, int ac, char **av)
 
 int				init_main(t_list **arg, t_opt **op, int ac)
 {
-	if ((*arg = (t_list *)malloc(sizeof(t_list))) == NULL)
+	if ((*arg = (t_list *)malloc(sizeof(t_list))) == NULL ||
+		((*arg)->content = (t_var *)malloc(sizeof(t_var))) == NULL ||
+		(*op = (t_opt *)malloc(sizeof(t_opt))) == NULL)
 	{
-		write(2, "malloc in main failled (main.c)\n", 32);
-		return (0);
-	}
-	if (((*arg)->content = (t_var *)malloc(sizeof(t_var))) == NULL)
-	{
-		write(2, "malloc in main failled (main.c)\n", 32);
-		return (0);
-	}
-	if ((*op = (t_opt *)malloc(sizeof(t_opt))) == NULL)
-	{
-		write(2, "malloc in main failled (main.c)\n", 32);
+		ft_puterr(FAILED_ALLOC);
 		return (0);
 	}
 	LCAST(t_var *, *arg)->len = 0;
 	LCAST(t_var *, *arg)->ac = ac;
+	LCAST(t_var *, *arg)->fname = (void *)0;
+	(*arg)->next = (void *)0;
 	(*op)->onbr = 0;
 	return (1);
 }
@@ -103,7 +88,7 @@ void			body_main(t_list *arg, t_opt *op, int ac, char **av)
 {
 	int			i;
 
-	i = ac - 2;
+	i = ac - 1;
 	if (ac > 1)
 	{
 		if (av[1][0] == '-')
@@ -114,11 +99,8 @@ void			body_main(t_list *arg, t_opt *op, int ac, char **av)
 			fill_list(&arg, &op, ac, av);
 		else
 		{
-			while (i > 0)
-			{
-				arg = add_link(arg, av[i]);
-				--i;
-			}
+			while (i > 1)
+				arg = add_link(arg, av[i--]);
 		}
 		sub_main(arg, op, ac);
 	}

@@ -44,7 +44,6 @@ int			valid_op(t_opt **op)
 
 void		whatelse(char *name)
 {
-	write(1, "ft_ls: illegal option -", 24);
-	write(1, name, ft_strlen(name));
-	write(1, "\n", 1);
+	write(1, ILLEGAL, sizeof(ILLEGAL));
+	ft_putendl(name);
 }

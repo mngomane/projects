@@ -16,8 +16,13 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
-
 # include "libft.h"
+
+# define NAME			"ft_ls"
+# define ILLEGAL		NAME": illegal option -"
+# define FAILED_ALLOC	"malloc failed"
+# define FAILED_STAT	"Stat Error"
+# define UNKNOWN_ERROR	"Error"
 
 typedef struct		s_var
 {

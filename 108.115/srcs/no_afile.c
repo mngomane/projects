@@ -21,14 +21,14 @@ void		sub_noafile(t_list *arg)
 		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
 			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
-				write(2, "\nStat Error sub_nolfile\n", 24);
+				ft_puterr(FAILED_STAT);
 			else
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				ft_arg(arg);
 			}
 		}
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
@@ -40,7 +40,7 @@ void		sub_noafile2(t_list *arg)
 		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
 		{
 			if (stat(LCAST(t_var *, arg)->dp->d_name, &(LCAST(t_var *, arg)->filestat)) < 0)
-				write(2, "\nStat Error sub_nolfile\n", 24);
+				ft_puterr(FAILED_STAT);
 			else
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;

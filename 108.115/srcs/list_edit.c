@@ -24,7 +24,7 @@ static t_var	*tmpdir(char *name, int ac)
 		tmp->ac = ac;
 	}
 	else
-		write(2, "malloc in tmpdir failed (main.c)\n", 33);
+		ft_puterr(FAILED_ALLOC);
 	return (tmp);
 }
 
@@ -32,13 +32,19 @@ t_list			*add_link(t_list *arg, char *name)
 {
 	t_list	*tmp;
 
-	if ((tmp = (t_list *)malloc(sizeof(t_list))) != NULL)
+	if (LCAST(t_var *, arg)->fname == (void *)0)
+	{
+		LCAST(t_var *, arg)->fname = name;
+		return (arg);
+	}
+	__asm("int3");
+	if ((tmp = (t_list *)malloc(sizeof(t_list))) == NULL)
+		ft_puterr(FAILED_ALLOC);
+	else
 	{
 		tmp->content = tmpdir(name, LCAST(t_var *, arg)->ac);
 		tmp->next = arg;
 	}
-	else
-		write(2, "malloc in add_link failed (main.c)\n", 35);
 	return (tmp);
 }
 
@@ -53,7 +59,7 @@ t_opt			*add_opt(t_opt *op, char *name)
 		tmp->next = op;
 	}
 	else
-		write(2, "malloc in add_link failed (main.c)\n", 35);
+		ft_puterr(FAILED_ALLOC);
 	return (tmp);
 }
 

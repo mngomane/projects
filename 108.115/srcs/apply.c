@@ -19,10 +19,11 @@ static void		apptoone(t_list *arg)
 	{
 		if (ft_strcmp(LCAST(t_var *, arg)->fname, "."))
 		{
-			if (stat(LCAST(t_var *, arg)->fname, &(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LCAST(t_var *, arg)->fname,
+				&(LCAST(t_var *, arg)->filestat)) < 0)
 			{
 				write(2, "ft_ls: ", 7);
-				write(2, LCAST(t_var *, arg)->fname, ft_strlen(LCAST(t_var *, arg)->fname));
+				ft_puterr(LCAST(t_var *, arg)->fname);
 				write(2, ": No such file or directory\n", 28);
 			}
 		}
@@ -34,9 +35,11 @@ static void		apptotwo(t_list *arg, void (*fct[3])(t_list *))
 {
 	while (arg)
 	{
-		if (ft_strcmp(LCAST(t_var *, arg)->fname, ".") && ft_strcmp(LCAST(t_var *, arg)->fname, ".."))
+		if (ft_strcmp(LCAST(t_var *, arg)->fname, ".") &&
+			ft_strcmp(LCAST(t_var *, arg)->fname, ".."))
 		{
-			if (stat(LCAST(t_var *, arg)->fname, &(LCAST(t_var *, arg)->filestat)) >= 0)
+			if (stat(LCAST(t_var *, arg)->fname,
+				&(LCAST(t_var *, arg)->filestat)) >= 0)
 			{
 				if (S_ISDIR(LCAST(t_var *, arg)->filestat.st_mode))
 					appdir(arg, fct);
@@ -70,7 +73,8 @@ void			appdir(t_list *arg, void (*fct[3])(t_list *))
 	LCAST(t_var *, arg)->dirp = opendir(LCAST(t_var *, arg)->fname);
 	if (LCAST(t_var *, arg)->dirp != NULL)
 	{
-		while ((LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp)) != NULL)
+		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+		while (LCAST(t_var *, arg)->dp != NULL)
 		{
 			if (stat(dir_name, &(LCAST(t_var *, arg)->filestat)) < 0)
 				write(2, "\nStat Error in appdir (apply.c)\n", 32);
@@ -79,8 +83,9 @@ void			appdir(t_list *arg, void (*fct[3])(t_list *))
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
 				(fct[0])(arg);
 			}
+			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		}
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 

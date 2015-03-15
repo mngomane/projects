@@ -27,8 +27,8 @@ void	ft_noarg(t_list *arg)
 			}
 		}
 		write(1, "\n", 1);
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 	else
-		write(2, "Error (no_arg.c)\n", 17);
+		ft_puterr(UNKNOWN_ERROR);
 }
