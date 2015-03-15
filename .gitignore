@@ -7,3 +7,8 @@ a.out
 # OS generated files #
 ######################
 .DS_Store
+
+# Project binaries#
+###################
+ft_ls
+ft_minishell3

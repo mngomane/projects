@@ -14,7 +14,7 @@ OBJSDIR = bins/
 
 SRCSDIR = srcs/
 
-LIBDIR = libfts/
+LIBDIR = libft/
 
 NAME = ft_ls
 
@@ -40,7 +40,7 @@ FLAGS = -Wall -Wextra -Werror
 
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
-LIB = -Llibfts -lfts
+LIB = -Llibft -lft
 
 INCS = -Iinclude -Ilibfts/include
 
