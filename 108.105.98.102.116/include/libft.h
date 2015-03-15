@@ -17,8 +17,8 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-# define BUFF_SIZE	32
-# define SECURITY	300001
+# define BUFF_SIZE		32
+# define SECURITY		300001
 # define FLOOR(x)		(x / 2)
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
