@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_ls.h"
 
 void			fill_arg_list(t_list **arg, int ac, int j, char **av)
@@ -62,10 +60,10 @@ int				init_main(t_list **arg, t_opt **op, int ac)
 
 void			sub_main(t_list *arg, t_opt *op, int ac)
 {
-	static void	(*l_fct[3])(t_list *) = {ft_larg, sub_nolfile, sub_nolfile2};
-	static void	(*a_fct[3])(t_list *) = {ft_arg, sub_noafile, sub_noafile2};
-	static void	(*o_fct[3])(t_list *) = {ft_arg, sub_noofile, sub_noofile2};
-	static void	(*e_fct[3])(t_list *) = {ft_arg, sub_nofile, sub_nofile2};
+	static void	(*l_fct[2])(t_list *) = {sub_nolfile, sub_nolfile2};
+	static void	(*a_fct[2])(t_list *) = {sub_noafile, sub_noafile2};
+	static void	(*o_fct[2])(t_list *) = {sub_noofile, sub_noofile2};
+	static void	(*e_fct[2])(t_list *) = {sub_nofile, sub_nofile2};
 
 	if (op->oname == NULL)
 		no_file(arg, e_fct, ac);

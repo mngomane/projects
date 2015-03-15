@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_ls.h"
 
 void		sub_noafile(t_list *arg)
@@ -27,9 +26,13 @@ void		sub_noafile(t_list *arg)
 			else
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_arg(arg);
+				ft_putstr(LCAST(t_var *, arg)->fname);
 			}
 			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			if (LCAST(t_var *, arg)->dp)
+				write(1, "    ", 4);
+			else
+				write(1, "\n", 1);
 		}
 		closedir(LCAST(t_var *, arg)->dirp);
 	}
@@ -49,11 +52,15 @@ void		sub_noafile2(t_list *arg)
 			else
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_arg(arg);
+				ft_putstr(LCAST(t_var *, arg)->fname);
 			}
 			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			if (LCAST(t_var *, arg)->dp)
+				write(1, "    ", 4);
+			else
+				write(1, "\n", 1);
 		}
-		(void)closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
@@ -63,5 +70,4 @@ void		no_afile(t_list *arg, void (*fct[3])(t_list *), int ac)
 		sub_noafile(arg);
 	else
 		apptol(arg, fct);
-	write(1, "\n", 1);
 }

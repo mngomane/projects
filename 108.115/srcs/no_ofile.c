@@ -62,5 +62,4 @@ void		no_ofile(t_list *arg, void (*fct[3])(t_list *), int ac)
 		sub_noofile(arg);
 	else
 		apptol(arg, fct);
-	write(1, "\n", 1);
 }

@@ -12,9 +12,7 @@
 
 #include <grp.h>
 #include <pwd.h>
-#include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 #include "ft_ls.h"
 
 static void	ft_time_init(t_list *arg)

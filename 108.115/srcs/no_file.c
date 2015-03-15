@@ -10,14 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_ls.h"
-
-void		ft_arg(t_list *arg)
-{
-	ft_putstr(LCAST(t_var *, arg)->fname);
-	write(1, "    ", 4);
-}
 
 void		sub_nofile(t_list *arg)
 {
@@ -30,12 +23,18 @@ void		sub_nofile(t_list *arg)
 			if (stat(LCAST(t_var *, arg)->dp->d_name,
 				&(LCAST(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_arg(arg);
+				ft_putstr(LCAST(t_var *, arg)->fname);
+				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+				if (LCAST(t_var *, arg)->dp)
+					write(1, "    ", 4);
 			}
-			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			else
+				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			if (!LCAST(t_var *, arg)->dp)
+				write(1, "\n", 1);
 		}
 		closedir(LCAST(t_var *, arg)->dirp);
 	}
@@ -52,22 +51,27 @@ void		sub_nofile2(t_list *arg)
 			if (stat(LCAST(t_var *, arg)->dp->d_name,
 				&(LCAST(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_arg(arg);
+				ft_putstr(LCAST(t_var *, arg)->fname);
+				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+				if (LCAST(t_var *, arg)->dp)
+					write(1, "    ", 4);
 			}
-			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			else
+				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			if (!LCAST(t_var *, arg)->dp)
+				write(1, "\n", 1);
 		}
 		closedir(LCAST(t_var *, arg)->dirp);
 	}
 }
 
-void		no_file(t_list *arg, void (*fct[3])(t_list *), int ac)
+void		no_file(t_list *arg, void (*fct[2])(t_list *), int ac)
 {
 	if (ac < 2 || LCAST(t_var *, arg)->fname == NULL)
 		sub_nofile(arg);
 	else
 		apptol(arg, fct);
-	write(1, "\n", 1);
 }

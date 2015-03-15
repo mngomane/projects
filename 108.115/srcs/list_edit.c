@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_ls.h"
 
 static t_var	*tmpdir(char *name, int ac)
@@ -37,7 +35,6 @@ t_list			*add_link(t_list *arg, char *name)
 		LCAST(t_var *, arg)->fname = name;
 		return (arg);
 	}
-	__asm("int3");
 	if ((tmp = (t_list *)malloc(sizeof(t_list))) == NULL)
 		ft_puterr(FAILED_ALLOC);
 	else

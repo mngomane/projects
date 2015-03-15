@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_ls.h"
 
 static void		apptoone(t_list *arg)
@@ -31,7 +30,7 @@ static void		apptoone(t_list *arg)
 	}
 }
 
-static void		apptotwo(t_list *arg, void (*fct[3])(t_list *))
+static void		apptotwo(t_list *arg, void (*fct[2])(t_list *))
 {
 	while (arg)
 	{
@@ -43,15 +42,20 @@ static void		apptotwo(t_list *arg, void (*fct[3])(t_list *))
 			{
 				if (S_ISDIR(LCAST(t_var *, arg)->filestat.st_mode))
 					appdir(arg, fct);
+				else if (fct[0] == sub_nolfile)
+					ft_larg(arg);
 				else
-					(fct[0])(arg);
+				{
+					ft_putstr(LCAST(t_var *, arg)->fname);
+					write(1, "    ", 4);
+				}
 			}
 		}
 		arg = arg->next;
 	}
 }
 
-static void		apptothree(t_list *arg, void (*fct[3])(t_list *))
+static void		apptothree(t_list *arg)
 {
 	while (arg)
 	{
@@ -59,13 +63,14 @@ static void		apptothree(t_list *arg, void (*fct[3])(t_list *))
 		{
 			if (LCAST(t_var *, arg)->ac > 1)
 				write(1, "\n.:\n", 4);
-			(fct[1])(arg);
+			ft_putstr(LCAST(t_var *, arg)->fname);
+			write(1, "    ", 4);
 		}
 		arg = arg->next;
 	}
 }
 
-void			appdir(t_list *arg, void (*fct[3])(t_list *))
+void			appdir(t_list *arg, void (*fct[2])(t_list *))
 {
 	char	*dir_name;
 
@@ -77,11 +82,17 @@ void			appdir(t_list *arg, void (*fct[3])(t_list *))
 		while (LCAST(t_var *, arg)->dp != NULL)
 		{
 			if (stat(dir_name, &(LCAST(t_var *, arg)->filestat)) < 0)
-				write(2, "\nStat Error in appdir (apply.c)\n", 32);
+				ft_puterr(UNKNOWN_ERROR);
 			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
 			{
 				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				(fct[0])(arg);
+				if (fct[0] == sub_nolfile)
+					ft_larg(arg);
+				else
+				{
+					ft_putstr(LCAST(t_var *, arg)->fname);
+					write(1, "    ", 4);
+				}
 			}
 			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
 		}
@@ -89,7 +100,7 @@ void			appdir(t_list *arg, void (*fct[3])(t_list *))
 	}
 }
 
-void			apptol(t_list *arg, void (*fct[3])(t_list *))
+void			apptol(t_list *arg, void (*fct[2])(t_list *))
 {
 	t_list	*save;
 
@@ -98,7 +109,7 @@ void			apptol(t_list *arg, void (*fct[3])(t_list *))
 	arg = save;
 	apptotwo(arg, fct);
 	arg = save;
-	apptothree(arg, fct);
+	apptothree(arg);
 	arg = save;
 	while (arg)
 	{
@@ -106,7 +117,7 @@ void			apptol(t_list *arg, void (*fct[3])(t_list *))
 		{
 			if (LCAST(t_var *, arg)->ac > 1)
 				write(1, "\n..:\n", 5);
-			(fct[2])(arg);
+			(fct[1])(arg);
 		}
 		arg = arg->next;
 	}
