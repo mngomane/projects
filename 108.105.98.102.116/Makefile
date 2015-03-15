@@ -44,6 +44,7 @@ SRCS = ft_atoi.c\
 		ft_putchar_fd.c\
 		ft_putendl.c\
 		ft_putendl_fd.c\
+		ft_puterr.c\
 		ft_putnbr.c\
 		ft_putnbr_fd.c\
 		ft_putnbr_off_t.c\
