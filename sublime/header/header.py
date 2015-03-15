@@ -8,7 +8,7 @@ class Makefile():
 		body = (
 			"OBJSDIR = bins/\n\n"
 			"SRCSDIR = srcs/\n\n"
-			"LIBDIR = libfts/\n\n"
+			"LIBDIR = libft/\n\n"
 			"NAME = run\n\n"
 			"SRCS = main.c\n\n"
 			"OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))\n\n"
