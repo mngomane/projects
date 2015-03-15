@@ -14,6 +14,12 @@
 
 int		ft_printf(const char *format, ...)
 {
-	(void)format;
-	return (0);
+/*	char	*p;
+*/	va_list	ap;
+	int		ret;
+
+	va_start(ap, format);
+	ret = ft_putstr(format);
+	va_end(ap);
+	return (ret);
 }
