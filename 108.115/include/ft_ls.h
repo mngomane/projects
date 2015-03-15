@@ -17,8 +17,9 @@
 # include <dirent.h>
 # include "libft.h"
 
-# define NAME			"ft_ls"
-# define ILLEGAL		NAME": illegal option -"
+# define NAME			"ft_ls: "
+# define ILLEGAL		NAME"illegal option -"
+# define NO_FORDIR		": No such file or directory\n"
 # define FAILED_ALLOC	"malloc failed"
 # define FAILED_STAT	"Stat Error"
 # define UNKNOWN_ERROR	"Error"

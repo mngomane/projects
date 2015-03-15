@@ -21,9 +21,9 @@ static void		apptoone(t_list *arg)
 			if (stat(LCAST(t_var *, arg)->fname,
 				&(LCAST(t_var *, arg)->filestat)) < 0)
 			{
-				write(2, "ft_ls: ", 7);
+				ft_puterr(NAME);
 				ft_puterr(LCAST(t_var *, arg)->fname);
-				write(2, ": No such file or directory\n", 28);
+				ft_puterr(NO_FORDIR);
 			}
 		}
 		arg = arg->next;
@@ -62,11 +62,14 @@ static void		apptothree(t_list *arg)
 		if (!ft_strcmp(LCAST(t_var *, arg)->fname, "."))
 		{
 			if (LCAST(t_var *, arg)->ac > 1)
-				write(1, "\n.:\n", 4);
+				write(1, ".:\n", 3);
 			ft_putstr(LCAST(t_var *, arg)->fname);
-			write(1, "    ", 4);
 		}
 		arg = arg->next;
+		if (arg && ft_strcmp(LCAST(t_var *, arg)->fname, "."))
+			write(1, "    ", 4);
+		else
+			write(1, "\n", 1);
 	}
 }
 
