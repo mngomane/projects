@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_puterr(char const *s)
+ssize_t		ft_puterr(char const *s)
 {
 	return (ft_putstr_fd(s, 2));
 }

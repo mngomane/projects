@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_putnbr(int n)
+ssize_t		ft_putnbr(int n)
 {
 	return (ft_putnbr_fd(n, 1));
 }

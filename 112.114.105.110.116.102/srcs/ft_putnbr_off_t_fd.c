@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int		ft_putnbr_off_t_fd(off_t n, int fd)
+ssize_t		ft_putnbr_off_t_fd(off_t n, int fd)
 {
 	char	c;
-	size_t	ret;
+	ssize_t	ret;
 	off_t	decim;
 
 	decim = 1;
@@ -25,9 +25,10 @@ int		ft_putnbr_off_t_fd(off_t n, int fd)
 	while (decim > 0)
 	{
 		c = (n / decim) % 10 + '0';
-		write(fd, &c, 1);
+		if (write(fd, &c, 1) < 0)
+			return (-1);
 		++ret;
 		decim /= 10;
 	}
-	return ((int)ret);
+	return (ret);
 }

@@ -12,31 +12,30 @@
 
 #include "libft.h"
 
-int		ft_putnbr_fd(int n, int fd)
+ssize_t		ft_putnbr_fd(int n, int fd)
 {
 	char	c;
 	int		decim;
-	size_t	ret;
+	ssize_t	ret;
 
 	ret = 0;
 	decim = ((n == -2147483648) ? 0 : 1);
-	if (n == -2147483648 && (ret = 11))
-		write(fd, "-2147483648", 11);
+	if (n == -2147483648)
+		ret = write(fd, "-2147483648", 11);
 	else if ((n > -2147483648) && (n < 0))
 	{
-		c = '-';
-		write(fd, &c, 1);
+		ret = write(fd, "-", 1);
 		n *= -1;
-		ret = 1;
 	}
 	while (decim && (n / decim) > 9)
 		decim *= 10;
 	while (decim > 0)
 	{
 		c = ((n / decim) % 10) + '0';
-		write(fd, &c, 1);
+		if (write(fd, &c, 1) < 0)
+			return (-1);
 		++ret;
 		decim /= 10;
 	}
-	return ((int)ret);
+	return (ret);
 }

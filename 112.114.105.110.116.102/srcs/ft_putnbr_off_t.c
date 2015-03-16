@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_putnbr_off_t(off_t n)
+ssize_t		ft_putnbr_off_t(off_t n)
 {
 	return (ft_putnbr_off_t_fd(n, 1));
 }

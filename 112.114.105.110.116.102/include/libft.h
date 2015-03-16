@@ -23,6 +23,7 @@
 # define FLOOR(x)		(x / 2)
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
+# define P_MAXARGS		128
 
 typedef struct		s_list
 {
@@ -58,15 +59,15 @@ void				*ft_memset(void *b, int c, size_t len);
 int					ft_printf(const char *format, ...);
 int					ft_putchar(char c);
 int					ft_putchar_fd(char c, int fd);
-int					ft_putendl(char const *s);
-int					ft_putendl_fd(char const *s, int fd);
-int					ft_puterr(char const *s);
-int					ft_putnbr(int n);
-int					ft_putnbr_fd(int n, int fd);
-int					ft_putnbr_off_t(off_t n);
-int					ft_putnbr_off_t_fd(off_t n, int fd);
-int					ft_putstr(char const *s);
-int					ft_putstr_fd(char const *s, int fd);
+ssize_t				ft_putendl(char const *s);
+ssize_t				ft_putendl_fd(char const *s, int fd);
+ssize_t				ft_puterr(char const *s);
+ssize_t				ft_putnbr(int n);
+ssize_t				ft_putnbr_fd(int n, int fd);
+ssize_t				ft_putnbr_off_t(off_t n);
+ssize_t				ft_putnbr_off_t_fd(off_t n, int fd);
+ssize_t				ft_putstr(char const *s);
+ssize_t				ft_putstr_fd(char const *s, int fd);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
