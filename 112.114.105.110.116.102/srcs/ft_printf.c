@@ -14,10 +14,13 @@
 
 static ssize_t	fct1(const char **format, char conv, va_list *ap)
 {
+	char	c;
 	char	*str;
+	wchar_t	*wstr;
 	ssize_t	nbr;
 	int		tab[6];
 
+	(void)wstr;
 	ft_bzero(&tab, sizeof(tab));
 	(*format)++;
 	while (**format == '#' || **format == '0' || **format == '-' ||
@@ -29,6 +32,11 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap)
 	{
 		str = va_arg(*ap, char *);
 		return (ft_putstr(str));
+	}
+	else if ((conv == 'c') && (*format)++)
+	{
+		c = (char)va_arg(*ap, int);
+		return (write(1, &c, 1));
 	}
 	else if ((conv == 'd') && (*format)++)
 	{
