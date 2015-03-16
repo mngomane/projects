@@ -50,10 +50,14 @@ SRCS = ft_atoi.c\
 		ft_puthex_fd.c\
 		ft_puthexf.c\
 		ft_puthexf_fd.c\
+		ft_puthexu.c\
+		ft_puthexu_fd.c\
 		ft_putnbr.c\
 		ft_putnbr_fd.c\
 		ft_putnbr_off_t.c\
 		ft_putnbr_off_t_fd.c\
+		ft_putoct.c\
+		ft_putoct_fd.c\
 		ft_putstr.c\
 		ft_putstr_fd.c\
 		ft_strcat.c\
