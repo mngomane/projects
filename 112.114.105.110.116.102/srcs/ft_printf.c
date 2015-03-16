@@ -16,18 +16,26 @@ static char		*fct1(int const c)
 {
 	if (c == 's')
 		return ("char *");
+	if (c == 'd')
+		return ("int");
 	return ((void *)0);
 }
 
 static ssize_t	fct2(const char **format, char *type, va_list *ap)
 {
 	char	*str;
+	ssize_t	nbr;
 
 	(*format)++;
 	if (!ft_strncmp(type, "char *", sizeof("char *")) && (*format)++)
 	{
 		str = va_arg(*ap, char *);
 		return (ft_putstr(str));
+	}
+	else if (!ft_strncmp(type, "int", sizeof("int")) && (*format)++)
+	{
+		nbr = (ssize_t)va_arg(*ap, char *);
+		return (ft_putnbr((int)nbr));
 	}
 	return (write(1, "%", 1));
 }
