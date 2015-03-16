@@ -14,14 +14,6 @@
 
 static ssize_t	fct1(const char **format, char conv, va_list *ap)
 {
-	char	c;
-	char	*str;
-	wchar_t	*wstr;
-	ssize_t	nbr;
-	int		tab[6];
-
-	(void)wstr;
-	ft_bzero(&tab, sizeof(tab));
 	(*format)++;
 	while (**format == '#' || **format == '0' || **format == '-' ||
 			**format == '+' || **format == ' ')
@@ -29,28 +21,15 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap)
 	if ((conv == '%') && (*format)++)
 		return (write(1, "%", 1));
 	else if ((conv == 's') && (*format)++)
-	{
-		str = va_arg(*ap, char *);
-		return (ft_putstr(str));
-	}
+		return (ft_putstr(va_arg(*ap, char *)));
 	else if ((conv == 'c') && (*format)++)
-	{
-		c = (char)va_arg(*ap, int);
-		return (write(1, &c, 1));
-	}
+		return (ft_putchar(va_arg(*ap, int)) ? 1 : 1);
 	else if ((conv == 'd') && (*format)++)
-	{
-		nbr = (ssize_t)va_arg(*ap, int);
-		return (ft_putnbr((int)nbr));
-	}
+		return (ft_putnbr(va_arg(*ap, int)));
 	else if ((conv == 'p') && (*format)++)
-	{
-		nbr = (ssize_t)va_arg(*ap, uintptr_t);
-		return (ft_puthex((uintptr_t)nbr));
-	}
+		return (ft_puthex(va_arg(*ap, uintptr_t)));
 	return (0);
 }
-
 
 int				ft_printf(const char *format, ...)
 {
