@@ -48,6 +48,8 @@ SRCS = ft_atoi.c\
 		ft_puterr.c\
 		ft_puthex.c\
 		ft_puthex_fd.c\
+		ft_puthexf.c\
+		ft_puthexf_fd.c\
 		ft_putnbr.c\
 		ft_putnbr_fd.c\
 		ft_putnbr_off_t.c\
