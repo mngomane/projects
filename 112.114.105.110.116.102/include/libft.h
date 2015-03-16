@@ -23,7 +23,6 @@
 # define FLOOR(x)		(x / 2)
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
-# define P_MAXARGS		128
 
 typedef struct		s_list
 {

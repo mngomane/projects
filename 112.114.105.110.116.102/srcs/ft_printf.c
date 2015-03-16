@@ -12,23 +12,41 @@
 
 #include "libft.h"
 
-int		ft_printf(const char *format, ...)
+static char		*fct1(int const c)
 {
-	va_list	ap;
-	char	*array[P_MAXARGS + 1];
-	int		index;
-	int		ret;
+	if (c == 's')
+		return ("char *");
+	return ((void *)0);
+}
 
-	index = 0;
-	va_start(ap, format);
-	while (format && index < P_MAXARGS)
+static ssize_t	fct2(const char **format, char *type, va_list *ap)
+{
+	char	*str;
+
+	(*format)++;
+	if (!ft_strncmp(type, "char *", sizeof("char *")) && (*format)++)
 	{
-		array[index++] = (char *)format;
-		format = va_arg(ap, const char *);
-		ft_putendl("REACHED");
+		str = va_arg(*ap, char *);
+		return (ft_putstr(str));
 	}
-	array[index] = (void *)0;
-	ret = (int)ft_putstr(array[0]);
+	return (write(1, "%", 1));
+}
+
+int				ft_printf(const char *format, ...)
+{
+	va_list		ap;
+	ssize_t		ret;
+	char		*type;
+
+	ret = 0;
+	va_start(ap, format);
+	while (*format)
+	{
+		if (*format == '%' && ((type = fct1(*(format + 1))) != (void *)0))
+			ret += fct2(&format, type, &ap);
+		else
+			ret += (*format ? write(1, format++, 1) : 0);
+	}
 	va_end(ap);
-	return (ret);
+	return ((int)ret);
 }
