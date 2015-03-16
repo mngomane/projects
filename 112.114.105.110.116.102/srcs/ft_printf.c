@@ -26,6 +26,8 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap)
 		return (ft_putchar(va_arg(*ap, int)) ? 1 : 1);
 	else if ((conv == 'd') && (*format)++)
 		return (ft_putnbr(va_arg(*ap, int)));
+	else if ((conv == 'i') && (*format)++)
+		return (ft_putnbr(va_arg(*ap, int)));
 	else if ((conv == 'p') && (*format)++)
 		return (ft_puthex(va_arg(*ap, uintptr_t)));
 	return (0);
