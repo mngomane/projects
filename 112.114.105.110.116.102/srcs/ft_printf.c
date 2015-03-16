@@ -12,46 +12,49 @@
 
 #include "libft.h"
 
-static char		*fct1(int const c)
-{
-	if (c == 's')
-		return ("char *");
-	if (c == 'd')
-		return ("int");
-	return ((void *)0);
-}
-
-static ssize_t	fct2(const char **format, char *type, va_list *ap)
+static ssize_t	fct1(const char **format, char conv, va_list *ap)
 {
 	char	*str;
 	ssize_t	nbr;
+	int		tab[6];
 
+	ft_bzero(&tab, sizeof(tab));
 	(*format)++;
-	if (!ft_strncmp(type, "char *", sizeof("char *")) && (*format)++)
+	while (**format == '#' || **format == '0' || **format == '-' ||
+			**format == '+' || **format == ' ')
+		conv = *(++(*format));
+	if ((conv == '%') && (*format)++)
+		return (write(1, "%", 1));
+	else if ((conv == 's') && (*format)++)
 	{
 		str = va_arg(*ap, char *);
 		return (ft_putstr(str));
 	}
-	else if (!ft_strncmp(type, "int", sizeof("int")) && (*format)++)
+	else if ((conv == 'd') && (*format)++)
 	{
-		nbr = (ssize_t)va_arg(*ap, char *);
+		nbr = (ssize_t)va_arg(*ap, int);
 		return (ft_putnbr((int)nbr));
 	}
-	return (write(1, "%", 1));
+	else if ((conv == 'p') && (*format)++)
+	{
+		nbr = (ssize_t)va_arg(*ap, uintptr_t);
+		return (ft_puthex((uintptr_t)nbr));
+	}
+	return (0);
 }
+
 
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	ssize_t		ret;
-	char		*type;
 
 	ret = 0;
 	va_start(ap, format);
 	while (*format)
 	{
-		if (*format == '%' && ((type = fct1(*(format + 1))) != (void *)0))
-			ret += fct2(&format, type, &ap);
+		if (*format == '%')
+			ret += fct1(&format, *(format + 1), &ap);
 		else
 			ret += (*format ? write(1, format++, 1) : 0);
 	}

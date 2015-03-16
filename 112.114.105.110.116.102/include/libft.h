@@ -58,6 +58,8 @@ void				*ft_memset(void *b, int c, size_t len);
 int					ft_printf(const char *format, ...);
 int					ft_putchar(char c);
 int					ft_putchar_fd(char c, int fd);
+ssize_t				ft_puthex(uintptr_t p);
+ssize_t				ft_puthex_fd(uintptr_t p, int fd);
 ssize_t				ft_putendl(char const *s);
 ssize_t				ft_putendl_fd(char const *s, int fd);
 ssize_t				ft_puterr(char const *s);
