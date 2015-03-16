@@ -12,6 +12,15 @@
 
 #include "libft.h"
 
+static ssize_t	fct2(const char **format, char conv, va_list *ap)
+{
+	if ((conv == 'D') && (*format)++)
+		return (ft_putnbr_off_t((off_t)va_arg(*ap, long int)));
+	else if ((conv == 'O') && (*format)++)
+		return (ft_putoct((uintptr_t)va_arg(*ap, long int)));
+	return (0);
+}
+
 static ssize_t	fct1(const char **format, char conv, va_list *ap)
 {
 	(*format)++;
@@ -24,9 +33,7 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap)
 		return (ft_putstr(va_arg(*ap, char *)));
 	else if ((conv == 'c') && (*format)++)
 		return (ft_putchar(va_arg(*ap, int)) ? 1 : 1);
-	else if ((conv == 'd') && (*format)++)
-		return (ft_putnbr(va_arg(*ap, int)));
-	else if ((conv == 'i') && (*format)++)
+	else if ((conv == 'd' || conv == 'i') && (*format)++)
 		return (ft_putnbr(va_arg(*ap, int)));
 	else if ((conv == 'p') && (*format)++)
 		return (ft_puthexf(va_arg(*ap, uintptr_t)));
@@ -38,8 +45,9 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap)
 		return (ft_putoct(va_arg(*ap, uintptr_t)));
 	else if ((conv == 'u') && (*format)++)
 		return (ft_putnbr_off_t((off_t)va_arg(*ap, uintptr_t)));
-	return (0);
+	return (fct2(format, conv, ap));
 }
+
 
 int				ft_printf(const char *format, ...)
 {
