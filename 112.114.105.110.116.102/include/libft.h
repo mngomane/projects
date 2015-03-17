@@ -106,6 +106,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					ft_ucs2_to_utf8(int ucs2, u_char *utf8);
 wchar_t				*ft_wcsdup(const wchar_t *wstr);
 size_t				ft_wcslen(const wchar_t *wstr);
 wchar_t				*ft_wmemcpy(wchar_t *dst, const wchar_t *src, size_t len);

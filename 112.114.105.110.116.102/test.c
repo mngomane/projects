@@ -6,13 +6,14 @@
 
 #include <wchar.h>
 
-int	main(int ac, char **av)
+int					main(int ac, char **av)
 {
 //	if (ac == 2)
 //		printf("\nprintf return = %d\n", printf("%d", atoi(av[1])));
 //	printf("\n%d\n", ft_printf("tata"));
-	char	*toto;
-	char	z;
+	char			*toto;
+	char			z;
+	unsigned char	utf8[5];
 
 	(void)z;
 //	char	*titi;
@@ -69,10 +70,13 @@ int	main(int ac, char **av)
 	/*wc = wcsdup(L"我是一只猫。");*/
 	/*wmemcpy(wc, L"莨", 100);*/
 	ft_putendl("==========");
-	c = 0xE5928C;
+	/*c = 0xE5928C;*/
 	/*write(1, "\u83a8", 3);*/
-	write(1, "\xe5\x92\x8c", 3);
-	c = 0x00;
+	c = 0xe5;
+	write(1, &c, 1);
+	c = 0x92;
+	write(1, &c, 1);
+	c = 0x8c;
 	write(1, &c, 1);
 	/*cheat = ft_strnew(100);*/
 	/*wmemset(&wc, L'莨', 1);
@@ -95,6 +99,8 @@ int	main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
+	ft_ucs2_to_utf8(L'只' ,utf8);
+	ft_putstr((char *)utf8);
 	ft_putendl("\n==========");
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/

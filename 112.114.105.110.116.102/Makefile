@@ -91,6 +91,7 @@ SRCS = ft_atoi.c\
 		ft_strtrim.c\
 		ft_tolower.c\
 		ft_toupper.c\
+		ft_ucs2_to_utf8.c\
 		ft_wcsdup.c\
 		ft_wcslen.c\
 		ft_wmemcpy.c\
