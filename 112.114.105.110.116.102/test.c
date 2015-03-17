@@ -16,6 +16,7 @@ int					main(int ac, char **av)
 	unsigned char	utf8[5];
 
 	(void)z;
+	setlocale(LC_ALL, "");
 //	char	*titi;
 //	char	*tutu;
 
@@ -72,12 +73,12 @@ int					main(int ac, char **av)
 	ft_putendl("==========");
 	/*c = 0xE5928C;*/
 	/*write(1, "\u83a8", 3);*/
-	c = 0xe5;
+	/*c = 0xe5;
 	write(1, &c, 1);
 	c = 0x92;
 	write(1, &c, 1);
 	c = 0x8c;
-	write(1, &c, 1);
+	write(1, &c, 1);*/
 	/*cheat = ft_strnew(100);*/
 	/*wmemset(&wc, L'莨', 1);
 	unsigned char	byte;
@@ -99,8 +100,7 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_ucs2_to_utf8(L'只' ,utf8);
-	ft_putstr((char *)utf8);
+	ft_putnbr(printf("%C", L'莨'));
 	ft_putendl("\n==========");
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/

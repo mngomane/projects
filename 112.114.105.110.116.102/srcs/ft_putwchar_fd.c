@@ -12,25 +12,11 @@
 
 #include "libft.h"
 
-ssize_t		ft_putwchar_fd(uintptr_t p, int fd)
+ssize_t		ft_putwchar_fd(int ucs2, int fd)
 {
-	uintptr_t	hex;
-	ssize_t		ret;
-	int8_t		i;
-	int			c[4];
+	u_char	utf8[5];
 
-	i = 0;
-	hex = 1;
-	ret = 0;
-	while ((p / hex) > 16)
-		hex *= 16;
-	while (hex > 0 && i < 4)
-	{
-		c[3 - i] += (p / hex) % 16;
-		++i;
-		hex /= 16;
-	}
-	if ((ret = write(fd, c, 4)) < 0)
-		return (-1);
-	return (ret);
+	ft_bzero(&utf8, 5 * sizeof(u_char));
+	ft_ucs2_to_utf8(ucs2, utf8);
+	return (ft_putstr_fd((char *)utf8, fd));
 }
