@@ -48,7 +48,6 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap)
 	return (fct2(format, conv, ap));
 }
 
-
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;

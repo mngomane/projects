@@ -69,8 +69,9 @@ int	main(int ac, char **av)
 	/*wc = wcsdup(L"我是一只猫。");*/
 	/*wmemcpy(wc, L"莨", 100);*/
 	ft_putendl("==========");
-	c = 0x30;
-	write(1, "\u83a8", 3);
+	c = 0xE5928C;
+	/*write(1, "\u83a8", 3);*/
+	write(1, "\xe5\x92\x8c", 3);
 	c = 0x00;
 	write(1, &c, 1);
 	/*cheat = ft_strnew(100);*/

@@ -16,12 +16,9 @@ ssize_t		ft_putwchar_fd(uintptr_t p, int fd)
 {
 	uintptr_t	hex;
 	ssize_t		ret;
-	/*char		buf[5];*/
 	int8_t		i;
 	int			c[4];
 
-	/*buf[0] = '\u';*/
-	/*c = 0;*/
 	i = 0;
 	hex = 1;
 	ret = 0;
@@ -30,7 +27,6 @@ ssize_t		ft_putwchar_fd(uintptr_t p, int fd)
 	while (hex > 0 && i < 4)
 	{
 		c[3 - i] += (p / hex) % 16;
-		/*buf[i] += ((buf[i] < 10) ? '0' : 'a' - 10);*/
 		++i;
 		hex /= 16;
 	}
