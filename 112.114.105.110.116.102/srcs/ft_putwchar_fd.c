@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putwchar_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/16 22:31:13 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/16 22:31:13 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+ssize_t		ft_putwchar_fd(uintptr_t p, int fd)
 {
-	unsigned char	*tmp;
-	size_t			index;
+	uintptr_t	hex;
+	ssize_t		ret;
+	/*char		buf[5];*/
+	int8_t		i;
+	int			c[4];
 
-	index = 0;
-	tmp = b;
-	while (index < len)
-		tmp[index++] = (unsigned char)c;
-	return (b);
+	/*buf[0] = '\u';*/
+	/*c = 0;*/
+	i = 0;
+	hex = 1;
+	ret = 0;
+	while ((p / hex) > 16)
+		hex *= 16;
+	while (hex > 0 && i < 4)
+	{
+		c[3 - i] += (p / hex) % 16;
+		/*buf[i] += ((buf[i] < 10) ? '0' : 'a' - 10);*/
+		++i;
+		hex /= 16;
+	}
+	if ((ret = write(fd, c, 4)) < 0)
+		return (-1);
+	return (ret);
 }

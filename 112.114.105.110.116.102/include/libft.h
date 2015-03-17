@@ -75,6 +75,8 @@ ssize_t				ft_putoct(uintptr_t p);
 ssize_t				ft_putoct_fd(uintptr_t p, int fd);
 ssize_t				ft_putstr(char const *s);
 ssize_t				ft_putstr_fd(char const *s, int fd);
+ssize_t				ft_putwchar(uintptr_t p);
+ssize_t				ft_putwchar_fd(uintptr_t p, int fd);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
@@ -104,6 +106,11 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+wchar_t				*ft_wcsdup(const wchar_t *wstr);
+size_t				ft_wcslen(const wchar_t *wstr);
+wchar_t				*ft_wmemcpy(wchar_t *dst, const wchar_t *src, size_t len);
+wchar_t				*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len);
+wchar_t				*ft_wmemset(wchar_t *wstr, wchar_t c, size_t len);
 int					get_next_line(int const fd, char **line);
 
 #endif

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_wcslen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/17 12:48:46 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/17 12:48:46 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t		ft_wcslen(const wchar_t *wstr)
 {
-	unsigned char	*tmp;
-	size_t			index;
+	const wchar_t	*tmp;
 
-	index = 0;
-	tmp = b;
-	while (index < len)
-		tmp[index++] = (unsigned char)c;
-	return (b);
+	tmp = wstr;
+	if (wstr == (void *)0)
+		return (0);
+	while (*tmp)
+		++tmp;
+	return ((size_t)(tmp - wstr));
 }

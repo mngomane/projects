@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_wcsdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/17 13:04:10 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/17 13:04:10 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+wchar_t		*ft_wcsdup(const wchar_t *wstr)
 {
-	unsigned char	*tmp;
-	size_t			index;
+	wchar_t	*copy;
+	size_t	len;
 
-	index = 0;
-	tmp = b;
-	while (index < len)
-		tmp[index++] = (unsigned char)c;
-	return (b);
+	len = ft_wcslen(wstr) + 1;
+	if ((copy = malloc(len * sizeof(wchar_t))) == (void *)0)
+		return ((void *)0);
+	return (ft_wmemcpy(copy, wstr, len));
 }

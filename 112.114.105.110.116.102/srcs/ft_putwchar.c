@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putwchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/16 22:41:31 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/16 22:41:31 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+ssize_t		ft_putwchar(uintptr_t p)
 {
-	unsigned char	*tmp;
-	size_t			index;
-
-	index = 0;
-	tmp = b;
-	while (index < len)
-		tmp[index++] = (unsigned char)c;
-	return (b);
+	return (ft_putwchar_fd(p, 1));
 }
