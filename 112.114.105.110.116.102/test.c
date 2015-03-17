@@ -100,7 +100,7 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(ft_printf("%S", L"我是一只猫。"));
+	ft_putnbr(printf("%#o", 0x0));
 	ft_putendl("\n==========");
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/
