@@ -52,6 +52,8 @@ SRCS = ft_atoi.c\
 		ft_puthexf_fd.c\
 		ft_puthexu.c\
 		ft_puthexu_fd.c\
+		ft_putlong.c\
+		ft_putlong_fd.c\
 		ft_putnbr.c\
 		ft_putnbr_fd.c\
 		ft_putnbr_off_t.c\
@@ -60,6 +62,8 @@ SRCS = ft_atoi.c\
 		ft_putoct_fd.c\
 		ft_putstr.c\
 		ft_putstr_fd.c\
+		ft_putulong.c\
+		ft_putulong_fd.c\
 		ft_putwchar.c\
 		ft_putwchar_fd.c\
 		ft_putwstr.c\

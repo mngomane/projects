@@ -2,6 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <locale.h>
+#include <limits.h>
 #include "libft.h"
 
 #include <wchar.h>
@@ -100,7 +101,9 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(printf("%#o", 0x0));
+	ft_putnbr(ft_printf("%D", LONG_MIN));
+	ft_putendl("");
+	ft_putulong(12345);
 	ft_putendl("\n==========");
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/
