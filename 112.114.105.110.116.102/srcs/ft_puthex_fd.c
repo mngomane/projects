@@ -20,7 +20,7 @@ ssize_t		ft_puthex_fd(uintptr_t p, int fd)
 
 	hex = 1;
 	ret = 0;
-	while ((p / hex) > 16)
+	while ((p / hex) >= 16)
 		hex *= 16;
 	while (hex > 0)
 	{
