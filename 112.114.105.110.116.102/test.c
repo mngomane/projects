@@ -53,7 +53,7 @@ int					main(int ac, char **av)
 	c = (L"我是一只猫。"[6] << 48) & 0xff;
 	write(1, &c, 1);
 	write(1, "\n", 1);*/
-	printf("%C\n", L'莨');
+	ft_printf("%C\n", L'莨');
 	ft_puthex(L'莨');
 	ft_putendl("");
 	int		c = 0x83a8;
@@ -100,7 +100,7 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(printf("%C", L'莨'));
+	ft_putnbr(ft_printf("%S", L"我是一只猫。"));
 	ft_putendl("\n==========");
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/

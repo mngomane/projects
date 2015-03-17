@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-wchar_t		*ft_wcsdup(const wchar_t *wstr)
+wchar_t		*ft_wcsdup(wchar_t const *wstr)
 {
 	wchar_t	*copy;
 	size_t	len;

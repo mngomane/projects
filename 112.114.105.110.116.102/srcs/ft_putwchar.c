@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_putwchar(int ucs2)
+ssize_t		ft_putwchar(wchar_t const wc)
 {
-	return (ft_putwchar_fd(ucs2, 1));
+	return (ft_putwchar_fd(wc, 1));
 }

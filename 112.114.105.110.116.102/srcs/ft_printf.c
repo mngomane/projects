@@ -18,6 +18,10 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap)
 		return (ft_putnbr_off_t((off_t)va_arg(*ap, long int)));
 	else if ((conv == 'U') && (*format)++)
 		return (ft_putnbr_off_t((off_t)va_arg(*ap, long int)));
+	else if ((conv == 'C') && (*format)++)
+		return (ft_putwchar(va_arg(*ap, wchar_t)));
+	else if ((conv == 'S') && (*format)++)
+		return (ft_putwstr(va_arg(*ap, wchar_t *)));
 	return (0);
 }
 
