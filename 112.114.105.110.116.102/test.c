@@ -104,20 +104,6 @@ int					main(int ac, char **av)
 	ft_putnbr(printf("{%015d}", 42));
 	/*printf("%lld", LLONG_MIN);*/
 	ft_putendl("");
-	int		tc;
-	int		d;
-	char	*kaki;
-
-	tc = 92;
-	d = 0;
-	kaki = ft_memalloc(100);
-	kaki += 50;
-	ft_ztom(kaki, tc);
-	d = ft_mtoz(kaki);
-	kaki -= 50;
-	ft_putendl("\n----------");
-	ft_putnbr(d);
-	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");
 	ft_putlong(-100);

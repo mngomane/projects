@@ -24,6 +24,20 @@
 # define CEIL(x)		(x - FLOOR(x))
 # define LCAST(x, y)	((x)((y)->content))
 
+# define PF_SHARP		0
+# define PF_ZERO		1
+# define PF_MINUS		2
+# define PF_PLUS		3
+# define PF_SPACE		4
+# define PF_J			5
+# define PF_Z			6
+# define PF_L			7
+# define PF_LL			8
+# define PF_H			9
+# define PF_HH			10
+# define PF_STORED_PREC	11
+# define PF_PREC		20
+
 typedef struct		s_list
 {
 	void			*content;
