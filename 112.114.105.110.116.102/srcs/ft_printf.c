@@ -12,6 +12,7 @@
 
 #include "libft.h"
 
+
 static int		fct5(const char **format, char **opt)
 {
 	size_t		index;
@@ -108,11 +109,11 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
 
 	ret = 0;
 	(void)ret;
-	(*format)++;
+	/*(*format)++;
 	while (fct5(format, opt))
 		conv = *(++(*format));
 	while (fct3(format, opt))
-		conv = *(++(*format));
+		conv = *(++(*format));*/
 	if ((conv == '%') && (*format)++)
 		return (write(1, "%", 1));
 	else if ((conv == 's') && (*format)++)
@@ -164,6 +165,15 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
 	return (fct2(format, conv, ap, *opt));
 }
 
+static void		fct6(const char **format, char **opt)
+{
+	(*format)++;
+	while (fct5(format, opt))
+		++(*format);
+	while (fct3(format, opt))
+		++(*format);
+}
+
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;
@@ -176,7 +186,10 @@ int				ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-			ret += fct1(&format, *(format + 1), &ap, &opt);
+		{
+			fct6(&format, &opt);
+			ret += fct1(&format, *format, &ap, &opt);
+		}
 		else
 			ret += (*format ? write(1, format++, 1) : 0);
 	}
