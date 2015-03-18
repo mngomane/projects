@@ -12,6 +12,30 @@
 
 #include "libft.h"
 
+static int		fct5(const char **format, int **opt)
+{
+	size_t		index;
+
+	index = 0;
+	if ((**format == '#') && ((*opt)[0] = 1))
+		return (1);
+	else if ((**format == '0') && ((*opt)[1] = 1))
+		return (1);
+	else if ((**format == '-') && ((*opt)[2] = 1))
+		return (1);
+	else if ((**format == '+') && ((*opt)[3] = 1))
+		return (1);
+	else if ((**format == ' ') && ((*opt)[4] = 1))
+		return (1);
+	else if (ft_isdigit(**format))
+	{
+		while (ft_isdigit(**format))
+			(*opt)[11 + index++] = *((*format)++);
+		return (1);
+	}
+	return (0);
+}
+
 static int		fct4(const char **format, int **opt)
 {
 	if (**format == 'l')
@@ -33,17 +57,7 @@ static int		fct4(const char **format, int **opt)
 
 static int		fct3(const char **format, int **opt)
 {
-	if ((**format == '#') && ((*opt)[0] = 1))
-		return (1);
-	else if ((**format == '0') && ((*opt)[1] = 1))
-		return (1);
-	else if ((**format == '-') && ((*opt)[2] = 1))
-		return (1);
-	else if ((**format == '+') && ((*opt)[3] = 1))
-		return (1);
-	else if ((**format == ' ') && ((*opt)[4] = 1))
-		return (1);
-	else if ((**format == 'j') && ((*opt)[5] = 1))
+	if ((**format == 'j') && ((*opt)[5] = 1))
 		return (1);
 	else if ((**format == 'z') && ((*opt)[6] = 1))
 		return (1);
@@ -89,7 +103,13 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, int *opt)
 
 static ssize_t	fct1(const char **format, char conv, va_list *ap, int **opt)
 {
+	ssize_t		ret;
+
+	ret = 0;
+	(void)ret;
 	(*format)++;
+	while (fct5(format, opt))
+		conv = *(++(*format));
 	while (fct3(format, opt))
 		conv = *(++(*format));
 	if ((conv == '%') && (*format)++)
@@ -150,7 +170,7 @@ int				ft_printf(const char *format, ...)
 	int			*opt;
 
 	ret = 0;
-	opt = ft_memalloc(11 * sizeof(int));
+	opt = ft_memalloc(256 * sizeof(int));
 	va_start(ap, format);
 	while (*format)
 	{

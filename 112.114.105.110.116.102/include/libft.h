@@ -55,6 +55,7 @@ void				ft_memdel(void **ap);
 void				*ft_memdup(const void *s1, size_t size);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
+size_t				ft_mtoz(void *src);
 int					ft_printf(const char *format, ...);
 ssize_t				ft_printchar(char n);
 ssize_t				ft_printchar_fd(char n, int fd);
@@ -124,6 +125,7 @@ size_t				ft_wcslen(wchar_t const *wstr);
 wchar_t				*ft_wmemcpy(wchar_t *dst, const wchar_t *src, size_t len);
 wchar_t				*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len);
 wchar_t				*ft_wmemset(wchar_t *wstr, wchar_t c, size_t len);
+void				ft_ztom(void *dst, const size_t size);
 int					get_next_line(int const fd, char **line);
 
 #endif

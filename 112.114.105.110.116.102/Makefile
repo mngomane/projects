@@ -40,6 +40,7 @@ SRCS = ft_atoi.c\
 		ft_memdup.c\
 		ft_memmove.c\
 		ft_memset.c\
+		ft_mtoz.c\
 		ft_printf.c\
 		ft_printchar.c\
 		ft_printchar_fd.c\
@@ -109,6 +110,7 @@ SRCS = ft_atoi.c\
 		ft_wmemcpy.c\
 		ft_wmemmove.c\
 		ft_wmemset.c\
+		ft_ztom.c\
 		get_next_line.c
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
