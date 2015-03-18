@@ -54,7 +54,7 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, int *opt)
 {
 	if ((conv == 'u') && (*format)++)
 	{
-		if (opt[7] == 1 || opt[8] == 1)
+		if (opt[7] == 1 || opt[8] == 1 || opt[5] == 1)
 			return (ft_putulong(va_arg(*ap, u_long)));
 		if (opt[9] == 1)
 			return (ft_putushort((u_short)va_arg(*ap, int)));
@@ -64,7 +64,7 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, int *opt)
 	}
 	else if ((conv == 'd' || conv == 'i') && (*format)++)
 	{
-		if (opt[7] == 1 || opt[8] == 1)
+		if (opt[7] == 1 || opt[8] == 1 || opt[5] == 1)
 			return (ft_putlong(va_arg(*ap, long)));
 		if (opt[9] == 1)
 			return (ft_putshort((short)va_arg(*ap, int)));
@@ -109,7 +109,13 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, int **opt)
 	else if ((conv == 'X') && (*format)++)
 		return (ft_puthexu(va_arg(*ap, uintptr_t)));
 	else if ((conv == 'o' || conv == 'O') && (*format)++)
+	{
+		/*if ((*opt)[9] == 1)
+			return (ft_putushort((u_short)va_arg(*ap, uintptr_t)));
+		if ((*opt)[10] == 1)
+			return (ft_printuchar((u_char)va_arg(*ap, uintptr_t)));*/
 		return (ft_putoct(va_arg(*ap, uintptr_t)));
+	}
 	return (fct2(format, conv, ap, *opt));
 }
 

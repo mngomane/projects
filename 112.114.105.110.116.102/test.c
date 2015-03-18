@@ -101,7 +101,7 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(ft_printf("%hd", (short)0));
+	ft_putnbr(ft_printf("%jd", 42));
 	/*printf("%lld", LLONG_MIN);*/
 	ft_putendl("");
 	/*ft_putulong(12345);*/
