@@ -53,13 +53,13 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, int *opt)
 {
 	if ((conv == 'u') && (*format)++)
 	{
-		if (opt[7] == 1)
+		if (opt[7] == 1 || opt[8] == 1)
 			return (ft_putulong(va_arg(*ap, u_long)));
 		return (ft_putnbr_off_t((off_t)va_arg(*ap, uintptr_t)));
 	}
 	else if ((conv == 'd' || conv == 'i') && (*format)++)
 	{
-		if (opt[7] == 1)
+		if (opt[7] == 1 || opt[8] == 1)
 			return (ft_putlong(va_arg(*ap, long)));
 		return (ft_putnbr(va_arg(*ap, int)));
 	}
@@ -83,13 +83,13 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, int **opt)
 		return (write(1, "%", 1));
 	else if ((conv == 's') && (*format)++)
 	{
-		if ((*opt)[7] == 1)
+		if ((*opt)[7] == 1 || (*opt)[8] == 1)
 			return (ft_putwstr(va_arg(*ap, wchar_t *)));
 		return (ft_putstr(va_arg(*ap, char *)));
 	}
 	else if ((conv == 'c') && (*format)++)
 	{
-		if ((*opt)[7] == 1)
+		if ((*opt)[7] == 1 || (*opt)[8] == 1)
 			return (ft_putwchar(va_arg(*ap, wchar_t)));
 		return (ft_putchar(va_arg(*ap, int)) ? 1 : 1);
 	}
