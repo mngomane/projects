@@ -48,6 +48,8 @@ SRCS = ft_atoi.c\
 		ft_printuchar_fd.c\
 		ft_putchar.c\
 		ft_putchar_fd.c\
+		ft_putnchar.c\
+		ft_putnchar_fd.c\
 		ft_putendl.c\
 		ft_putendl_fd.c\
 		ft_puterr.c\

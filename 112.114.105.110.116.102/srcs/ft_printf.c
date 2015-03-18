@@ -30,7 +30,8 @@ static int		fct5(const char **format, char **opt)
 	else if (ft_isdigit(**format))
 	{
 		while (ft_isdigit(**format))
-			(*opt)[PF_PREC + index++] = *((*format)++);
+			(*opt)[PF_TMP + index++] = *((*format)++);
+		ft_ztom(*opt + PF_PREC, (size_t)ft_atoi(*opt + PF_TMP));
 		return (1);
 	}
 	return (0);

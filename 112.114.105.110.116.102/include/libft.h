@@ -35,8 +35,8 @@
 # define PF_LL			8
 # define PF_H			9
 # define PF_HH			10
-# define PF_STORED_PREC	11
-# define PF_PREC		20
+# define PF_PREC		11
+# define PF_TMP			20
 
 typedef struct		s_list
 {
@@ -88,6 +88,8 @@ ssize_t				ft_putendl_fd(char const *s, int fd);
 ssize_t				ft_puterr(char const *s);
 ssize_t				ft_putlong(long n);
 ssize_t				ft_putlong_fd(long n, int fd);
+ssize_t				ft_putnchar(int c, size_t rep);
+ssize_t				ft_putnchar_fd(int c, size_t rep, int fd);
 ssize_t				ft_putnbr(int n);
 ssize_t				ft_putnbr_fd(int n, int fd);
 ssize_t				ft_putoct(uintptr_t p);
