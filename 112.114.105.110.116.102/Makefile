@@ -41,6 +41,10 @@ SRCS = ft_atoi.c\
 		ft_memmove.c\
 		ft_memset.c\
 		ft_printf.c\
+		ft_printchar.c\
+		ft_printchar_fd.c\
+		ft_printuchar.c\
+		ft_printuchar_fd.c\
 		ft_putchar.c\
 		ft_putchar_fd.c\
 		ft_putendl.c\
@@ -60,10 +64,14 @@ SRCS = ft_atoi.c\
 		ft_putnbr_off_t_fd.c\
 		ft_putoct.c\
 		ft_putoct_fd.c\
+		ft_putshort.c\
+		ft_putshort_fd.c\
 		ft_putstr.c\
 		ft_putstr_fd.c\
 		ft_putulong.c\
 		ft_putulong_fd.c\
+		ft_putushort.c\
+		ft_putushort_fd.c\
 		ft_putwchar.c\
 		ft_putwchar_fd.c\
 		ft_putwstr.c\

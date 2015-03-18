@@ -26,6 +26,7 @@ static int		fct4(const char **format, int **opt)
 		if ((*(*format + 1) == 'h') && ((*opt)[10] = 1) && (*format)++)
 			return (2);
 		((*opt)[9] = 1);
+		return (1);
 	}
 	return (0);
 }
@@ -55,12 +56,20 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, int *opt)
 	{
 		if (opt[7] == 1 || opt[8] == 1)
 			return (ft_putulong(va_arg(*ap, u_long)));
+		if (opt[9] == 1)
+			return (ft_putushort((u_short)va_arg(*ap, int)));
+		if (opt[10] == 1)
+			return (ft_printuchar((u_char)va_arg(*ap, int)));
 		return (ft_putnbr_off_t((off_t)va_arg(*ap, uintptr_t)));
 	}
 	else if ((conv == 'd' || conv == 'i') && (*format)++)
 	{
 		if (opt[7] == 1 || opt[8] == 1)
 			return (ft_putlong(va_arg(*ap, long)));
+		if (opt[9] == 1)
+			return (ft_putshort((short)va_arg(*ap, int)));
+		if (opt[10] == 1)
+			return (ft_printchar((char)va_arg(*ap, int)));
 		return (ft_putnbr(va_arg(*ap, int)));
 	}
 	else if ((conv == 'D') && (*format)++)
