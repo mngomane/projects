@@ -33,7 +33,6 @@ static int		fct5(const char **format, char **opt)
 		while (ft_isdigit(**format))
 			(*opt)[PF_TMP + index++] = *((*format)++);
 		ft_ztom(*opt + PF_PREC, (size_t)ft_atoi(*opt + PF_TMP));
-		return (1);
 	}
 	return (0);
 }
@@ -66,9 +65,9 @@ static int		fct3(const char **format, char **opt)
 	return (fct4(format, opt));
 }
 
-static ssize_t	fct2(const char **format, char conv, va_list *ap, char *opt)
+static ssize_t	fct2(const char **format, va_list *ap, char *opt)
 {
-	if ((conv == 'u') && (*format)++)
+	if ((**format == 'u') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1)
 			return (ft_putulong(va_arg(*ap, u_long)));
@@ -80,7 +79,7 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, char *opt)
 			return (ft_putulong(va_arg(*ap, size_t)));
 		return (ft_putulong((u_long)va_arg(*ap, uintptr_t)));
 	}
-	else if ((conv == 'd' || conv == 'i') && (*format)++)
+	else if ((**format == 'd' || **format == 'i') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1)
 			return (ft_putlong(va_arg(*ap, long)));
@@ -92,45 +91,40 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, char *opt)
 			return (ft_putlong((long)va_arg(*ap, uintptr_t)));
 		return (ft_putnbr(va_arg(*ap, int)));
 	}
-	else if ((conv == 'D') && (*format)++)
+	else if ((**format == 'D') && (*format)++)
 		return (ft_putlong(va_arg(*ap, long int)));
-	else if ((conv == 'U') && (*format)++)
+	else if ((**format == 'U') && (*format)++)
 		return (ft_putulong(va_arg(*ap, u_long)));
-	else if ((conv == 'C') && (*format)++)
+	else if ((**format == 'C') && (*format)++)
 		return (ft_putwchar(va_arg(*ap, wchar_t)));
-	else if ((conv == 'S') && (*format)++)
+	else if ((**format == 'S') && (*format)++)
 		return (ft_putwstr(va_arg(*ap, wchar_t *)));
 	return (0);
 }
 
-static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
+static ssize_t	fct1(const char **format, va_list *ap, char **opt)
 {
 	ssize_t		ret;
 
 	ret = 0;
 	(void)ret;
-	/*(*format)++;
-	while (fct5(format, opt))
-		conv = *(++(*format));
-	while (fct3(format, opt))
-		conv = *(++(*format));*/
-	if ((conv == '%') && (*format)++)
+	if ((**format == '%') && (*format)++)
 		return (write(1, "%", 1));
-	else if ((conv == 's') && (*format)++)
+	else if ((**format == 's') && (*format)++)
 	{
 		if ((*opt)[PF_L] == 1 || (*opt)[PF_LL] == 1)
 			return (ft_putwstr(va_arg(*ap, wchar_t *)));
 		return (ft_putstr(va_arg(*ap, char *)));
 	}
-	else if ((conv == 'c') && (*format)++)
+	else if ((**format == 'c') && (*format)++)
 	{
 		if ((*opt)[PF_L] == 1 || (*opt)[PF_LL] == 1)
 			return (ft_putwchar(va_arg(*ap, wchar_t)));
 		return (ft_putchar(va_arg(*ap, int)) ? 1 : 1);
 	}
-	else if ((conv == 'p') && (*format)++)
+	else if ((**format == 'p') && (*format)++)
 		return (ft_puthexf(va_arg(*ap, uintptr_t)));
-	else if ((conv == 'x') && (*format)++)
+	else if ((**format == 'x') && (*format)++)
 	{
 		if ((*opt)[PF_H] == 1)
 			return (ft_puthex((u_short)va_arg(*ap, int)));
@@ -138,7 +132,7 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
 			return (ft_puthex((u_char)va_arg(*ap, int)));
 		return (ft_puthex(va_arg(*ap, uintptr_t)));
 	}
-	else if ((conv == 'X') && (*format)++)
+	else if ((**format == 'X') && (*format)++)
 	{
 		if ((*opt)[PF_H] == 1)
 			return (ft_puthexu((u_short)va_arg(*ap, int)));
@@ -146,7 +140,7 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
 			return (ft_puthexu((u_char)va_arg(*ap, int)));
 		return (ft_puthexu(va_arg(*ap, uintptr_t)));
 	}
-	else if ((conv == 'o') && (*format)++)
+	else if ((**format == 'o') && (*format)++)
 	{
 		if ((*opt)[PF_H] == 1)
 			return (ft_putoct((u_short)va_arg(*ap, int)));
@@ -154,7 +148,7 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
 			return (ft_putoct((u_char)va_arg(*ap, int)));
 		return (ft_putoct(va_arg(*ap, uintptr_t)));
 	}
-	else if ((conv == 'O') && (*format)++)
+	else if ((**format == 'O') && (*format)++)
 	{
 		if ((*opt)[PF_H] == 1)
 			return (ft_putoct((u_short)va_arg(*ap, uintptr_t)));
@@ -162,7 +156,7 @@ static ssize_t	fct1(const char **format, char conv, va_list *ap, char **opt)
 			return (ft_putoct((u_char)va_arg(*ap, uintptr_t)));
 		return (ft_putoct(va_arg(*ap, uintptr_t)));
 	}
-	return (fct2(format, conv, ap, *opt));
+	return (fct2(format, ap, *opt));
 }
 
 static void		fct6(const char **format, char **opt)
@@ -179,8 +173,10 @@ int				ft_printf(const char *format, ...)
 	va_list		ap;
 	char		*opt;
 	ssize_t		ret;
+	ssize_t		tmp;
 
 	ret = 0;
+	tmp = 0;
 	opt = ft_memalloc(256 * sizeof(char));
 	va_start(ap, format);
 	while (*format)
@@ -188,7 +184,15 @@ int				ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			fct6(&format, &opt);
-			ret += fct1(&format, *format, &ap, &opt);
+			/*if (ft_mtoz(opt + PF_PREC) && opt[PF_MINUS] == 0)
+				ret += ft_putnchar((opt[PF_ZERO] ? '0' : ' '),
+					ft_mtoz(opt + PF_PREC));*/
+			tmp = fct1(&format, &ap, &opt);
+			if ((opt[PF_MINUS] == 1) &&
+				(((ssize_t)ft_mtoz(opt + PF_PREC) - tmp) > 0))
+				ret += ft_putnchar((opt[PF_ZERO] && !opt[PF_MINUS] ?
+					'0' : ' '), ft_mtoz(opt + PF_PREC) - (size_t)tmp);
+			ret += tmp;
 		}
 		else
 			ret += (*format ? write(1, format++, 1) : 0);
