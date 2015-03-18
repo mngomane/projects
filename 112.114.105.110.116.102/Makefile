@@ -60,8 +60,6 @@ SRCS = ft_atoi.c\
 		ft_putlong_fd.c\
 		ft_putnbr.c\
 		ft_putnbr_fd.c\
-		ft_putnbr_off_t.c\
-		ft_putnbr_off_t_fd.c\
 		ft_putoct.c\
 		ft_putoct_fd.c\
 		ft_putshort.c\

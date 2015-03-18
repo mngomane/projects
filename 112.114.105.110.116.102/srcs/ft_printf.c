@@ -62,7 +62,7 @@ static ssize_t	fct2(const char **format, char conv, va_list *ap, int *opt)
 			return (ft_printuchar((u_char)va_arg(*ap, int)));
 		if (opt[6] == 1)
 			return (ft_putulong(va_arg(*ap, size_t)));
-		return (ft_putnbr_off_t((off_t)va_arg(*ap, uintptr_t)));
+		return (ft_putulong((u_long)va_arg(*ap, uintptr_t)));
 	}
 	else if ((conv == 'd' || conv == 'i') && (*format)++)
 	{

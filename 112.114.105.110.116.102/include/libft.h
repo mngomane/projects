@@ -75,8 +75,6 @@ ssize_t				ft_putlong(long n);
 ssize_t				ft_putlong_fd(long n, int fd);
 ssize_t				ft_putnbr(int n);
 ssize_t				ft_putnbr_fd(int n, int fd);
-ssize_t				ft_putnbr_off_t(off_t n);
-ssize_t				ft_putnbr_off_t_fd(off_t n, int fd);
 ssize_t				ft_putoct(uintptr_t p);
 ssize_t				ft_putoct_fd(uintptr_t p, int fd);
 ssize_t				ft_putshort(short n);
