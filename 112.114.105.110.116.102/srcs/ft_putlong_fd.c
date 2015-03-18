@@ -20,8 +20,6 @@ ssize_t		ft_putlong_fd(long n, int fd)
 
 	ret = 0;
 	decim = 1;
-	while (decim && (n / decim) > 9)
-		decim *= 10;
 	if (n == (-9223372036854775807 - 1))
 		return (write(fd, "-9223372036854775808", 20));
 	else if (n < 0)
@@ -29,6 +27,8 @@ ssize_t		ft_putlong_fd(long n, int fd)
 		ret = write(fd, "-", 1);
 		n *= -1;
 	}
+	while (decim && (n / decim) > 9)
+		decim *= 10;
 	while (decim > 0)
 	{
 		c = ((n / decim) % 10) + '0';

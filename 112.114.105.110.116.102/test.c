@@ -101,10 +101,13 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(ft_printf("%D", LONG_MIN));
+	ft_putnbr(ft_printf("%ld", -1));
+	/*printf("%lld", LLONG_MIN);*/
 	ft_putendl("");
 	ft_putulong(12345);
 	ft_putendl("\n==========");
+	ft_putlong(-100);
+	/*ft_putnbr(-10000);*/
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/
 	nbr = 0;
