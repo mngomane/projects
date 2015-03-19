@@ -45,7 +45,14 @@ ssize_t		ft_printnchar_fd(char n, int padc, size_t size, int fd)
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 	{
+		if (n < 0 && padc == '0')
+		{
+			buf[0] = '0';
+			len--;
+			write(fd, "-", 1);
+		}
 		len = ft_putnchar_fd(padc, (size_t)len, fd) + ft_putwstr_fd(buf, fd);
+		len += (n < 0 && padc == '0' ? 1 : 0);
 		free(buf);
 		return (len);
 	}
