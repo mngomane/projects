@@ -126,7 +126,7 @@ int					main(int ac, char **av)
 	/*wdebug = ft_memalloc()*/
 	/*ft_wc_to_utf8(L'我', wdebug);
 	ft_putnbr(ft_strlen((char *)wdebug));*/
-	ft_putnbr(ft_printf("{%07p}", 0x1234));
+	ft_putnbr(ft_printf("%hhO, %hhO", 0, USHRT_MAX));
 	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");
