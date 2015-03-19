@@ -126,21 +126,33 @@ static ssize_t	fct1(const char **format, va_list *ap, char *opt, size_t len)
 		return (ft_printnc(va_arg(*ap, int), opt[PF_PADC], len));
 	}
 	else if ((**format == 'p') && (*format)++)
-		return (ft_printnhexf(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
+		return (ft_printnhexpf(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 	else if ((**format == 'x') && (*format)++)
 	{
+		if (opt[PF_H] == 1 && opt[PF_SHARP] == 1)
+			return (ft_printnhexf((u_short)va_arg(*ap, int), opt[PF_PADC], len));
 		if (opt[PF_H] == 1)
 			return (ft_printnhex((u_short)va_arg(*ap, int), opt[PF_PADC], len));
+		if (opt[PF_HH] == 1 && opt[PF_SHARP] == 1)
+			return (ft_printnhexf((u_char)va_arg(*ap, int), opt[PF_PADC], len));
 		if (opt[PF_HH] == 1)
 			return (ft_printnhex((u_char)va_arg(*ap, int), opt[PF_PADC], len));
+		if (opt[PF_SHARP] == 1)
+			return (ft_printnhexf(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 		return (ft_printnhex(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 	}
 	else if ((**format == 'X') && (*format)++)
 	{
+		if (opt[PF_H] == 1 && opt[PF_SHARP] == 1)
+			return (ft_printnhexuf((u_short)va_arg(*ap, int), opt[PF_PADC], len));
 		if (opt[PF_H] == 1)
 			return (ft_printnhexu((u_short)va_arg(*ap, int), opt[PF_PADC], len));
+		if (opt[PF_HH] == 1 && opt[PF_SHARP] == 1)
+			return (ft_printnhexuf((u_char)va_arg(*ap, int), opt[PF_PADC], len));
 		if (opt[PF_HH] == 1)
 			return (ft_printnhexu((u_char)va_arg(*ap, int), opt[PF_PADC], len));
+		if (opt[PF_SHARP] == 1)
+			return (ft_printnhexuf(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 		return (ft_printnhexu(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 	}
 	else if ((**format == 'o') && (*format)++)

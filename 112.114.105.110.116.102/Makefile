@@ -52,8 +52,12 @@ SRCS = ft_atoi.c\
 		ft_printnhex_fd.c\
 		ft_printnhexf.c\
 		ft_printnhexf_fd.c\
+		ft_printnhexpf.c\
+		ft_printnhexpf_fd.c\
 		ft_printnhexu.c\
 		ft_printnhexu_fd.c\
+		ft_printnhexuf.c\
+		ft_printnhexuf_fd.c\
 		ft_printnint.c\
 		ft_printnint_fd.c\
 		ft_printnlong.c\

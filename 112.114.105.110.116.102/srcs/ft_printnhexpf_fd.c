@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printnhexf_fd.c                                 :+:      :+:    :+:   */
+/*   ft_printnhexpf_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/18 23:56:47 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/18 23:56:47 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/19 13:39:10 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/19 13:39:10 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 	}
 }
 
-ssize_t		ft_printnhexf_fd(uintptr_t p, int c, size_t size, int fd)
+ssize_t		ft_printnhexpf_fd(uintptr_t p, int c, size_t size, int fd)
 {
 	wchar_t		*buf;
 	ssize_t		len;
 
-	if (p == 0)
-		return (write(fd, "0", 1));
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, p);
 	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 2);

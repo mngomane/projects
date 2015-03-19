@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printnhexf_fd.c                                 :+:      :+:    :+:   */
+/*   ft_printnhexuf_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/18 23:56:47 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/18 23:56:47 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/19 13:28:56 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/19 13:28:56 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 	while (hex > 0)
 	{
 		(*buf)[index] = (p / hex) % 16;
-		(*buf)[index] += (((*buf)[index] < 10) ? '0' : 'a' - 10);
+		(*buf)[index] += (((*buf)[index] < 10) ? '0' : 'A' - 10);
 		index++;
 		hex /= 16;
 	}
 }
 
-ssize_t		ft_printnhexf_fd(uintptr_t p, int c, size_t size, int fd)
+ssize_t		ft_printnhexuf_fd(uintptr_t p, int c, size_t size, int fd)
 {
 	wchar_t		*buf;
 	ssize_t		len;
@@ -44,15 +44,15 @@ ssize_t		ft_printnhexf_fd(uintptr_t p, int c, size_t size, int fd)
 	{
 		if (c == '0')
 		{
-			len =  write(fd, "0x", 2) + ft_putnchar_fd(c, (size_t)len, fd) +
+			len =  write(fd, "0X", 2) + ft_putnchar_fd(c, (size_t)len, fd) +
 				ft_putwstr_fd(buf, fd);
 		}
 		else
-			len = ft_putnchar_fd(c, (size_t)len, fd) + write(fd, "0x", 2) +
+			len = ft_putnchar_fd(c, (size_t)len, fd) + write(fd, "0X", 2) +
 				ft_putwstr_fd(buf, fd);
 		free(buf);
 		return (len);
 	}
 	free(buf);
-	return (write(fd, "0x", 2) + ft_putwstr_fd(buf, fd));
+	return (write(fd, "0X", 2) + ft_putwstr_fd(buf, fd));
 }
