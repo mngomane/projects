@@ -128,8 +128,8 @@ int					main(int ac, char **av)
 	ft_putnbr(ft_strlen((char *)wdebug));*/
 	/*ft_putnbr(printf("%hhO, %hhO", 0, USHRT_MAX));
 	ft_putnbr(ft_printf("%hhO, %hhO", 0, USHRT_MAX));*/
-	ft_putnbr(ft_printf("{%+03d}", 0));
-	ft_putnbr(printf("{%+03d}", 0));
+	ft_putnbr(ft_printf("%.o, %.0o", 0, 0));
+	ft_putnbr(printf("%.o, %.0o", 0, 0));
 	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");

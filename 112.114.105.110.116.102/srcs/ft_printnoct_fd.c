@@ -28,6 +28,8 @@ ssize_t		ft_printnoct_fd(uintptr_t p, char *opt, int fd)
 		size = ft_mtoz(opt + PF_PREC);
 	index = 0;
 	oct = 1;
+	if (p == 0 && opt[PF_DOT])
+		return (0);
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	while (oct && (p / oct) > 8)
 		oct *= 8;
@@ -38,7 +40,7 @@ ssize_t		ft_printnoct_fd(uintptr_t p, char *opt, int fd)
 	}
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
-		ret += (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
+		len -= (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))

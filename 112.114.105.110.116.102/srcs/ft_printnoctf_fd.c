@@ -46,7 +46,7 @@ ssize_t		ft_printnoctf_fd(uintptr_t p, char *opt, int fd)
 	fill_buffer(&buf, p);
 	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 1);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
-		ret += (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
+		len -= (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
