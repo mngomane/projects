@@ -39,9 +39,18 @@ ssize_t		ft_printnshort_fd(short n, char *opt, size_t size, int fd)
 {
 	wchar_t	*buf;
 	ssize_t	len;
+	ssize_t	ret;
+	ssize_t	sign;
 
+	sign = opt[PF_SIGN];
+	ret = 0;
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, n);
+	if (n >= 0 && sign)
+	{
+		ret += write(1, &sign, 1);
+		size--;
+	}
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 	{
@@ -49,13 +58,12 @@ ssize_t		ft_printnshort_fd(short n, char *opt, size_t size, int fd)
 		{
 			buf[0] = '0';
 			len--;
-			write(fd, "-", 1);
+			ret += write(fd, "-", 1);
 		}
-		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) + ft_putwstr_fd(buf, fd);
-		len += (n < 0 && opt[PF_PADC] == '0' ? 1 : 0);
+		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) + ft_putwstr_fd(buf, fd);
 		free(buf);
-		return (len);
+		return (ret);
 	}
 	free(buf);
-	return (ft_putwstr_fd(buf, fd));
+	return (ret + ft_putwstr_fd(buf, fd));
 }
