@@ -37,7 +37,8 @@
 # define PF_HH			10
 # define PF_PREC		11
 # define PF_PADC		19
-# define PF_TMP			20
+# define PF_SIGN		20
+# define PF_TMP			21
 
 typedef struct		s_list
 {

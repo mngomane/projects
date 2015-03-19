@@ -30,9 +30,16 @@ static int		fct5(const char **format, char **opt)
 	else if ((**format == '-') && ((*opt)[PF_MINUS] = 1))
 		return (1);
 	else if ((**format == '+') && ((*opt)[PF_PLUS] = 1))
+	{
+		(*opt)[PF_SIGN] = '+';
 		return (1);
+	}
 	else if ((**format == ' ') && ((*opt)[PF_SPACE] = 1))
+	{
+		if ((*opt)[PF_PLUS] == 0)
+			(*opt)[PF_SIGN] = ' ';
 		return (1);
+	}
 	else if (ft_isdigit(**format) && **format != '0')
 	{
 		while (ft_isdigit(**format))
@@ -85,15 +92,15 @@ static ssize_t	fct2(const char **format, va_list *ap, char *opt, size_t len)
 	else if ((**format == 'd' || **format == 'i') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1 || opt[PF_Z] == 1)
-			return (ft_printnlong(va_arg(*ap, long), opt[PF_PADC], len, opt[PF_PLUS]));
+			return (ft_printnlong(va_arg(*ap, long), opt[PF_PADC], len, opt[PF_SIGN]));
 		if (opt[PF_H] == 1)
-			return (ft_printnshort((short)va_arg(*ap, int), opt[PF_PADC], len, opt[PF_PLUS]));
+			return (ft_printnshort((short)va_arg(*ap, int), opt[PF_PADC], len, opt[PF_SIGN]));
 		if (opt[PF_HH] == 1)
-			return (ft_printnchar((char)va_arg(*ap, int), opt[PF_PADC], len, opt[PF_PLUS]));
-		return (ft_printnint(va_arg(*ap, int), opt[PF_PADC], len, opt[PF_PLUS]));
+			return (ft_printnchar((char)va_arg(*ap, int), opt[PF_PADC], len, opt[PF_SIGN]));
+		return (ft_printnint(va_arg(*ap, int), opt[PF_PADC], len, opt[PF_SIGN]));
 	}
 	else if ((**format == 'D') && (*format)++)
-		return (ft_printnlong(va_arg(*ap, long int), opt[PF_PADC], len, opt[PF_PLUS]));
+		return (ft_printnlong(va_arg(*ap, long int), opt[PF_PADC], len, opt[PF_SIGN]));
 	else if ((**format == 'U') && (*format)++)
 		return (ft_printnulong(va_arg(*ap, u_long), opt[PF_PADC], len));
 	else if ((**format == 'C') && (*format)++)
