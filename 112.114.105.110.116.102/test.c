@@ -121,7 +121,12 @@ int					main(int ac, char **av)
 	error_type = 'A';
 	/*ft_putnbr(ft_printnwchar(error_type, ' ', 50));*/
 	/*ft_putnbr(ft_printnlong(-101564684, 'X', 100));*/
-	ft_putnbr(ft_printf("{%-15p}", 0));
+	u_char	*wdebug;
+
+	/*wdebug = ft_memalloc()*/
+	/*ft_wc_to_utf8(L'我', wdebug);
+	ft_putnbr(ft_strlen((char *)wdebug));*/
+	ft_putnbr(printf("{%30S}", L"我是一只猫。"));
 	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");

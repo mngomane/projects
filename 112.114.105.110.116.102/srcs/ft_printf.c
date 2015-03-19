@@ -104,7 +104,7 @@ static ssize_t	fct2(const char **format, va_list *ap, char *opt, size_t len)
 		return (ft_printnwchar(va_arg(*ap, wchar_t), opt[PF_PADC], len));
 	else if ((**format == 'S') && (*format)++)
 		return (ft_printnwstr(va_arg(*ap, wchar_t *), opt[PF_PADC], len));
-	return (0);
+	return (len ? ft_putnchar(opt[PF_PADC], len - 1) : 0);
 }
 
 static ssize_t	fct1(const char **format, va_list *ap, char *opt, size_t len)
@@ -185,11 +185,14 @@ int				ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			fct6(&format, &opt);
-			tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PREC));
+			if (opt[PF_MINUS] == 1)
+				tmp = fct1(&format, &ap, opt, 0);
+			else
+				tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PREC));
 			if ((opt[PF_MINUS] == 1) &&
 				(((ssize_t)ft_mtoz(opt + PF_PREC) - tmp) > 0))
-				ret += ft_putnchar((opt[PF_ZERO] && !opt[PF_MINUS] ?
-					'0' : ' '), ft_mtoz(opt + PF_PREC) - (size_t)tmp);
+				ret += ft_putnchar(opt[PF_PADC],
+					ft_mtoz(opt + PF_PREC) - (size_t)tmp);
 			ret += tmp;
 		}
 		else
