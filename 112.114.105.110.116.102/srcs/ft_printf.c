@@ -28,7 +28,10 @@ static int		fct5(const char **format, char **opt)
 		return (1);
 	}
 	else if ((**format == '-') && ((*opt)[PF_MINUS] = 1))
+	{
+		(*opt)[PF_PADC] = ' ';
 		return (1);
+	}
 	else if ((**format == '+') && ((*opt)[PF_PLUS] = 1))
 	{
 		(*opt)[PF_SIGN] = '+';
@@ -36,8 +39,7 @@ static int		fct5(const char **format, char **opt)
 	}
 	else if ((**format == ' ') && ((*opt)[PF_SPACE] = 1))
 	{
-		if ((*opt)[PF_PLUS] == 0)
-			(*opt)[PF_SIGN] = ' ';
+		(*opt)[PF_SIGN] = ((*opt)[PF_PLUS] == 0 ? ' ' : '+');
 		return (1);
 	}
 	else if (ft_isdigit(**format) && **format != '0')
