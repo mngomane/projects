@@ -45,8 +45,13 @@ ssize_t		ft_printnhexu_fd(uintptr_t p, char *opt, int fd)
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, p);
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
+	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
+		ret += (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
+	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
+		ret += ft_putnchar_fd(opt[PF_DOTC], ft_mtoz(opt + PF_PERIOD) -
+			ft_wcslen(buf), fd);
 	ret += ft_putwstr_fd(buf, fd);
 	free(buf);
 	return (ret);

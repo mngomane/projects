@@ -187,7 +187,6 @@ static ssize_t	fct1(const char **format, va_list *ap, char *opt)
 			return (ft_printnoct((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_SHARP] == 1)
 			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt));
-		/*return (ft_putoct(va_arg(*ap, uintptr_t)));*/
 		return (ft_printnoct(va_arg(*ap, uintptr_t), opt));
 	}
 	else if ((**format == 'O') && (*format)++)

@@ -28,6 +28,8 @@ ssize_t		ft_printnushort_fd(u_short n, char *opt, int fd)
 		size = ft_mtoz(opt + PF_PREC);
 	decim = 1;
 	index = 0;
+	if (n == 0 && opt[PF_DOT])
+		return (0);
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	while (decim && (n / decim) > 9)
 		decim *= 10;

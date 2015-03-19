@@ -49,6 +49,8 @@ ssize_t		ft_printnlong_fd(long n, char *opt, int fd)
 		size = ft_mtoz(opt + PF_PREC);
 	sign = opt[PF_SIGN];
 	ret = 0;
+	if (n == 0 && opt[PF_DOT])
+		return (0);
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, n);
 	if (n >= 0 && sign)
@@ -58,7 +60,11 @@ ssize_t		ft_printnlong_fd(long n, char *opt, int fd)
 	}
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
+	{
+		if (buf[0] == '-')
+			len--;
 		len -= (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
+	}
 	if (len > 0)
 	{
 		if (n < 0 && opt[PF_PADC] == '0')
@@ -70,8 +76,15 @@ ssize_t		ft_printnlong_fd(long n, char *opt, int fd)
 		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
 	}
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
+	{
+		if (buf[0] == '-')
+		{
+			buf[0] = '0';
+			ret += write(fd, "-", 1);
+		}
 		ret += ft_putnchar_fd(opt[PF_DOTC], ft_mtoz(opt + PF_PERIOD) -
 			ft_wcslen(buf), fd);
+	}
 	ret += ft_putwstr_fd(buf, fd);
 	free(buf);
 	return (ret);
