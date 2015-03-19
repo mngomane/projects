@@ -12,9 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnushort(u_short n, int padc, size_t size, int s)
+ssize_t		ft_printnushort(u_short n, int padc, size_t size)
 {
-	if (s)
-		return (write(1, "+", 1) + ft_printnushort_fd(n, padc, size, 1));
 	return (ft_printnushort_fd(n, padc, size, 1));
 }

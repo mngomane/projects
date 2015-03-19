@@ -12,9 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnulong(u_long n, int padc, size_t size, int sign)
+ssize_t		ft_printnulong(u_long n, int padc, size_t size)
 {
-	if (sign)
-		return (write(1, "+", 1) + ft_printnulong_fd(n, padc, size, 1));
 	return (ft_printnulong_fd(n, padc, size, 1));
 }

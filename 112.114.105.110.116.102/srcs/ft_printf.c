@@ -75,27 +75,27 @@ static ssize_t	fct2(const char **format, va_list *ap, char *opt, size_t len)
 	if ((**format == 'u') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1 || opt[PF_Z] == 1)
-			return (ft_printnulong(va_arg(*ap, u_long), opt[PF_PADC], len, 0));
+			return (ft_printnulong(va_arg(*ap, u_long), opt[PF_PADC], len));
 		if (opt[PF_H] == 1)
-			return (ft_printnushort((u_short)va_arg(*ap, int), opt[PF_PADC], len, 0));
+			return (ft_printnushort((u_short)va_arg(*ap, int), opt[PF_PADC], len));
 		if (opt[PF_HH] == 1)
-			return (ft_printnuchar((u_char)va_arg(*ap, int), opt[PF_PADC], len, 0));
-		return (ft_printnulong((u_long)va_arg(*ap, uintptr_t), opt[PF_PADC], len, 0));
+			return (ft_printnuchar((u_char)va_arg(*ap, int), opt[PF_PADC], len));
+		return (ft_printnulong((u_long)va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 	}
 	else if ((**format == 'd' || **format == 'i') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1 || opt[PF_Z] == 1)
-			return (ft_printnlong(va_arg(*ap, long), opt[PF_PADC], len, 0));
+			return (ft_printnlong(va_arg(*ap, long), opt[PF_PADC], len, opt[PF_PLUS]));
 		if (opt[PF_H] == 1)
-			return (ft_printnshort((short)va_arg(*ap, int), opt[PF_PADC], len, 0));
+			return (ft_printnshort((short)va_arg(*ap, int), opt[PF_PADC], len, opt[PF_PLUS]));
 		if (opt[PF_HH] == 1)
-			return (ft_printnchar((char)va_arg(*ap, int), opt[PF_PADC], len, 0));
-		return (ft_printnint(va_arg(*ap, int), opt[PF_PADC], len, 0));
+			return (ft_printnchar((char)va_arg(*ap, int), opt[PF_PADC], len, opt[PF_PLUS]));
+		return (ft_printnint(va_arg(*ap, int), opt[PF_PADC], len, opt[PF_PLUS]));
 	}
 	else if ((**format == 'D') && (*format)++)
-		return (ft_printnlong(va_arg(*ap, long int), opt[PF_PADC], len, 0));
+		return (ft_printnlong(va_arg(*ap, long int), opt[PF_PADC], len, opt[PF_PLUS]));
 	else if ((**format == 'U') && (*format)++)
-		return (ft_printnulong(va_arg(*ap, u_long), opt[PF_PADC], len, 0));
+		return (ft_printnulong(va_arg(*ap, u_long), opt[PF_PADC], len));
 	else if ((**format == 'C') && (*format)++)
 		return (ft_printnwchar(va_arg(*ap, wchar_t), opt[PF_PADC], len));
 	else if ((**format == 'S') && (*format)++)
