@@ -42,10 +42,16 @@ ssize_t		ft_printnhexpf_fd(uintptr_t p, char *opt, int fd)
 		size = 0;
 	else
 		size = ft_mtoz(opt + PF_PREC);
+	if (p == 0 && opt[PF_DOT] && !ft_mtoz(opt + PF_PERIOD))
+		return (write(fd, "0x", 2));
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, p);
 	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 2);
-	if (len > 0)
+	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
+		ret += write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_DOTC],
+			ft_mtoz(opt + PF_PERIOD) - ft_wcslen(buf), fd) +
+				ft_putwstr_fd(buf, fd);
+	else if (len > 0)
 	{
 		if (opt[PF_PADC] == '0')
 			ret +=  write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
