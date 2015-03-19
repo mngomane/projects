@@ -104,7 +104,9 @@ static ssize_t	fct2(const char **format, va_list *ap, char *opt, size_t len)
 		return (ft_printnwchar(va_arg(*ap, wchar_t), opt[PF_PADC], len));
 	else if ((**format == 'S') && (*format)++)
 		return (ft_printnwstr(va_arg(*ap, wchar_t *), opt[PF_PADC], len));
-	return (len ? ft_putnchar(opt[PF_PADC], len - 1) : 0);
+	else if (**format == 0)
+		return (0);
+	return ((len ? ft_putnchar(opt[PF_PADC], len - 1) : 0) + write(1, (*format)++, 1));
 }
 
 static ssize_t	fct1(const char **format, va_list *ap, char *opt, size_t len)
@@ -152,9 +154,9 @@ static ssize_t	fct1(const char **format, va_list *ap, char *opt, size_t len)
 	else if ((**format == 'O') && (*format)++)
 	{
 		if (opt[PF_H] == 1)
-			return (ft_printnoct((u_short)va_arg(*ap, uintptr_t), opt[PF_PADC], len));
+			return (ft_printnoct(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 		if (opt[PF_HH] == 1)
-			return (ft_printnoct((u_char)va_arg(*ap, uintptr_t), opt[PF_PADC], len));
+			return (ft_printnoct(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 		return (ft_printnoct(va_arg(*ap, uintptr_t), opt[PF_PADC], len));
 	}
 	return (fct2(format, ap, opt, len));

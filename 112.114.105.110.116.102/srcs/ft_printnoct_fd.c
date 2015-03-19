@@ -22,7 +22,7 @@ ssize_t		ft_printnoct_fd(uintptr_t p, int c, size_t size, int fd)
 	index = 0;
 	oct = 1;
 	buf = ft_memalloc(25 * sizeof(wchar_t));
-	while (oct && (p / oct) >= 8)
+	while (oct && (p / oct) > 8)
 		oct *= 8;
 	while (oct > 0)
 	{

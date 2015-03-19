@@ -54,8 +54,8 @@ int					main(int ac, char **av)
 	c = (L"我是一只猫。"[6] << 48) & 0xff;
 	write(1, &c, 1);
 	write(1, "\n", 1);*/
-	ft_printf("%C\n", L'莨');
-	ft_puthex(L'莨');
+	/*ft_printf("%C\n", L'莨')*/;
+	/*ft_puthex(L'莨')*/;
 	ft_putendl("");
 	int		c = 0x83a8;
 	/*ft_putwchar(L'莨');*/
@@ -101,7 +101,7 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(printf("{%010s}", "tata"));
+	/*ft_putnbr(printf("{%010s}", "tata"));*/
 	/*printf("%lld", LLONG_MIN);*/
 	ft_putendl("");
 	int		tc;
@@ -126,11 +126,14 @@ int					main(int ac, char **av)
 	/*wdebug = ft_memalloc()*/
 	/*ft_wc_to_utf8(L'我', wdebug);
 	ft_putnbr(ft_strlen((char *)wdebug));*/
-	ft_putnbr(ft_printf("%hhO, %hhO", 0, USHRT_MAX));
+	/*ft_putnbr(printf("%hhO, %hhO", 0, USHRT_MAX));
+	ft_putnbr(ft_printf("%hhO, %hhO", 0, USHRT_MAX));*/
+	ft_putnbr(ft_printf("%hhC, %hhC", 0, L'米'));
+	ft_putnbr(printf("%hhC, %hhC", 0, L'米'));
 	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");
-	ft_putlong(-100);
+	/*ft_putlong(-100)*/;
 	/*ft_putnbr(-10000);*/
 	/*printf("wcslen(wc) = %zu\n", wcslen(wc));*/
 	/*wc = L'B';*/
@@ -143,7 +146,7 @@ int					main(int ac, char **av)
 	/*printf("sizeof a = %ld\nsizeof b = %ld\n", sizeof(w), sizeof(L'莨'));*/
 	/*printf(L"%c", w);*/
 	ft_putendl("");
-	printf("return test = %d\n", L"B"[1]);
+	/*printf("return test = %d\n", L"B"[1])*/;
 	ft_putendl("");
 	/*ft_putnbr(printf("%s\n", "\u2510"));*/
 /*	printf();
@@ -159,4 +162,3 @@ int					main(int ac, char **av)
 	ft_putendl("");
 	return (0);
 }
-

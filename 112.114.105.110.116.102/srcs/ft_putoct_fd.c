@@ -20,7 +20,7 @@ ssize_t		ft_putoct_fd(uintptr_t p, int fd)
 
 	oct = 1;
 	ret = 0;
-	while ((p / oct) >= 8)
+	while ((p / oct) > 8)
 		oct *= 8;
 	while (oct > 0)
 	{
