@@ -121,7 +121,7 @@ int					main(int ac, char **av)
 	error_type = 'A';
 	/*ft_putnbr(ft_printnwchar(error_type, ' ', 50));*/
 	/*ft_putnbr(ft_printnlong(-101564684, 'X', 100));*/
-	ft_putnbr(ft_printnc('B', 'o', 30));
+	ft_putnbr(ft_printf("{%-15p}", 0));
 	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");
