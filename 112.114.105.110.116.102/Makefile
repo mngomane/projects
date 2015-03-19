@@ -60,6 +60,8 @@ SRCS = ft_atoi.c\
 		ft_printnlong_fd.c\
 		ft_printnoct.c\
 		ft_printnoct_fd.c\
+		ft_printnoctf.c\
+		ft_printnoctf_fd.c\
 		ft_printnshort.c\
 		ft_printnshort_fd.c\
 		ft_printnstr.c\

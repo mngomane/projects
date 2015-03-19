@@ -90,6 +90,8 @@ ssize_t				ft_printnlong(long n, int padc, size_t size);
 ssize_t				ft_printnlong_fd(long n, int padc, size_t size, int fd);
 ssize_t				ft_printnoct(uintptr_t p, int padc, size_t size);
 ssize_t				ft_printnoct_fd(uintptr_t p, int c, size_t size, int fd);
+ssize_t				ft_printnoctf(uintptr_t p, int c, size_t size);
+ssize_t				ft_printnoctf_fd(uintptr_t p, int c, size_t size, int fd);
 ssize_t				ft_printnshort(short n, int padc, size_t size);
 ssize_t				ft_printnshort_fd(short n, int padc, size_t size, int fd);
 ssize_t				ft_printnstr(char const *str, int padc, size_t size);
