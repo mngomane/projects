@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnint(int n, char *opt, size_t size)
+ssize_t		ft_printnint(int n, char *opt)
 {
-	return (ft_printnint_fd(n, opt, size, 1));
+	return (ft_printnint_fd(n, opt, 1));
 }

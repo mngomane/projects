@@ -12,13 +12,18 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnushort_fd(u_short n, char *o, size_t size, int fd)
+ssize_t		ft_printnushort_fd(u_short n, char *opt, int fd)
 {
 	int		index;
 	u_short	decim;
 	wchar_t	*buf;
 	ssize_t	len;
+	size_t	size;
 
+	if (opt[PF_MINUS] == 1)
+		size = 0;
+	else
+		size = ft_mtoz(opt + PF_PREC);
 	decim = 1;
 	index = 0;
 	buf = ft_memalloc(25 * sizeof(wchar_t));
@@ -32,7 +37,8 @@ ssize_t		ft_printnushort_fd(u_short n, char *o, size_t size, int fd)
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 	{
-		len = ft_putnchar_fd(o[PF_PADC], (size_t)len, fd) + ft_putwstr_fd(buf, fd);
+		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +
+			ft_putwstr_fd(buf, fd);
 		free(buf);
 		return (len);
 	}

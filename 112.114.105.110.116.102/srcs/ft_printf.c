@@ -90,116 +90,121 @@ static int		fct3(const char **format, char **opt)
 	return (fct4(format, opt));
 }
 
-static ssize_t	fct2(const char **format, va_list *ap, char *opt, size_t len)
+static ssize_t	fct2(const char **format, va_list *ap, char *opt)
 {
 	if ((**format == 'u') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1 || opt[PF_Z] == 1)
-			return (ft_printnulong(va_arg(*ap, u_long), opt, len));
+			return (ft_printnulong(va_arg(*ap, u_long), opt));
 		if (opt[PF_H] == 1)
-			return (ft_printnushort((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnushort((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1)
-			return (ft_printnuchar((u_char)va_arg(*ap, int), opt, len));
-		return (ft_printnulong((u_long)va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnuchar((u_char)va_arg(*ap, int), opt));
+		return (ft_printnulong((u_long)va_arg(*ap, uintptr_t), opt));
 	}
 	else if ((**format == 'd' || **format == 'i') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1 || opt[PF_J] == 1 || opt[PF_Z] == 1)
-			return (ft_printnlong(va_arg(*ap, long), opt, len));
+			return (ft_printnlong(va_arg(*ap, long), opt));
 		if (opt[PF_H] == 1)
-			return (ft_printnshort((short)va_arg(*ap, int), opt, len));
+			return (ft_printnshort((short)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1)
-			return (ft_printnchar((char)va_arg(*ap, int), opt, len));
-		return (ft_printnint(va_arg(*ap, int), opt, len));
+			return (ft_printnchar((char)va_arg(*ap, int), opt));
+		return (ft_printnint(va_arg(*ap, int), opt));
 	}
 	else if ((**format == 'D') && (*format)++)
-		return (ft_printnlong(va_arg(*ap, long int), opt, len));
+		return (ft_printnlong(va_arg(*ap, long int), opt));
 	else if ((**format == 'U') && (*format)++)
-		return (ft_printnulong(va_arg(*ap, u_long), opt, len));
+		return (ft_printnulong(va_arg(*ap, u_long), opt));
 	else if ((**format == 'C') && (*format)++)
-		return (ft_printnwchar(va_arg(*ap, wchar_t), opt, len));
+		return (ft_printnwchar(va_arg(*ap, wchar_t), opt));
 	else if ((**format == 'S') && (*format)++)
-		return (ft_printnwstr(va_arg(*ap, wchar_t *), opt, len));
+		return (ft_printnwstr(va_arg(*ap, wchar_t *), opt));
 	else if (**format == 0)
 		return (0);
-	return ((len ? ft_putnchar(opt[PF_PADC], len - 1) : 0) + write(1, (*format)++, 1));
+	if (opt[PF_MINUS] == 1 || ft_mtoz(opt + PF_PREC) == 0)
+		return (write(1, (*format)++, 1));
+	return (ft_putnchar(opt[PF_PADC], ft_mtoz(opt + PF_PREC) - 1) +
+		write(1, (*format)++, 1));
 }
 
 static ssize_t	fct1(const char **format, va_list *ap, char *opt, size_t len)
 {
+	(void)len;
 	if ((**format == '%') && (*format)++)
 		return (write(1, "%", 1));
 	else if ((**format == 's') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1)
-			return (ft_printnwstr(va_arg(*ap, wchar_t *), opt, len));
-		return (ft_printnstr(va_arg(*ap, char *), opt, len));
+			return (ft_printnwstr(va_arg(*ap, wchar_t *), opt));
+		return (ft_printnstr(va_arg(*ap, char *), opt));
 	}
 	else if ((**format == 'c') && (*format)++)
 	{
 		if (opt[PF_L] == 1 || opt[PF_LL] == 1)
-			return (ft_printnwchar(va_arg(*ap, wchar_t), opt, len));
-		return (ft_printnc(va_arg(*ap, int), opt, len));
+			return (ft_printnwchar(va_arg(*ap, wchar_t), opt));
+		return (ft_printnc(va_arg(*ap, int), opt));
 	}
 	else if ((**format == 'p') && (*format)++)
-		return (ft_printnhexpf(va_arg(*ap, uintptr_t), opt, len));
+		return (ft_printnhexpf(va_arg(*ap, uintptr_t), opt));
 	else if ((**format == 'x') && (*format)++)
 	{
 		if (opt[PF_H] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnhexf((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnhexf((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_H] == 1)
-			return (ft_printnhex((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnhex((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnhexf((u_char)va_arg(*ap, int), opt, len));
+			return (ft_printnhexf((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1)
-			return (ft_printnhex((u_char)va_arg(*ap, int), opt, len));
+			return (ft_printnhex((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_SHARP] == 1)
-			return (ft_printnhexf(va_arg(*ap, uintptr_t), opt, len));
-		return (ft_printnhex(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnhexf(va_arg(*ap, uintptr_t), opt));
+		return (ft_printnhex(va_arg(*ap, uintptr_t), opt));
 	}
 	else if ((**format == 'X') && (*format)++)
 	{
 		if (opt[PF_H] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnhexuf((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnhexuf((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_H] == 1)
-			return (ft_printnhexu((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnhexu((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnhexuf((u_char)va_arg(*ap, int), opt, len));
+			return (ft_printnhexuf((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1)
-			return (ft_printnhexu((u_char)va_arg(*ap, int), opt, len));
+			return (ft_printnhexu((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_SHARP] == 1)
-			return (ft_printnhexuf(va_arg(*ap, uintptr_t), opt, len));
-		return (ft_printnhexu(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnhexuf(va_arg(*ap, uintptr_t), opt));
+		return (ft_printnhexu(va_arg(*ap, uintptr_t), opt));
 	}
 	else if ((**format == 'o') && (*format)++)
 	{
 		if (opt[PF_H] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnoctf((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnoctf((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_H] == 1)
-			return (ft_printnoct((u_short)va_arg(*ap, int), opt, len));
+			return (ft_printnoct((u_short)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnoctf((u_char)va_arg(*ap, int), opt, len));
+			return (ft_printnoctf((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_HH] == 1)
-			return (ft_printnoct((u_char)va_arg(*ap, int), opt, len));
+			return (ft_printnoct((u_char)va_arg(*ap, int), opt));
 		if (opt[PF_SHARP] == 1)
-			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt, len));
-		return (ft_putoct(va_arg(*ap, uintptr_t)));
+			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt));
+		/*return (ft_putoct(va_arg(*ap, uintptr_t)));*/
+		return (ft_printnoct(va_arg(*ap, uintptr_t), opt));
 	}
 	else if ((**format == 'O') && (*format)++)
 	{
 		if (opt[PF_H] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt));
 		if (opt[PF_H] == 1)
-			return (ft_printnoct(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnoct(va_arg(*ap, uintptr_t), opt));
 		if (opt[PF_HH] == 1 && opt[PF_SHARP] == 1)
-			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt));
 		if (opt[PF_HH] == 1)
-			return (ft_printnoct(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnoct(va_arg(*ap, uintptr_t), opt));
 		if (opt[PF_SHARP] == 1)
-			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt, len));
-		return (ft_printnoct(va_arg(*ap, uintptr_t), opt, len));
+			return (ft_printnoctf(va_arg(*ap, uintptr_t), opt));
+		return (ft_printnoct(va_arg(*ap, uintptr_t), opt));
 	}
-	return (fct2(format, ap, opt, len));
+	return (fct2(format, ap, opt));
 }
 
 static void		fct6(const char **format, char **opt)
@@ -233,16 +238,16 @@ int				ft_printf(const char *format, ...)
 				tmp = fct1(&format, &ap, opt, 0);
 			else
 			{
-				if (ft_mtoz(opt + PF_PREC) < ft_mtoz(opt + PF_PERIOD))
+				/*if (ft_mtoz(opt + PF_PREC) < ft_mtoz(opt + PF_PERIOD))
 					tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PERIOD));
 				else if (ft_mtoz(opt + PF_PERIOD))
 				{
-					/*tmp = ft_putnchar(' ', ft_mtoz(opt + PF_PREC) -
-						ft_mtoz(opt + PF_PERIOD));*/
-					tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PERIOD));
+					tmp = ft_putnchar(' ', ft_mtoz(opt + PF_PREC) -
+						ft_mtoz(opt + PF_PERIOD));
+					tmp += fct1(&format, &ap, opt, ft_mtoz(opt + PF_PERIOD));
 				}
-				else
-					tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PREC));
+				else*/
+				tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PREC));
 			}
 			if ((opt[PF_MINUS] == 1) &&
 				(((ssize_t)ft_mtoz(opt + PF_PREC) - tmp) > 0))

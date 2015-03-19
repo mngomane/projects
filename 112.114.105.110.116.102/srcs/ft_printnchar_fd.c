@@ -35,13 +35,18 @@ static void	fill_buffer(wchar_t **buf, char n)
 	}
 }
 
-ssize_t		ft_printnchar_fd(char n, char *opt, size_t size, int fd)
+ssize_t		ft_printnchar_fd(char n, char *opt, int fd)
 {
 	wchar_t	*buf;
 	ssize_t	len;
 	ssize_t	ret;
 	int		sign;
+	size_t	size;
 
+	if (opt[PF_MINUS] == 1)
+		size = 0;
+	else
+		size = ft_mtoz(opt + PF_PREC);
 	sign = opt[PF_SIGN];
 	ret = 0;
 	buf = ft_memalloc(25 * sizeof(wchar_t));

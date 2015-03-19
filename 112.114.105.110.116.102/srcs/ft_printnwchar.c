@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnwchar(wchar_t const wc, char *opt, size_t size)
+ssize_t		ft_printnwchar(wchar_t const wc, char *opt)
 {
-	return (ft_printnwchar_fd(wc, opt, size, 1));
+	return (ft_printnwchar_fd(wc, opt, 1));
 }

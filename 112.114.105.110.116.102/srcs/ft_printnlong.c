@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnlong(long n, char *opt, size_t size)
+ssize_t		ft_printnlong(long n, char *opt)
 {
-	return (ft_printnlong_fd(n, opt, size, 1));
+	return (ft_printnlong_fd(n, opt, 1));
 }

@@ -12,13 +12,18 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnulong_fd(u_long n, char *opt, size_t size, int fd)
+ssize_t		ft_printnulong_fd(u_long n, char *opt, int fd)
 {
 	int		index;
 	u_long	decim;
 	wchar_t	*buf;
 	ssize_t	len;
+	size_t	size;
 
+	if (opt[PF_MINUS] == 1)
+		size = 0;
+	else
+		size = ft_mtoz(opt + PF_PREC);
 	decim = 1;
 	index = 0;
 	buf = ft_memalloc(25 * sizeof(wchar_t));

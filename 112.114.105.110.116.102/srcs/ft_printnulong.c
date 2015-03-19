@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnulong(u_long n, char *opt, size_t size)
+ssize_t		ft_printnulong(u_long n, char *opt)
 {
-	return (ft_printnulong_fd(n, opt, size, 1));
+	return (ft_printnulong_fd(n, opt, 1));
 }

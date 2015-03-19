@@ -12,24 +12,30 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnwchar_fd(wchar_t const c, char *o, size_t z, int d)
+ssize_t		ft_printnwchar_fd(wchar_t const c, char *opt, int d)
 {
 	u_char	utf8[5];
-	ssize_t	l;
+	ssize_t	len;
+	size_t	size;
 
+	if (opt[PF_MINUS] == 1)
+		size = 0;
+	else
+		size = ft_mtoz(opt + PF_PREC);
 	if (c == 0)
 	{
-		if (!z)
+		if (!size)
 			return (1);
-		return (ft_putnchar_fd(o[PF_PADC], z, d));
+		return (ft_putnchar_fd(opt[PF_PADC], size, d));
 	}
 	ft_bzero(utf8, 5 * sizeof(u_char));
 	ft_wc_to_utf8(c, utf8);
-	l = (ssize_t)z - (ssize_t)ft_strlen((char *)utf8);
-	if (l > 0)
+	len = (ssize_t)size - (ssize_t)ft_strlen((char *)utf8);
+	if (len > 0)
 	{
-		l = ft_putnchar_fd(o[PF_PADC], (size_t)l, d) + ft_putstr_fd((char *)utf8, d);
-		return (l);
+		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, d) +
+			ft_putstr_fd((char *)utf8, d);
+		return (len);
 	}
 	return (ft_putstr_fd((char *)utf8, d));
 }

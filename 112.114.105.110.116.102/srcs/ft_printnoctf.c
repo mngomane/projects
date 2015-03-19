@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnoctf(uintptr_t p, char *o, size_t size)
+ssize_t		ft_printnoctf(uintptr_t p, char *opt)
 {
-	return (ft_printnoctf_fd(p, o, size, 1));
+	return (ft_printnoctf_fd(p, opt, 1));
 }

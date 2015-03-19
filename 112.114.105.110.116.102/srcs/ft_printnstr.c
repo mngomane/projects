@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnstr(char const *str, char *opt, size_t size)
+ssize_t		ft_printnstr(char const *str, char *opt)
 {
-	return (ft_printnstr_fd(str, opt, size, 1));
+	return (ft_printnstr_fd(str, opt, 1));
 }
