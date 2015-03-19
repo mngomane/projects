@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_wcscpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:29 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:29 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/18 22:26:21 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/18 22:26:21 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strcpy(char *dst, const char *src)
+wchar_t		*ft_wcscpy(wchar_t *dst, wchar_t const *src)
 {
-	char	*tmp;
+	wchar_t	*tmp;
 	size_t	index;
 
 	index = 0;
 	tmp = dst;
-	while (src[index] != '\0')
+	while (src[index] != L'\0')
 		*(tmp++) = src[index++];
-	*tmp = '\0';
+	*tmp = L'\0';
 	return (dst);
 }

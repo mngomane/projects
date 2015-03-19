@@ -36,6 +36,7 @@
 # define PF_H			9
 # define PF_HH			10
 # define PF_PREC		11
+# define PF_PADC		19
 # define PF_TMP			20
 
 typedef struct		s_list
@@ -73,6 +74,36 @@ size_t				ft_mtoz(void *src);
 int					ft_printf(const char *format, ...);
 ssize_t				ft_printchar(char n);
 ssize_t				ft_printchar_fd(char n, int fd);
+ssize_t				ft_printnchar(char n, int padc, size_t size);
+ssize_t				ft_printnchar_fd(char n, int padc, size_t size, int fd);
+ssize_t				ft_printnc(int c, int padc, size_t size);
+ssize_t				ft_printnc_fd(int c, int padc, size_t size, int fd);
+ssize_t				ft_printnhex(uintptr_t p, int padc, size_t size);
+ssize_t				ft_printnhex_fd(uintptr_t p, int c, size_t size, int fd);
+ssize_t				ft_printnhexf(uintptr_t p, int padc, size_t size);
+ssize_t				ft_printnhexf_fd(uintptr_t p, int c, size_t size, int fd);
+ssize_t				ft_printnhexu(uintptr_t p, int padc, size_t size);
+ssize_t				ft_printnhexu_fd(uintptr_t p, int c, size_t size, int fd);
+ssize_t				ft_printnint(int n, int padc, size_t size);
+ssize_t				ft_printnint_fd(int n, int padc, size_t size, int fd);
+ssize_t				ft_printnlong(long n, int padc, size_t size);
+ssize_t				ft_printnlong_fd(long n, int padc, size_t size, int fd);
+ssize_t				ft_printnoct(uintptr_t p, int padc, size_t size);
+ssize_t				ft_printnoct_fd(uintptr_t p, int c, size_t size, int fd);
+ssize_t				ft_printnshort(short n, int padc, size_t size);
+ssize_t				ft_printnshort_fd(short n, int padc, size_t size, int fd);
+ssize_t				ft_printnstr(char const *str, int padc, size_t size);
+ssize_t				ft_printnstr_fd(char const *s, int c, size_t z, int fd);
+ssize_t				ft_printnuchar(u_char n, int padc, size_t size);
+ssize_t				ft_printnuchar_fd(u_char n, int padc, size_t size, int fd);
+ssize_t				ft_printnulong(u_long n, int padc, size_t size);
+ssize_t				ft_printnulong_fd(u_long n, int padc, size_t size, int fd);
+ssize_t				ft_printnushort(u_short n, int padc, size_t size);
+ssize_t				ft_printnushort_fd(u_short n, int c, size_t size, int fd);
+ssize_t				ft_printnwchar(wchar_t const wc, int padc, size_t size);
+ssize_t				ft_printnwchar_fd(wchar_t const c, int p, size_t z, int d);
+ssize_t				ft_printnwstr(wchar_t const *wstr, int padc, size_t size);
+ssize_t				ft_printnwstr_fd(wchar_t const *s, int p, size_t z, int fd);
 ssize_t				ft_printuchar(u_char n);
 ssize_t				ft_printuchar_fd(u_char n, int fd);
 int					ft_putchar(int c);
@@ -141,6 +172,7 @@ size_t				ft_wcslen(wchar_t const *wstr);
 wchar_t				*ft_wmemcpy(wchar_t *dst, const wchar_t *src, size_t len);
 wchar_t				*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len);
 wchar_t				*ft_wmemset(wchar_t *wstr, wchar_t c, size_t len);
+wchar_t				*ft_wcscpy(wchar_t *dst, wchar_t const *src);
 void				ft_ztom(void *dst, const size_t size);
 int					get_next_line(int const fd, char **line);
 

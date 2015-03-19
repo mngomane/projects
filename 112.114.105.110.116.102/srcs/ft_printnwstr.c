@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_printnwstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:29 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:29 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/19 01:53:37 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/19 01:53:37 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strcpy(char *dst, const char *src)
+ssize_t		ft_printnwstr(wchar_t const *wstr, int padc, size_t size)
 {
-	char	*tmp;
-	size_t	index;
-
-	index = 0;
-	tmp = dst;
-	while (src[index] != '\0')
-		*(tmp++) = src[index++];
-	*tmp = '\0';
-	return (dst);
+	return (ft_printnwstr_fd(wstr, padc, size, 1));
 }

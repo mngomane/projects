@@ -101,7 +101,7 @@ int					main(int ac, char **av)
 	if (wcrtomb(cheat, *pt) == (size_t)-1)
 		puts("ERROR");
 	printf("TEST = %s\n", cheat);*/
-	ft_putnbr(ft_printf("{%-015d}", 42));
+	ft_putnbr(printf("{%010s}", "tata"));
 	/*printf("%lld", LLONG_MIN);*/
 	ft_putendl("");
 	int		tc;
@@ -116,7 +116,12 @@ int					main(int ac, char **av)
 	d = ft_mtoz(kaki + 50);
 	/*kaki -= 50;*/
 	ft_putendl("\n----------");
-	ft_putnbr(d);
+	char	error_type;
+
+	error_type = 'A';
+	/*ft_putnbr(ft_printnwchar(error_type, ' ', 50));*/
+	/*ft_putnbr(ft_printnlong(-101564684, 'X', 100));*/
+	ft_putnbr(ft_printnc('B', 'o', 30));
 	ft_putendl("\n----------");
 	/*ft_putulong(12345);*/
 	ft_putendl("\n==========");

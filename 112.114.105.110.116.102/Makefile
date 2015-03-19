@@ -44,6 +44,36 @@ SRCS = ft_atoi.c\
 		ft_printf.c\
 		ft_printchar.c\
 		ft_printchar_fd.c\
+		ft_printnchar.c\
+		ft_printnchar_fd.c\
+		ft_printnc.c\
+		ft_printnc_fd.c\
+		ft_printnhex.c\
+		ft_printnhex_fd.c\
+		ft_printnhexf.c\
+		ft_printnhexf_fd.c\
+		ft_printnhexu.c\
+		ft_printnhexu_fd.c\
+		ft_printnint.c\
+		ft_printnint_fd.c\
+		ft_printnlong.c\
+		ft_printnlong_fd.c\
+		ft_printnoct.c\
+		ft_printnoct_fd.c\
+		ft_printnshort.c\
+		ft_printnshort_fd.c\
+		ft_printnstr.c\
+		ft_printnstr_fd.c\
+		ft_printnuchar.c\
+		ft_printnuchar_fd.c\
+		ft_printnushort.c\
+		ft_printnushort_fd.c\
+		ft_printnulong.c\
+		ft_printnulong_fd.c\
+		ft_printnwchar.c\
+		ft_printnwchar_fd.c\
+		ft_printnwstr.c\
+		ft_printnwstr_fd.c\
 		ft_printuchar.c\
 		ft_printuchar_fd.c\
 		ft_putchar.c\
@@ -107,6 +137,7 @@ SRCS = ft_atoi.c\
 		ft_tolower.c\
 		ft_toupper.c\
 		ft_wc_to_utf8.c\
+		ft_wcscpy.c\
 		ft_wcsdup.c\
 		ft_wcslen.c\
 		ft_wmemcpy.c\

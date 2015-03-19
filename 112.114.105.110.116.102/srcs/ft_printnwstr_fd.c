@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_printnwstr_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:25:29 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:25:29 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/19 01:41:52 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/19 01:41:52 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strcpy(char *dst, const char *src)
+ssize_t		ft_printnwstr_fd(wchar_t const *s, int p, size_t z, int fd)
 {
-	char	*tmp;
-	size_t	index;
+	ssize_t		ret;
+	ssize_t		len;
 
-	index = 0;
-	tmp = dst;
-	while (src[index] != '\0')
-		*(tmp++) = src[index++];
-	*tmp = '\0';
-	return (dst);
+	ret = 0;
+	if (s == (void *)0)
+	{
+		if (z > 6)
+			return (ft_putnchar_fd(p, (z - 6), fd) + write(fd, "(null)", 6));
+		return (ft_putstr_fd("(null)", fd));
+	}
+	len = (ssize_t)z - (ssize_t)ft_wcslen(s);
+	if (len > 0)
+		ret += ft_putnchar_fd(p, (size_t)len, fd);
+	while (*s)
+		ret += ft_putwchar_fd(*(s++), fd);
+	return (ret);
 }
