@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnuchar(u_char n, int padc, size_t size)
+ssize_t		ft_printnuchar(u_char n, char *opt, size_t size)
 {
-	return (ft_printnuchar_fd(n, padc, size, 1));
+	return (ft_printnuchar_fd(n, opt, size, 1));
 }

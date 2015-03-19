@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnc_fd(int c, int padc, size_t size, int fd)
+ssize_t		ft_printnc_fd(int c, char *opt, size_t size, int fd)
 {
 	if (size > 1)
-		return (ft_putnchar_fd(padc, (size - 1), fd) + write(1, &c, 1));
+		return (ft_putnchar_fd(opt[PF_PADC], (size - 1), fd) + write(1, &c, 1));
 	return (write(1, &c, 1));
 }

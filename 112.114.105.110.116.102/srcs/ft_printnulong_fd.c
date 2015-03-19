@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnulong_fd(u_long n, int padc, size_t size, int fd)
+ssize_t		ft_printnulong_fd(u_long n, char *opt, size_t size, int fd)
 {
 	int		index;
 	u_long	decim;
@@ -32,7 +32,7 @@ ssize_t		ft_printnulong_fd(u_long n, int padc, size_t size, int fd)
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 	{
-		len = ft_putnchar_fd(padc, (size_t)len, fd) + ft_putwstr_fd(buf, fd);
+		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) + ft_putwstr_fd(buf, fd);
 		free(buf);
 		return (len);
 	}

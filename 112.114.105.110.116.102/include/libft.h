@@ -29,16 +29,19 @@
 # define PF_MINUS		2
 # define PF_PLUS		3
 # define PF_SPACE		4
-# define PF_J			5
-# define PF_Z			6
-# define PF_L			7
-# define PF_LL			8
-# define PF_H			9
-# define PF_HH			10
-# define PF_PREC		11
-# define PF_PADC		19
-# define PF_SIGN		20
-# define PF_TMP			21
+# define PF_DOT			5
+# define PF_J			6
+# define PF_Z			7
+# define PF_L			8
+# define PF_LL			9
+# define PF_H			10
+# define PF_HH			11
+# define PF_PREC		12
+# define PF_PERIOD		20
+# define PF_PADC		28
+# define PF_SIGN		29
+# define PF_TMPP		30
+# define PF_TMP			42
 
 typedef struct		s_list
 {
@@ -75,42 +78,42 @@ size_t				ft_mtoz(void *src);
 int					ft_printf(const char *format, ...);
 ssize_t				ft_printchar(char n);
 ssize_t				ft_printchar_fd(char n, int fd);
-ssize_t				ft_printnchar(char n, int padc, size_t size, int sign);
-ssize_t				ft_printnchar_fd(char n, int padc, size_t size, int fd);
-ssize_t				ft_printnc(int c, int padc, size_t size);
-ssize_t				ft_printnc_fd(int c, int padc, size_t size, int fd);
-ssize_t				ft_printnhex(uintptr_t p, int padc, size_t size);
-ssize_t				ft_printnhex_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnhexf(uintptr_t p, int padc, size_t size);
-ssize_t				ft_printnhexf_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnhexpf(uintptr_t p, int c, size_t size);
-ssize_t				ft_printnhexpf_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnhexu(uintptr_t p, int padc, size_t size);
-ssize_t				ft_printnhexu_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnhexuf(uintptr_t p, int c, size_t size);
-ssize_t				ft_printnhexuf_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnint(int n, int padc, size_t size, int sign);
-ssize_t				ft_printnint_fd(int n, int padc, size_t size, int fd);
-ssize_t				ft_printnlong(long n, int padc, size_t size, int sign);
-ssize_t				ft_printnlong_fd(long n, int padc, size_t size, int fd);
-ssize_t				ft_printnoct(uintptr_t p, int padc, size_t size);
-ssize_t				ft_printnoct_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnoctf(uintptr_t p, int c, size_t size);
-ssize_t				ft_printnoctf_fd(uintptr_t p, int c, size_t size, int fd);
-ssize_t				ft_printnshort(short n, int padc, size_t size, int sign);
-ssize_t				ft_printnshort_fd(short n, int padc, size_t size, int fd);
-ssize_t				ft_printnstr(char const *str, int padc, size_t size);
-ssize_t				ft_printnstr_fd(char const *s, int c, size_t z, int fd);
-ssize_t				ft_printnuchar(u_char n, int padc, size_t size);
-ssize_t				ft_printnuchar_fd(u_char n, int padc, size_t size, int fd);
-ssize_t				ft_printnulong(u_long n, int padc, size_t size);
-ssize_t				ft_printnulong_fd(u_long n, int padc, size_t size, int fd);
-ssize_t				ft_printnushort(u_short n, int padc, size_t size);
-ssize_t				ft_printnushort_fd(u_short n, int c, size_t size, int fd);
-ssize_t				ft_printnwchar(wchar_t const wc, int padc, size_t size);
-ssize_t				ft_printnwchar_fd(wchar_t const c, int p, size_t z, int d);
-ssize_t				ft_printnwstr(wchar_t const *wstr, int padc, size_t size);
-ssize_t				ft_printnwstr_fd(wchar_t const *s, int p, size_t z, int fd);
+ssize_t				ft_printnc(int c, char *opt, size_t size);
+ssize_t				ft_printnc_fd(int c, char *opt, size_t size, int fd);
+ssize_t				ft_printnchar(char n, char *opt, size_t size);
+ssize_t				ft_printnchar_fd(char n, char *opt, size_t size, int fd);
+ssize_t				ft_printnhex(uintptr_t p, char *opt, size_t size);
+ssize_t				ft_printnhex_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnhexf(uintptr_t p, char *opt, size_t size);
+ssize_t				ft_printnhexf_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnhexpf(uintptr_t p, char *o, size_t size);
+ssize_t				ft_printnhexpf_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnhexu(uintptr_t p, char *opt, size_t size);
+ssize_t				ft_printnhexu_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnhexuf(uintptr_t p, char *o, size_t size);
+ssize_t				ft_printnhexuf_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnint(int n, char *opt, size_t size);
+ssize_t				ft_printnint_fd(int n, char *opt, size_t size, int fd);
+ssize_t				ft_printnlong(long n, char *opt, size_t size);
+ssize_t				ft_printnlong_fd(long n, char *opt, size_t size, int fd);
+ssize_t				ft_printnoct(uintptr_t p, char *opt, size_t size);
+ssize_t				ft_printnoct_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnoctf(uintptr_t p, char *o, size_t size);
+ssize_t				ft_printnoctf_fd(uintptr_t p, char *o, size_t size, int fd);
+ssize_t				ft_printnshort(short n, char *opt, size_t size);
+ssize_t				ft_printnshort_fd(short n, char *opt, size_t size, int fd);
+ssize_t				ft_printnstr(char const *str, char *opt, size_t size);
+ssize_t				ft_printnstr_fd(char const *s, char *o, size_t z, int fd);
+ssize_t				ft_printnuchar(u_char n, char *opt, size_t size);
+ssize_t				ft_printnuchar_fd(u_char n, char *opt, size_t size, int fd);
+ssize_t				ft_printnulong(u_long n, char *opt, size_t size);
+ssize_t				ft_printnulong_fd(u_long n, char *opt, size_t size, int fd);
+ssize_t				ft_printnushort(u_short n, char *opt, size_t size);
+ssize_t				ft_printnushort_fd(u_short n, char *o, size_t size, int fd);
+ssize_t				ft_printnwchar(wchar_t const wc, char *opt, size_t size);
+ssize_t				ft_printnwchar_fd(wchar_t const c, char *o, size_t z, int d);
+ssize_t				ft_printnwstr(wchar_t const *wstr, char *opt, size_t size);
+ssize_t				ft_printnwstr_fd(wchar_t const *s, char *o, size_t z, int fd);
 ssize_t				ft_printuchar(u_char n);
 ssize_t				ft_printuchar_fd(u_char n, int fd);
 int					ft_putchar(int c);

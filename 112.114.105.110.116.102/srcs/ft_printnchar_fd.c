@@ -35,7 +35,7 @@ static void	fill_buffer(wchar_t **buf, char n)
 	}
 }
 
-ssize_t		ft_printnchar_fd(char n, int padc, size_t size, int fd)
+ssize_t		ft_printnchar_fd(char n, char *opt, size_t size, int fd)
 {
 	wchar_t	*buf;
 	ssize_t	len;
@@ -45,14 +45,14 @@ ssize_t		ft_printnchar_fd(char n, int padc, size_t size, int fd)
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 	{
-		if (n < 0 && padc == '0')
+		if (n < 0 && opt[PF_PADC] == '0')
 		{
 			buf[0] = '0';
 			len--;
 			write(fd, "-", 1);
 		}
-		len = ft_putnchar_fd(padc, (size_t)len, fd) + ft_putwstr_fd(buf, fd);
-		len += (n < 0 && padc == '0' ? 1 : 0);
+		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) + ft_putwstr_fd(buf, fd);
+		len += (n < 0 && opt[PF_PADC] == '0' ? 1 : 0);
 		free(buf);
 		return (len);
 	}

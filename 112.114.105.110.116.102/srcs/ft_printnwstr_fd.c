@@ -26,7 +26,7 @@ static void	subtract_wc(wchar_t const *s, ssize_t *len)
 	}
 }
 
-ssize_t		ft_printnwstr_fd(wchar_t const *s, int p, size_t z, int fd)
+ssize_t		ft_printnwstr_fd(wchar_t const *s, char *o, size_t z, int fd)
 {
 	ssize_t		ret;
 	ssize_t		len;
@@ -35,13 +35,13 @@ ssize_t		ft_printnwstr_fd(wchar_t const *s, int p, size_t z, int fd)
 	if (s == (void *)0)
 	{
 		if (z > 6)
-			return (ft_putnchar_fd(p, (z - 6), fd) + write(fd, "(null)", 6));
+			return (ft_putnchar_fd(o[PF_PADC], (z - 6), fd) + write(fd, "(null)", 6));
 		return (ft_putstr_fd("(null)", fd));
 	}
 	len = (ssize_t)z;
 	subtract_wc(s, &len);
 	if (len > 0)
-		ret += ft_putnchar_fd(p, (size_t)len, fd);
+		ret += ft_putnchar_fd(o[PF_PADC], (size_t)len, fd);
 	while (*s)
 		ret += ft_putwchar_fd(*(s++), fd);
 	return (ret);

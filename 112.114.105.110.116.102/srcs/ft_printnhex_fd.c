@@ -30,7 +30,7 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 	}
 }
 
-ssize_t		ft_printnhex_fd(uintptr_t p, int c, size_t size, int fd)
+ssize_t		ft_printnhex_fd(uintptr_t p, char *o, size_t size, int fd)
 {
 	wchar_t		*buf;
 	ssize_t		len;
@@ -40,7 +40,7 @@ ssize_t		ft_printnhex_fd(uintptr_t p, int c, size_t size, int fd)
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
 	{
-		len = ft_putnchar_fd(c, (size_t)len, fd) + ft_putwstr_fd(buf, fd);
+		len = ft_putnchar_fd(o[PF_PADC], (size_t)len, fd) + ft_putwstr_fd(buf, fd);
 		free(buf);
 		return (len);
 	}
