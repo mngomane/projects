@@ -17,10 +17,8 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 	uintptr_t	hex;
 	int			index;
 
-	index = 2;
+	index = 0;
 	hex = 1;
-	(*buf)[0] = L'0';
-	(*buf)[1] = L'x';
 	while (hex && (p / hex) >= 16)
 		hex *= 16;
 	while (hex > 0)
@@ -39,13 +37,20 @@ ssize_t		ft_printnhexf_fd(uintptr_t p, int c, size_t size, int fd)
 
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, p);
-	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
+	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 2);
 	if (len > 0)
 	{
-		len = ft_putnchar_fd(c, (size_t)len, fd) + ft_putwstr_fd(buf, fd);
+		if (c == '0')
+		{
+			len =  write(fd, "0x", 2) + ft_putnchar_fd(c, (size_t)len, fd) +
+				ft_putwstr_fd(buf, fd);
+		}
+		else
+			len = ft_putnchar_fd(c, (size_t)len, fd) + write(fd, "0x", 2) +
+				ft_putwstr_fd(buf, fd);
 		free(buf);
 		return (len);
 	}
 	free(buf);
-	return (ft_putwstr_fd(buf, fd));
+	return (write(fd, "0x", 2) + ft_putwstr_fd(buf, fd));
 }
