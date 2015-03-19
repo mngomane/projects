@@ -35,7 +35,9 @@ ssize_t		ft_printnhexu_fd(uintptr_t p, char *opt, int fd)
 	wchar_t		*buf;
 	ssize_t		len;
 	size_t		size;
+	ssize_t		ret;
 
+	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
@@ -44,12 +46,8 @@ ssize_t		ft_printnhexu_fd(uintptr_t p, char *opt, int fd)
 	fill_buffer(&buf, p);
 	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
-	{
-		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +
-			ft_putwstr_fd(buf, fd);
-		free(buf);
-		return (len);
-	}
+		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
+	ret += ft_putwstr_fd(buf, fd);
 	free(buf);
-	return (ft_putwstr_fd(buf, fd));
+	return (ret);
 }

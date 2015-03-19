@@ -18,6 +18,7 @@ static int		fct5(const char **format, char **opt)
 	size_t		index;
 
 	index = 0;
+	(*opt)[PF_DOTC] = '0';
 	if ((*opt)[PF_PADC] == 0)
 		(*opt)[PF_PADC] = ' ';
 	if ((**format == '#') && ((*opt)[PF_SHARP] = 1))
@@ -128,9 +129,8 @@ static ssize_t	fct2(const char **format, va_list *ap, char *opt)
 		write(1, (*format)++, 1));
 }
 
-static ssize_t	fct1(const char **format, va_list *ap, char *opt, size_t len)
+static ssize_t	fct1(const char **format, va_list *ap, char *opt)
 {
-	(void)len;
 	if ((**format == '%') && (*format)++)
 		return (write(1, "%", 1));
 	else if ((**format == 's') && (*format)++)
@@ -232,12 +232,12 @@ int				ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			fct6(&format, &opt);
-			if (opt[PF_DOT] == 1)
-				opt[PF_PADC] = '0';
-			if (opt[PF_MINUS] == 1)
+			/*if (opt[PF_DOT] == 1)
+				opt[PF_PADC] = '0';*/
+			/*if (opt[PF_MINUS] == 1)
 				tmp = fct1(&format, &ap, opt, 0);
 			else
-			{
+			{*/
 				/*if (ft_mtoz(opt + PF_PREC) < ft_mtoz(opt + PF_PERIOD))
 					tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PERIOD));
 				else if (ft_mtoz(opt + PF_PERIOD))
@@ -247,8 +247,8 @@ int				ft_printf(const char *format, ...)
 					tmp += fct1(&format, &ap, opt, ft_mtoz(opt + PF_PERIOD));
 				}
 				else*/
-				tmp = fct1(&format, &ap, opt, ft_mtoz(opt + PF_PREC));
-			}
+				tmp = fct1(&format, &ap, opt);
+			/*}*/
 			if ((opt[PF_MINUS] == 1) &&
 				(((ssize_t)ft_mtoz(opt + PF_PREC) - tmp) > 0))
 				ret += ft_putnchar(opt[PF_PADC],

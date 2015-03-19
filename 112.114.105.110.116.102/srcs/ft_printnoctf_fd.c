@@ -33,7 +33,9 @@ ssize_t		ft_printnoctf_fd(uintptr_t p, char *opt, int fd)
 	wchar_t		*buf;
 	ssize_t		len;
 	size_t		size;
+	ssize_t		ret;
 
+	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
@@ -44,12 +46,8 @@ ssize_t		ft_printnoctf_fd(uintptr_t p, char *opt, int fd)
 	fill_buffer(&buf, p);
 	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 1);
 	if (len > 0)
-	{
-		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) + write(fd, "0", 1) +
-			ft_putwstr_fd(buf, fd);
-		free(buf);
-		return (len);
-	}
+		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
+	ret += write(fd, "0", 1) + ft_putwstr_fd(buf, fd);
 	free(buf);
-	return (write(fd, "0", 1) + ft_putwstr_fd(buf, fd));
+	return (ret);
 }

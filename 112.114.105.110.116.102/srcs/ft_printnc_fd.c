@@ -15,12 +15,15 @@
 ssize_t		ft_printnc_fd(int c, char *opt, int fd)
 {
 	size_t		size;
+	ssize_t		ret;
 
+	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
 		size = ft_mtoz(opt + PF_PREC);
 	if (size > 1)
-		return (ft_putnchar_fd(opt[PF_PADC], (size - 1), fd) + write(1, &c, 1));
-	return (write(1, &c, 1));
+		ret += ft_putnchar_fd(opt[PF_PADC], (size - 1), fd);
+	ret += write(1, &c, 1);
+	return (ret);
 }

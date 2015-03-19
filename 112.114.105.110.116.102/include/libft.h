@@ -39,8 +39,9 @@
 # define PF_PREC		12
 # define PF_PERIOD		20
 # define PF_PADC		28
-# define PF_SIGN		29
-# define PF_TMPP		30
+# define PF_DOTC		29
+# define PF_SIGN		30
+# define PF_TMPP		31
 # define PF_TMP			42
 
 typedef struct		s_list
@@ -111,7 +112,7 @@ ssize_t				ft_printnulong_fd(u_long n, char *opt, int fd);
 ssize_t				ft_printnushort(u_short n, char *opt);
 ssize_t				ft_printnushort_fd(u_short n, char *opt, int fd);
 ssize_t				ft_printnwchar(wchar_t const wc, char *opt);
-ssize_t				ft_printnwchar_fd(wchar_t const c, char *opt, int d);
+ssize_t				ft_printnwchar_fd(wchar_t const c, char *opt, int fd);
 ssize_t				ft_printnwstr(wchar_t const *wstr, char *opt);
 ssize_t				ft_printnwstr_fd(wchar_t const *s, char *opt, int fd);
 ssize_t				ft_printuchar(u_char n);

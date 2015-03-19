@@ -35,7 +35,9 @@ ssize_t		ft_printnhexf_fd(uintptr_t p, char *opt, int fd)
 	wchar_t		*buf;
 	ssize_t		len;
 	size_t		size;
+	ssize_t		ret;
 
+	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
@@ -48,16 +50,14 @@ ssize_t		ft_printnhexf_fd(uintptr_t p, char *opt, int fd)
 	if (len > 0)
 	{
 		if (opt[PF_PADC] == '0')
-		{
-			len =  write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
+			ret +=  write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
 				(size_t)len, fd) + ft_putwstr_fd(buf, fd);
-		}
 		else
-			len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +
+			ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +
 				write(fd, "0x", 2) + ft_putwstr_fd(buf, fd);
-		free(buf);
-		return (len);
 	}
+	else
+		ret += write(fd, "0x", 2) + ft_putwstr_fd(buf, fd);
 	free(buf);
-	return (write(fd, "0x", 2) + ft_putwstr_fd(buf, fd));
+	return (ret);
 }

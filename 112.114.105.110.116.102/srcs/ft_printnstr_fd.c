@@ -16,7 +16,9 @@ ssize_t		ft_printnstr_fd(char const *s, char *opt, int fd)
 {
 	ssize_t		len;
 	size_t		size;
+	ssize_t		ret;
 
+	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
@@ -24,16 +26,13 @@ ssize_t		ft_printnstr_fd(char const *s, char *opt, int fd)
 	if (s == (void *)0)
 	{
 		if (size > 6)
-			return (ft_putnchar_fd(opt[PF_PADC], (size - 6), fd) +
-				write(fd, "(null)", 6));
-		return (write(fd, "(null)", 6));
+			ret += ft_putnchar_fd(opt[PF_PADC], (size - 6), fd);
+		ret += write(fd, "(null)", 6);
+		return (ret);
 	}
 	len = (ssize_t)size - (ssize_t)ft_strlen(s);
 	if (len > 0)
-	{
-		len = ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +
-			write(fd, s, ft_strlen(s));
-		return (len);
-	}
-	return (write(fd, s, ft_strlen(s)));
+		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
+	ret += write(fd, s, ft_strlen(s));
+	return (ret);
 }
