@@ -80,21 +80,14 @@ void				ft_abs(int *n);
 void				ft_filltab(t_list *l_a, size_t *i, char **av);
 void				ft_p(t_list *tab1, t_list *tab2);
 void				ft_putnbr(int n);
-int					ft_strncmp(char *s1, char *s2, size_t len);
 void				ft_r(t_list *tab);
 void				ft_rr(t_list *tab);
 void				ft_s(t_list *tab);
 void				ft_ss(t_list *tab1, t_list *tab2);
 void				ft_varinit(t_var *v, t_list *tab1, t_list *tab2);
 void				ft_varinit2(t_list *l_a, t_list *l_b, size_t *i, int *ac);
-int					ft_var(t_list tab);
 void				ft_swap1(t_list *l_a, t_list *l_b, size_t *i, t_index *tmp);
 void				ft_swap2(t_list *l_a, t_list *l_b);
 void				display_stacks(t_list l_a, t_list l_b);
-t_option			get_swap_option(char **av);
-t_error				error_found(int ac, char **av);
-t_error				push_quit(t_error error);
-char				*int_to_str(const int number);
-char				*str_min_int(void);
 
 #endif

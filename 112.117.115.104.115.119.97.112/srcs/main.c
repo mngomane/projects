@@ -16,9 +16,9 @@ int		main(int ac, char **av)
 {
 	t_list		l_a;
 	t_list		l_b;
-	size_t		i;
 	t_index		tmp;
 	t_option	option;
+	size_t		i;
 
 	option = ((ac > 1) ? get_swap_option(av) : NONE);
 	if (option == DEBUG)
