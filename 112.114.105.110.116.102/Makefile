@@ -42,6 +42,8 @@ SRCS = ft_atoi.c\
 		ft_memset.c\
 		ft_mtoz.c\
 		ft_printf.c\
+		ft_printf_flags.c\
+		ft_printf_modifiers.c\
 		ft_printchar.c\
 		ft_printchar_fd.c\
 		ft_printnchar.c\

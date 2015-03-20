@@ -77,6 +77,8 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 size_t				ft_mtoz(void *src);
 int					ft_printf(const char *format, ...);
+void				ft_printf_flags(const char **format, char **opt);
+ssize_t				ft_printf_mod(const char **format, va_list *ap, char *opt);
 ssize_t				ft_printchar(char n);
 ssize_t				ft_printchar_fd(char n, int fd);
 ssize_t				ft_printnc(int c, char *opt);
