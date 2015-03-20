@@ -30,9 +30,15 @@ ssize_t		ft_printnstr_fd(char const *s, char *opt, int fd)
 		ret += write(fd, "(null)", 6);
 		return (ret);
 	}
-	len = (ssize_t)size - (ssize_t)ft_strlen(s);
+	if (opt[PF_DOT] && ft_mtoz(opt + PF_PERIOD) < ft_strlen(s))
+		len = (ssize_t)size - (ssize_t)ft_mtoz(opt + PF_PERIOD);
+	else
+		len = (ssize_t)size - (ssize_t)ft_strlen(s);
 	if (len > 0)
 		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
-	ret += write(fd, s, ft_strlen(s));
+	if (opt[PF_DOT] && ft_mtoz(opt + PF_PERIOD) < ft_strlen(s))
+		ret += write(fd, s, ft_mtoz(opt + PF_PERIOD));
+	else
+		ret += write(fd, s, ft_strlen(s));
 	return (ret);
 }
