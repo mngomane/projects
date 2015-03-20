@@ -30,23 +30,29 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 	}
 }
 
-ssize_t		ft_printnhexuf_fd(uintptr_t p, char *opt, int fd)
+static size_t	get_size(char *opt)
 {
-	wchar_t		*buf;
-	ssize_t		len;
 	size_t		size;
-	ssize_t		ret;
 
-	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
 		size = ft_mtoz(opt + PF_PREC);
+	return (size);
+}
+
+ssize_t			ft_printnhexuf_fd(uintptr_t p, char *opt, int fd)
+{
+	wchar_t		*buf;
+	ssize_t		len;
+	ssize_t		ret;
+
 	if (p == 0)
 		return (write(fd, "0", 1));
+	ret = 0;
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, p);
-	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 2);
+	len = (ssize_t)get_size(opt) - ((ssize_t)ft_wcslen(buf) + 2);
 	if (len > 0)
 	{
 		if (opt[PF_PADC] == '0')
