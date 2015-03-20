@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void	fill_buffer(wchar_t **buf, char n)
+static void		fill_buffer(wchar_t **buf, char n)
 {
 	char	decim;
 	int		index;
@@ -35,24 +35,24 @@ static void	fill_buffer(wchar_t **buf, char n)
 	}
 }
 
-ssize_t		ft_printnchar_fd(char n, char *opt, int fd)
+ssize_t			ft_printnchar_fd(char n, char *opt, int fd)
 {
-	wchar_t	*buf;
-	ssize_t	len;
-	ssize_t	ret;
-	int		sign;
-	size_t	size;
+	wchar_t		*buf;
+	ssize_t		len;
+	ssize_t		ret;
+	int			sign;
+	size_t		size;
 
+	if (n == 0 && opt[PF_DOT])
+		return (0);
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
 		size = ft_mtoz(opt + PF_PREC);
-	sign = opt[PF_SIGN];
 	ret = 0;
-	if (n == 0 && opt[PF_DOT])
-		return (0);
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, n);
+	sign = opt[PF_SIGN];
 	if (n >= 0 && sign)
 	{
 		ret += write(1, &sign, 1);

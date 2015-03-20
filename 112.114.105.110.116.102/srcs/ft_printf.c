@@ -12,32 +12,41 @@
 
 #include "libft.h"
 
+static ssize_t	analyse_format(const char **format, va_list *ap, char **opt)
+{
+	ssize_t		ret;
+	ssize_t		tmp;
+	ssize_t		cmp;
+
+	cmp = 0;
+	tmp = 0;
+	ret = 0;
+	while (**format)
+	{
+		if (**format == '%')
+		{
+			ft_printf_flags(format, opt);
+			tmp = ft_printf_mod(format, ap, *opt);
+			cmp = (ssize_t)ft_mtoz(*opt + PF_PREC) - tmp;
+			if (((*opt)[PF_MINUS] == 1) && (cmp > 0))
+				ret += ft_putnchar((*opt)[PF_PADC], (size_t)cmp);
+			ret += tmp;
+		}
+		else
+			ret += (**format ? write(1, (*format)++, 1) : 0);
+	}
+	return (ret);
+}
+
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	char		*opt;
 	ssize_t		ret;
-	ssize_t		tmp;
 
-	ret = 0;
-	tmp = 0;
 	opt = ft_memalloc(256 * sizeof(char));
 	va_start(ap, format);
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			ft_printf_flags(&format, &opt);
-			tmp = ft_printf_mod(&format, &ap, opt);
-			if ((opt[PF_MINUS] == 1) &&
-				(((ssize_t)ft_mtoz(opt + PF_PREC) - tmp) > 0))
-				ret += ft_putnchar(opt[PF_PADC],
-					ft_mtoz(opt + PF_PREC) - (size_t)tmp);
-			ret += tmp;
-		}
-		else
-			ret += (*format ? write(1, format++, 1) : 0);
-	}
+	ret = analyse_format(&format, &ap, &opt);
 	va_end(ap);
 	free(opt);
 	return ((int)ret);
