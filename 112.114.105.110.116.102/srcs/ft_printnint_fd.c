@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static void	fill_buffer(wchar_t **buf, int n)
+static void		fill_buffer(wchar_t **buf, int n)
 {
-	int	decim;
-	int	index;
+	int			decim;
+	int			index;
 
 	index = 0;
 	decim = ((n == -2147483648) ? 0 : 1);
@@ -35,46 +35,60 @@ static void	fill_buffer(wchar_t **buf, int n)
 	}
 }
 
-ssize_t		ft_printnint_fd(int n, char *opt, int fd)
+static size_t	get_size(int n, char *opt, ssize_t *ret, int fd)
 {
-	wchar_t	*buf;
-	ssize_t	len;
-	ssize_t	ret;
-	int		sign;
-	size_t	size;
+	size_t		size;
+	int			sign;
 
+	sign = opt[PF_SIGN];
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
 		size = ft_mtoz(opt + PF_PREC);
-	sign = opt[PF_SIGN];
-	ret = 0;
-	if (n == 0 && opt[PF_DOT])
-		return (0);
-	buf = ft_memalloc(25 * sizeof(wchar_t));
-	fill_buffer(&buf, n);
 	if (n >= 0 && sign)
 	{
-		ret += write(1, &sign, 1);
+		*ret += write(fd, &sign, 1);
 		size--;
 	}
-	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
-	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
+	return (size);
+}
+
+static ssize_t	init_ret(int n, char *opt, wchar_t **buf, int fd)
+{
+	ssize_t		ret;
+	ssize_t		len;
+
+	ret = 0;
+	len = (ssize_t)get_size(n, opt, &ret, fd) - (ssize_t)ft_wcslen(*buf);
+	if (ft_wcslen(*buf) < ft_mtoz(opt + PF_PERIOD))
 	{
-		if (buf[0] == '-')
+		if ((*buf)[0] == '-')
 			len--;
-		len -= (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
+		len -= (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(*buf);
 	}
 	if (len > 0)
 	{
 		if (n < 0 && opt[PF_PADC] == '0')
 		{
-			buf[0] = '0';
+			(*buf)[0] = '0';
 			len--;
 			ret += write(fd, "-", 1);
 		}
 		ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd);
 	}
+	return (ret);
+}
+
+ssize_t			ft_printnint_fd(int n, char *opt, int fd)
+{
+	wchar_t		*buf;
+	ssize_t		ret;
+
+	if (n == 0 && opt[PF_DOT])
+		return (0);
+	buf = ft_memalloc(25 * sizeof(wchar_t));
+	fill_buffer(&buf, n);
+	ret = init_ret(n, opt, &buf, fd);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
 	{
 		if (buf[0] == '-')
