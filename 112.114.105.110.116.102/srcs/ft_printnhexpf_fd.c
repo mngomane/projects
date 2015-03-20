@@ -53,7 +53,7 @@ static ssize_t	get_ret(wchar_t *buf, char *opt, int fd, ssize_t len)
 	else if (len > 0)
 	{
 		if (opt[PF_PADC] == '0')
-			ret +=  write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
+			ret += write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
 				(size_t)len, fd) + ft_putwstr_fd(buf, fd);
 		else
 			ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +

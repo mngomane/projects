@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void	fill_buffer(wchar_t **buf, long n)
+static void		fill_buffer(wchar_t **buf, long n)
 {
 	long	decim;
 	int		index;

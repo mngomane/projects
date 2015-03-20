@@ -56,7 +56,7 @@ ssize_t			ft_printnhexf_fd(uintptr_t p, char *opt, int fd)
 	if (len > 0)
 	{
 		if (opt[PF_PADC] == '0')
-			ret +=  write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
+			ret += write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_PADC],
 				(size_t)len, fd) + ft_putwstr_fd(buf, fd);
 		else
 			ret += ft_putnchar_fd(opt[PF_PADC], (size_t)len, fd) +
