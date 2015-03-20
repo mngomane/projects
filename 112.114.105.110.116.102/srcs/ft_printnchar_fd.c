@@ -14,8 +14,8 @@
 
 static void		fill_buffer(wchar_t **buf, char n)
 {
-	char	decim;
-	int		index;
+	char		decim;
+	int			index;
 
 	index = 0;
 	decim = ((n == -128) ? 0 : 1);
