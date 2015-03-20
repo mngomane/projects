@@ -35,7 +35,7 @@ static void		fill_buffer(wchar_t **buf, char n)
 	}
 }
 
-static size_t	init_size(char n, char *opt, ssize_t *ret, int fd)
+static size_t	get_size(char n, char *opt, ssize_t *ret, int fd)
 {
 	size_t		size;
 	int			sign;
@@ -57,11 +57,9 @@ static ssize_t	init_ret(char n, char *opt, wchar_t **buf, int fd)
 {
 	ssize_t		ret;
 	ssize_t		len;
-	size_t		size;
 
 	ret = 0;
-	size = init_size(n, opt, &ret, fd);
-	len = (ssize_t)size - (ssize_t)ft_wcslen(*buf);
+	len = (ssize_t)get_size(n, opt, &ret, fd) - (ssize_t)ft_wcslen(*buf);
 	if (ft_wcslen(*buf) < ft_mtoz(opt + PF_PERIOD))
 	{
 		if ((*buf)[0] == '-')
