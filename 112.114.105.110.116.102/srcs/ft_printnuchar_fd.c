@@ -12,33 +12,45 @@
 
 #include "libft.h"
 
-ssize_t		ft_printnuchar_fd(u_char n, char *opt, int fd)
+static void		fill_buffer(wchar_t **buf, u_char n)
 {
-	int			index;
 	u_char		decim;
-	wchar_t		*buf;
-	ssize_t		len;
-	size_t		size;
-	ssize_t		ret;
+	int			index;
 
-	ret = 0;
-	if (opt[PF_MINUS] == 1)
-		size = 0;
-	else
-		size = ft_mtoz(opt + PF_PREC);
-	decim = 1;
 	index = 0;
-	if (n == 0 && opt[PF_DOT])
-		return (0);
-	buf = ft_memalloc(25 * sizeof(wchar_t));
+	decim = 1;
 	while (decim && (n / decim) > 9)
 		decim *= 10;
 	while (decim > 0)
 	{
-		buf[index++] = ((n / decim) % 10) + '0';
+		(*buf)[index++] = ((n / decim) % 10) + '0';
 		decim /= 10;
 	}
-	len = (ssize_t)size - (ssize_t)ft_wcslen(buf);
+}
+
+static size_t	get_size(char *opt)
+{
+	size_t		size;
+
+	if (opt[PF_MINUS] == 1)
+		size = 0;
+	else
+		size = ft_mtoz(opt + PF_PREC);
+	return (size);
+}
+
+ssize_t			ft_printnuchar_fd(u_char n, char *opt, int fd)
+{
+	wchar_t		*buf;
+	ssize_t		len;
+	ssize_t		ret;
+
+	if (n == 0 && opt[PF_DOT])
+		return (0);
+	ret = 0;
+	buf = ft_memalloc(25 * sizeof(wchar_t));
+	fill_buffer(&buf, n);
+	len = (ssize_t)get_size(opt) - (ssize_t)ft_wcslen(buf);
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
 		len -= (ssize_t)ft_mtoz(opt + PF_PERIOD) - (ssize_t)ft_wcslen(buf);
 	if (len > 0)
