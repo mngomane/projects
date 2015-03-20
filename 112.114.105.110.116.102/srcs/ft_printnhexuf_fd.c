@@ -19,7 +19,7 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 
 	index = 0;
 	hex = 1;
-	while (hex && (p / hex) >= 16)
+	while (hex && (p / hex) > 15)
 		hex *= 16;
 	while (hex > 0)
 	{

@@ -19,7 +19,7 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 
 	index = 0;
 	oct = 1;
-	while (oct && (p / oct) > 8)
+	while (oct && (p / oct) > 7)
 		oct *= 8;
 	while (oct > 0)
 	{
