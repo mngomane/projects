@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static void	fill_buffer(wchar_t **buf, uintptr_t p)
+static void		fill_buffer(wchar_t **buf, uintptr_t p)
 {
 	uintptr_t	hex;
 	int			index;
@@ -30,23 +30,22 @@ static void	fill_buffer(wchar_t **buf, uintptr_t p)
 	}
 }
 
-ssize_t		ft_printnhexpf_fd(uintptr_t p, char *opt, int fd)
+static size_t	get_size(char *opt)
 {
-	wchar_t		*buf;
-	ssize_t		len;
 	size_t		size;
-	ssize_t		ret;
 
-	ret = 0;
 	if (opt[PF_MINUS] == 1)
 		size = 0;
 	else
 		size = ft_mtoz(opt + PF_PREC);
-	if (p == 0 && opt[PF_DOT] && !ft_mtoz(opt + PF_PERIOD))
-		return (write(fd, "0x", 2));
-	buf = ft_memalloc(25 * sizeof(wchar_t));
-	fill_buffer(&buf, p);
-	len = (ssize_t)size - ((ssize_t)ft_wcslen(buf) + 2);
+	return (size);
+}
+
+static ssize_t	get_ret(wchar_t *buf, char *opt, int fd, ssize_t len)
+{
+	ssize_t		ret;
+
+	ret = 0;
 	if (ft_wcslen(buf) < ft_mtoz(opt + PF_PERIOD))
 		ret += write(fd, "0x", 2) + ft_putnchar_fd(opt[PF_DOTC],
 			ft_mtoz(opt + PF_PERIOD) - ft_wcslen(buf), fd) +
@@ -62,6 +61,19 @@ ssize_t		ft_printnhexpf_fd(uintptr_t p, char *opt, int fd)
 	}
 	else
 		ret += write(fd, "0x", 2) + ft_putwstr_fd(buf, fd);
-	free(buf);
 	return (ret);
+}
+
+ssize_t			ft_printnhexpf_fd(uintptr_t p, char *opt, int fd)
+{
+	wchar_t		*buf;
+	ssize_t		len;
+
+	if (p == 0 && opt[PF_DOT] && !ft_mtoz(opt + PF_PERIOD))
+		return (write(fd, "0x", 2));
+	buf = ft_memalloc(25 * sizeof(wchar_t));
+	fill_buffer(&buf, p);
+	len = (ssize_t)get_size(opt) - ((ssize_t)ft_wcslen(buf) + 2);
+	free(buf);
+	return (get_ret(buf, opt, fd, len));
 }
