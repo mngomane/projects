@@ -24,7 +24,6 @@ SRCS = main.c\
 		ft_s.c\
 		ft_swap.c\
 		ft_variation.c\
-		tools.c\
 		debug.c\
 		options.c\
 		error.c

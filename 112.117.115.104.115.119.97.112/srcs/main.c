@@ -12,12 +12,6 @@
 
 #include "push_swap.h"
 
-static void		ft_varinit2(t_stack *l_a, int ac)
-{
-	l_a->value = (int *)malloc(sizeof(int) * (size_t)(ac - 1));
-	l_a->size = (size_t)(ac - 1);
-}
-
 static void		ft_filltab(t_stack *l_a, char **av)
 {
 	size_t		i;
@@ -43,7 +37,8 @@ int				main(int ac, char **av)
 		++av;
 	if (push_quit(error_found(ac, av)) != OK)
 		return (-1);
-	ft_varinit2(&l_a, ac);
+	l_a.value = (int *)malloc(sizeof(int) * (size_t)(ac - 1));
+	l_a.size = (size_t)(ac - 1);
 	ft_filltab(&l_a, av);
 	if (variations(&l_a) != (ac - 1) && ac != 2)
 		bub_swap(&l_a, &l_b);

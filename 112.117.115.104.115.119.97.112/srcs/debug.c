@@ -18,11 +18,7 @@ static void		display_the_stack(t_stack list)
 
 	i = 0;
 	while (i + 1 < list.size)
-	{
-		ft_putnbr((list.value)[i]);
-		write(1, " ", 1);
-		++i;
-	}
+		ft_printf("%d ", (list.value)[i++]);
 	if (i < list.size)
 		ft_putnbr((list.value)[i]);
 	write(1, "\n", 1);
@@ -30,10 +26,8 @@ static void		display_the_stack(t_stack list)
 
 void			display_stacks(t_stack l_a, t_stack l_b)
 {
-	/*ft_puts("NB: The first number displayed is on the top of the stack !!!");*/
-	ft_putendl("NB: The first number displayed is on the top of the stack !!!");
-	write(1, "first stack state: ", 19);
+	ft_printf("%s\n%s", I_NB, I_FSS);
 	display_the_stack(l_a);
-	write(1, "second stack state: ", 20);
+	ft_putstr(I_SSS);
 	display_the_stack(l_b);
 }

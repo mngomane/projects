@@ -12,12 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_abs(int *n)
-{
-	*n = ((*n < 0) ? -1 : 1);
-}
-
-int		variations(t_stack *list)
+int			variations(t_stack *list)
 {
 	int		sign;
 	int		i;

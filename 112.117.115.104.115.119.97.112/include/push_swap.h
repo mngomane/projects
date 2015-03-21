@@ -13,9 +13,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
-# include <stdlib.h>
+/*# include <unistd.h>
+# include <stdlib.h>*/
 # include "libft.h"
+
+# define I_NB		"NB: The first number displayed is on the top of the stack !!!"
+# define I_FSS		"First stack state : "
+# define I_SSS		"Second stack state: "
+# define I_ERROR	"Error\n"
 
 typedef struct		s_stack
 {
@@ -38,7 +43,6 @@ typedef enum		e_error
 
 void				display_stacks(t_stack l_a, t_stack l_b);
 t_error				error_found(int ac, char **av);
-void				ft_abs(int *n);
 void				ft_p(t_stack *tab1, t_stack *tab2);
 void				ft_r(t_stack *list);
 void				ft_rr(t_stack *list);
@@ -48,6 +52,5 @@ void				bub_swap(t_stack *l_a, t_stack *l_b);
 int					variations(t_stack *list);
 t_option			get_swap_option(char **av);
 t_error				push_quit(t_error error);
-char				*str_min_int(void);
 
 #endif

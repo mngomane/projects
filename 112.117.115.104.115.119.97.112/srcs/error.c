@@ -12,35 +12,6 @@
 
 #include "push_swap.h"
 
-/*char			*int_to_str(const int number)
-{
-	char	*str;
-	int		index;
-	int		nbr;
-	int		decim;
-
-	index = 0;
-	decim = ((number == -2147483648) ? 0 : 1);
-	str = (!decim ? str_min_int() : (char *)malloc(sizeof(char) * 12));
-	nbr = (int)number;
-	if (nbr < 0 && decim)
-	{
-		str[index] = '-';
-		nbr *= -1;
-		++index;
-	}
-	while (decim && (nbr / decim) > 9)
-		decim *= 10;
-	while (decim > 0 && index < 11)
-	{
-		str[index] = ((nbr / decim) % 10) + '0';
-		++index;
-		decim /= 10;
-	}
-	str[index] = ((index != 0) ? 0 : str[index]);
-	return (str);
-}*/
-
 static t_error	not_an_int(const char *argument)
 {
 	int		nbr;
@@ -54,17 +25,17 @@ static t_error	not_an_int(const char *argument)
 	str = ft_itoa(nbr);
 	if (ft_strncmp(str, copy, 12))
 		error = NOT_INT;
-	if (str != NULL)
+	if (str != (void *)0)
 		free(str);
 	return (error);
 }
 
 static t_error	not_a_number(const char *str)
 {
-	char	*iterator;
+	char		*iterator;
 
 	iterator = (char *)str;
-	if (NULL == iterator)
+	if ((void *)0 == iterator)
 		return (NAN);
 	while (*iterator != '\0')
 	{
@@ -96,7 +67,7 @@ t_error			push_quit(t_error error)
 {
 	if (error != OK)
 	{
-		write(2, "Error\n", 6);
+		ft_puterr(I_ERROR);
 		return (error);
 	}
 	return (OK);

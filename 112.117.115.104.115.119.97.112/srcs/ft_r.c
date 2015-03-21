@@ -18,15 +18,12 @@ void	ft_r(t_stack *list)
 	size_t	i;
 
 	i = 0;
-	/*tmp = tab->value[0];*/
 	tmp = (list->value)[0];
 	while (i < list->size - 1)
 	{
-		/*tab->value[i] = tab->value[i + 1];*/
 		(list->value)[i] = (list->value)[i + 1];
 		++i;
 	}
-	/*tab->value[i] = tmp;*/
 	(list->value)[i] = tmp;
 }
 
@@ -39,11 +36,9 @@ void	ft_rr(t_stack *list)
 	if (list->size > 0)
 	{
 		i = list->size;
-		/*tmp = tab->value[i - 1];*/
 		tmp = (list->value)[i - 1];
 		while (i > 0)
 		{
-			/*tab->value[i] = tab->value[i - 1];*/
 			(list->value)[i] = (list->value)[i - 1];
 			--i;
 		}
