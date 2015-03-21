@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-static t_error	not_an_int(const char *argument)
+static int8_t	not_an_int(const char *argument)
 {
 	int		nbr;
 	char	*str;
 	char	*copy;
-	t_error	error;
+	int8_t	error;
 
 	error = OK;
 	copy = (char *)argument;
@@ -30,7 +30,7 @@ static t_error	not_an_int(const char *argument)
 	return (error);
 }
 
-static t_error	not_a_number(const char *str)
+static int8_t	not_a_number(const char *str)
 {
 	char		*iterator;
 
@@ -46,10 +46,10 @@ static t_error	not_a_number(const char *str)
 	return (OK);
 }
 
-t_error			error_found(int ac, char **av)
+int8_t			error_found(int ac, char **av)
 {
 	int		index;
-	t_error	ret;
+	int8_t	ret;
 
 	index = 1;
 	while (index < ac)
@@ -59,16 +59,6 @@ t_error			error_found(int ac, char **av)
 		if ((ret = not_an_int(av[index])) != OK)
 			return (ret);
 		++index;
-	}
-	return (OK);
-}
-
-t_error			push_quit(t_error error)
-{
-	if (error != OK)
-	{
-		ft_puterr(I_ERROR);
-		return (error);
 	}
 	return (OK);
 }

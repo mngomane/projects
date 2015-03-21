@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_option	get_swap_option(char **av)
+int8_t	get_option(char **av)
 {
 	if (av[1][0] && av[1][0] != '-')
 		return (NONE);
