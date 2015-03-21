@@ -12,7 +12,9 @@
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+ssize_t		ft_putstr_fd(char const *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
+	if (s == (void *)0)
+		return (write(fd, "(null)", 6));
+	return (write(fd, s, ft_strlen(s)));
 }
