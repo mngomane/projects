@@ -13,8 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-/*# include <unistd.h>
-# include <stdlib.h>*/
 # include "libft.h"
 
 # define I_NB		"NB: The first number displayed is on the top of the stack !!!"
