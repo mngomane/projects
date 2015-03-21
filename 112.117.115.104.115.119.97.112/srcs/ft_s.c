@@ -12,20 +12,20 @@
 
 #include "push_swap.h"
 
-void	ft_s(t_list *tab)
+void	ft_s(t_stack *list)
 {
 	int	tmp;
 
-	if (tab != NULL)
+	if (list != NULL)
 	{
-		tmp = tab->value[1];
-		tab->value[1] = tab->value[0];
-		tab->value[0] = tmp;
+		tmp = (list->value)[1];
+		(list->value)[1] = (list->value)[0];
+		(list->value)[0] = tmp;
 	}
 }
 
-void	ft_ss(t_list *tab1, t_list *tab2)
+void	ft_ss(t_stack *list1, t_stack *list2)
 {
-	ft_s(tab1);
-	ft_s(tab2);
+	ft_s(list1);
+	ft_s(list2);
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-char			*int_to_str(const int number)
+/*char			*int_to_str(const int number)
 {
 	char	*str;
 	int		index;
@@ -39,7 +39,7 @@ char			*int_to_str(const int number)
 	}
 	str[index] = ((index != 0) ? 0 : str[index]);
 	return (str);
-}
+}*/
 
 static t_error	not_an_int(const char *argument)
 {
@@ -51,7 +51,7 @@ static t_error	not_an_int(const char *argument)
 	error = OK;
 	copy = (char *)argument;
 	nbr = ft_atoi(copy);
-	str = int_to_str(nbr);
+	str = ft_itoa(nbr);
 	if (ft_strncmp(str, copy, 12))
 		error = NOT_INT;
 	if (str != NULL)

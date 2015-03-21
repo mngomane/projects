@@ -14,7 +14,7 @@ OBJSDIR = bins/
 
 SRCSDIR = srcs/
 
-LIBDIR = libfts/
+LIBDIR = libft/
 
 NAME = push_swap
 
@@ -25,7 +25,6 @@ SRCS = main.c\
 		ft_swap.c\
 		ft_variation.c\
 		tools.c\
-		initial.c\
 		debug.c\
 		options.c\
 		error.c
@@ -40,9 +39,9 @@ FLAGS = -Wall -Wextra -Werror
 
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall
 
-LIB = -Llibfts -lfts
+LIB = -Llibft -lft
 
-INCS = -Iinclude
+INCS = -Iinclude -Ilibft/include
 
 
 .PHONY: all clean fclean re check lib
@@ -64,7 +63,6 @@ $(OBJSDIR)%.o: $(SRCSDIR)%.c
 	@$(CC) $(HARDCORESFLAGS) $(INCS) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(LIBDIR) clean
 	rm -rf $(OBJS)
 
 fclean: clean

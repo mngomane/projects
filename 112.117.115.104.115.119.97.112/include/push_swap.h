@@ -15,38 +15,13 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libfts/include/libfts.h"
+# include "libft.h"
 
-typedef struct		s_index
-{
-	int				val;
-	int				padding;
-	size_t			ind;
-}					t_index;
-
-typedef struct		s_var
-{
-	int				*tmp1;
-	int				*tmp2;
-	int				tmp3;
-	int				padding;
-	size_t			i;
-}					t_var;
-
-typedef struct		s_var2
-{
-	int				vs;
-	int				ve;
-	int				vl;
-	struct s_var2	*prev;
-	struct s_var2	*next;
-}					t_var2;
-
-typedef struct		s_list
+typedef struct		s_stack
 {
 	int				*value;
-	size_t			len;
-}					t_list;
+	size_t			size;
+}					t_stack;
 
 typedef enum		e_option
 {
@@ -61,33 +36,18 @@ typedef enum		e_error
 	NOT_INT
 }					t_error;
 
-typedef enum		e_brute
-{
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-}					t_brute;
-
+void				display_stacks(t_stack l_a, t_stack l_b);
+t_error				error_found(int ac, char **av);
 void				ft_abs(int *n);
-void				ft_filltab(t_list *l_a, size_t *i, char **av);
-void				ft_p(t_list *tab1, t_list *tab2);
-void				ft_putnbr(int n);
-void				ft_r(t_list *tab);
-void				ft_rr(t_list *tab);
-void				ft_s(t_list *tab);
-void				ft_ss(t_list *tab1, t_list *tab2);
-void				ft_varinit(t_var *v, t_list *tab1, t_list *tab2);
-void				ft_varinit2(t_list *l_a, t_list *l_b, size_t *i, int *ac);
-void				ft_swap1(t_list *l_a, t_list *l_b, size_t *i, t_index *tmp);
-void				ft_swap2(t_list *l_a, t_list *l_b);
-void				display_stacks(t_list l_a, t_list l_b);
+void				ft_p(t_stack *tab1, t_stack *tab2);
+void				ft_r(t_stack *list);
+void				ft_rr(t_stack *list);
+void				ft_s(t_stack *list);
+void				ft_ss(t_stack *list1, t_stack *list2);
+void				bub_swap(t_stack *l_a, t_stack *l_b);
+int					variations(t_stack *list);
+t_option			get_swap_option(char **av);
+t_error				push_quit(t_error error);
+char				*str_min_int(void);
 
 #endif

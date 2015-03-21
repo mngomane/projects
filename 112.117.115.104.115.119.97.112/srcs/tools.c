@@ -21,7 +21,7 @@ char	*str_min_int(void)
 	return (str);
 }
 
-void	ft_putnbr(int n)
+/*void	ft_putnbr(int n)
 {
 	int		decim;
 	char	c;
@@ -69,4 +69,4 @@ int		ft_strncmp(char *s1, char *s2, size_t len)
 	if (*s2 == '\0' && len == 0)
 		return (0);
 	return ((int)(*s1 - *s2));
-}
+}*/

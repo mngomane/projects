@@ -14,7 +14,7 @@ OBJSDIR = bins/
 
 SRCSDIR = srcs/
 
-NAME =  libft.a
+NAME = libft.a
 
 SRCS = ft_atoi.c\
 		ft_bzero.c\

@@ -12,37 +12,39 @@
 
 #include "push_swap.h"
 
-void	ft_swap1(t_list *l_a, t_list *l_b, size_t *i, t_index *tmp)
+static void		fct1(t_stack *l_a, t_stack *l_b)
 {
-	while (l_a->len > 0)
+	size_t		i;
+	size_t		j;
+	int			value;
+
+	i = 0;
+	j = 0;
+	value = (l_a->value)[0];
+	while (i < l_a->size)
 	{
-		tmp->val = l_a->value[0];
-		tmp->ind = 0;
-		while (*i < l_a->len)
+		if ((l_a->value)[i] < value)
 		{
-			if (l_a->value[*i] < tmp->val)
-			{
-				tmp->val = l_a->value[*i];
-				tmp->ind = *i;
-			}
-			++(*i);
+			value = (l_a->value)[i];
+			j = i;
 		}
-		*i = 0;
-		while (*i < tmp->ind)
-		{
-			ft_r(l_a);
-			write(1, "ra ", 3);
-			++(*i);
-		}
-		*i = 0;
-		ft_p(l_b, l_a);
-		write(1, "pb ", 3);
+		++i;
 	}
+	i = 0;
+	while (i++ < j)
+	{
+		ft_r(l_a);
+		write(1, "ra ", 3);
+	}
+	ft_p(l_b, l_a);
+	write(1, "pb ", 3);
 }
 
-void	ft_swap2(t_list *l_a, t_list *l_b)
+void			bub_swap(t_stack *l_a, t_stack *l_b)
 {
-	while (l_b->len > 1)
+	while (l_a->size > 0)
+		fct1(l_a, l_b);
+	while (l_b->size > 1)
 	{
 		ft_p(l_a, l_b);
 		write(1, "pa ", 3);

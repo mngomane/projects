@@ -22,7 +22,9 @@
 # define SECURITY		300001
 # define FLOOR(x)		(x / 2)
 # define CEIL(x)		(x - FLOOR(x))
-# define LCAST(x, y)	((x)((y)->content))
+
+# define LVALUE(x, y)	((x)((y)->content))
+# define LSIZE(y)		((y)->content_size)
 
 # define PF_SHARP		0
 # define PF_ZERO		1

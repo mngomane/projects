@@ -12,28 +12,34 @@
 
 #include "push_swap.h"
 
-void	ft_p(t_list *tab1, t_list *tab2)
+static void		set_value(t_stack *lst1, t_stack *lst2, int *tmp1, int *tmp2)
 {
-	t_var	v;
+	free(lst1->value);
+	free(lst2->value);
+	lst1->value = tmp1;
+	lst2->value = tmp2;
+}
 
-	if (tab2->len > 0)
+void			ft_p(t_stack *list1, t_stack *list2)
+{
+	int			*tmp1;
+	int			*tmp2;
+	size_t		index;
+
+	index = 0;
+	if (list2->size > 0)
 	{
-		ft_varinit(&v, tab1, tab2);
-		while (v.i < tab2->len)
+		tmp1 = (int *)malloc(sizeof(int) * ++list1->size);
+		tmp2 = (int *)malloc(sizeof(int) * --list2->size);
+		while (index < list2->size)
 		{
-			v.tmp2[v.i] = tab2->value[v.i + 1];
-			++v.i;
+			tmp2[index] = (list2->value)[index + 1];
+			++index;
 		}
-		v.tmp1[0] = v.tmp3;
-		v.i = 1;
-		while (v.i < tab1->len)
-		{
-			v.tmp1[v.i] = tab1->value[v.i - 1];
-			++v.i;
-		}
-		free(tab1->value);
-		free(tab2->value);
-		tab1->value = v.tmp1;
-		tab2->value = v.tmp2;
+		tmp1[0] = (list2->value)[0];
+		index = 0;
+		while (++index < list1->size)
+			tmp1[index] = (list1->value)[index - 1];
+		set_value(list1, list2, tmp1, tmp2);
 	}
 }
