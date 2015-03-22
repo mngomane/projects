@@ -23,7 +23,7 @@ static size_t	check_op(int8_t *op)
 	return (0);
 }
 
-]static size_t	set_ret(t_stack *l_a, t_stack *l_b, int8_t *op)
+static size_t	set_ret(t_stack *l_a, t_stack *l_b, int8_t *op)
 {
 	size_t	index;
 
