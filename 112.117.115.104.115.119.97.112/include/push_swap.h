@@ -42,7 +42,7 @@
 # define RRB		10
 # define RRR		11
 
-# define BF_LIMIT	9
+# define BF_LIMIT	5
 
 typedef struct		s_stack
 {
