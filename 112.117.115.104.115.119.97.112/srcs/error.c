@@ -90,7 +90,7 @@ int8_t			error_found(int ac, char **av)
 			ret = not_a_number(av[index]);
 		if (ret == OK)
 			ret = not_an_int(av[index]);
-		if (ret == OK)
+		if (ret == OK && dup_check)
 			ret = duplicate(dup_check, av[index]);
 		++index;
 	}

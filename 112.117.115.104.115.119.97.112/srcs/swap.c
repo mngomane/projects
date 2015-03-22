@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/09 23:59:48 by mngomane          #+#    #+#             */
-/*   Updated: 2015/02/09 23:59:48 by mngomane         ###   ########.fr       */
+/*   Created: 2013/12/24 04:52:48 by mngomane          #+#    #+#             */
+/*   Updated: 2013/12/27 00:36:00 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void		display_the_stack(t_stack list)
+void	swap_elem(t_stack *list)
 {
-	size_t		i;
+	int	tmp;
 
-	i = 0;
-	while (i + 1 < list.size)
-		ft_printf("%d ", (list.value)[i++]);
-	if (i < list.size)
-		ft_putnbr((list.value)[i]);
-	write(1, "\n", 1);
+	if (list != (void *)0 && list->size > 1)
+	{
+		tmp = (list->value)[1];
+		(list->value)[1] = (list->value)[0];
+		(list->value)[0] = tmp;
+	}
 }
 
-void			display_stacks(t_stack l_a, t_stack l_b)
+void	swap_all(t_stack *list1, t_stack *list2)
 {
-	ft_printf("%s\n%s", I_NB, I_FSS);
-	display_the_stack(l_a);
-	ft_putstr(I_SSS);
-	display_the_stack(l_b);
+	swap_elem(list1);
+	swap_elem(list2);
 }

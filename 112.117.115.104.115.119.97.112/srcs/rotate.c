@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_r.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_r(t_stack *list)
+void	rotate_elem(t_stack *list)
 {
 	int		tmp;
 	size_t	i;
@@ -27,7 +27,13 @@ void	ft_r(t_stack *list)
 	(list->value)[i] = tmp;
 }
 
-void	ft_rr(t_stack *list)
+void	rotate_all(t_stack *list1, t_stack *list2)
+{
+	rotate_elem(list1);
+	rotate_elem(list2);
+}
+
+void	reverse_rotate_elem(t_stack *list)
 {
 	int		tmp;
 	size_t	i;
@@ -35,8 +41,8 @@ void	ft_rr(t_stack *list)
 	tmp = 0;
 	if (list->size > 0)
 	{
-		i = list->size;
-		tmp = (list->value)[i - 1];
+		i = list->size - 1;
+		tmp = (list->value)[i];
 		while (i > 0)
 		{
 			(list->value)[i] = (list->value)[i - 1];
@@ -44,4 +50,10 @@ void	ft_rr(t_stack *list)
 		}
 		(list->value)[0] = tmp;
 	}
+}
+
+void	reverse_rotate_all(t_stack *list1, t_stack *list2)
+{
+	reverse_rotate_elem(list1);
+	reverse_rotate_elem(list2);
 }

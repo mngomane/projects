@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int		variations(t_stack *list)
+int			variations(t_stack *list)
 {
 	int		sign;
 	int		i;
@@ -69,7 +69,9 @@ int				main(int ac, char **av)
 	l_a.value = (int *)malloc(sizeof(int) * (size_t)(ac - 1));
 	l_a.size = (size_t)(ac - 1);
 	ft_filltab(&l_a, av);
-	if (variations(&l_a) != (ac - 1) && ac != 2)
+	if (variations(&l_a) != (ac - 1) && ac != 2 && ac - 1 <= BF_LIMIT)
+		brute_swap(&l_a, &l_b, ac - 1);
+	else if (variations(&l_a) != (ac - 1) && ac != 2)
 		bub_swap(&l_a, &l_b);
 	if (option == DEBUG)
 		display_stacks(l_a, l_b);

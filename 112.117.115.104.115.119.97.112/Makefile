@@ -19,13 +19,14 @@ LIBDIR = libft/
 NAME = push_swap
 
 SRCS = main.c\
+		brute.c\
 		bubble.c\
-		debug.c\
+		display.c\
 		error.c\
-		ft_p.c\
-		ft_r.c\
-		ft_s.c\
-		options.c
+		options.c\
+		push.c\
+		rotate.c\
+		swap.c
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
