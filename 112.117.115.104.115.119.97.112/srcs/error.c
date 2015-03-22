@@ -46,7 +46,7 @@ static int8_t	not_a_number(const char *str)
 	return (OK);
 }
 
-static int8_t	duplicate(char *check, const char *argument)
+static int8_t	duplicate(int8_t *check, const char *argument)
 {
 	u_char		mask;
 	u_char		bit;
@@ -77,13 +77,13 @@ static int8_t	duplicate(char *check, const char *argument)
 
 int8_t			error_found(int ac, char **av)
 {
-	char		*dup_check;
-	int			index;
+	int8_t		*dup_check;
 	int8_t		ret;
+	int			index;
 
-	ret = OK;
 	index = 1;
-	dup_check = (char *)ft_memalloc(MAX_UINT / 8 + 2);
+	ret = OK;
+	dup_check = (int8_t *)ft_memalloc(sizeof(int8_t) * (MAX_UINT / 8 + 2));
 	while (index < ac && ret == OK)
 	{
 		if (ret == OK)
