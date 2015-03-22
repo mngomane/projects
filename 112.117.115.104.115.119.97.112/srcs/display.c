@@ -32,7 +32,7 @@ void			display_stacks(t_stack l_a, t_stack l_b)
 	display_the_stack(l_b);
 }
 
-void		mset(t_stack *dst, t_stack *src, t_op *op, size_t i)
+void			mset(t_stack *dst, t_stack *src, int8_t *op, size_t i)
 {
 	if (op[i] == SA && ft_putstr(" sa"))
 		swap_elem(dst);
@@ -58,7 +58,7 @@ void		mset(t_stack *dst, t_stack *src, t_op *op, size_t i)
 		reverse_rotate_all(dst, src);
 }
 
-void		fset(t_stack *dst, t_stack *src, t_op *op, size_t index)
+void			fset(t_stack *dst, t_stack *src, int8_t *op, size_t index)
 {
 	if (op[index] == SA && ft_putstr("sa"))
 		swap_elem(dst);
@@ -84,7 +84,7 @@ void		fset(t_stack *dst, t_stack *src, t_op *op, size_t index)
 		reverse_rotate_all(dst, src);
 }
 
-void		scheck(t_stack *dst, t_stack *src, t_op *op, size_t i)
+void			scheck(t_stack *dst, t_stack *src, int8_t *op, size_t i)
 {
 	if (op[i] == SA)
 		swap_elem(dst);

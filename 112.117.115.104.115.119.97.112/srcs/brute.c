@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static size_t	check_op(t_op *op)
+static size_t	check_op(int8_t *op)
 {
 	size_t		index;
 
@@ -23,7 +23,7 @@ static size_t	check_op(t_op *op)
 	return (0);
 }
 
-static size_t	set_ret(t_stack *l_a, t_stack *l_b, t_op *op)
+]static size_t	set_ret(t_stack *l_a, t_stack *l_b, int8_t *op)
 {
 	size_t	index;
 
@@ -35,7 +35,7 @@ static size_t	set_ret(t_stack *l_a, t_stack *l_b, t_op *op)
 	return (0);
 }
 
-static size_t	test_op(t_stack *l_a, t_stack *l_b, t_op *op, int size)
+static size_t	test_op(t_stack *l_a, t_stack *l_b, int8_t *op, int size)
 {
 	t_stack		copy_a;
 	t_stack		copy_b;
@@ -62,7 +62,7 @@ static size_t	test_op(t_stack *l_a, t_stack *l_b, t_op *op, int size)
 	return (ret);
 }
 
-static void		set_op(t_op (*op)[BF_LIMIT], size_t index, int size)
+static void		set_op(int8_t (*op)[BF_LIMIT], size_t index, int size)
 {
 	if (index < (size_t)size)
 	{
@@ -78,13 +78,13 @@ static void		set_op(t_op (*op)[BF_LIMIT], size_t index, int size)
 
 void			brute_swap(t_stack *l_a, t_stack *l_b, int size)
 {
-	t_op		op[BF_LIMIT];
+	int8_t		op[BF_LIMIT];
 	size_t		do_it;
 	size_t		index;
 
 	index = 0;
 	do_it = 1;
-	ft_memset(op, 0, sizeof(t_op) * BF_LIMIT);
+	ft_memset(op, 0, sizeof(int8_t) * BF_LIMIT);
 	while (do_it && index < BF_LIMIT)
 	{
 		do_it = check_op(op);
