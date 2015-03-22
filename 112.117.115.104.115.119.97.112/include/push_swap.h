@@ -23,8 +23,11 @@
 # define OK			0
 # define NAN		1
 # define NOT_INT	2
+# define DUPLICATE	3
 # define NONE		0
 # define DEBUG		1
+# define MIN_INT	(-2147483648)
+# define MAX_UINT	4294967295
 
 typedef struct		s_stack
 {

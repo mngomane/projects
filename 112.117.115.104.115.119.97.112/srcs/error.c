@@ -46,19 +46,54 @@ static int8_t	not_a_number(const char *str)
 	return (OK);
 }
 
+static int8_t	duplicate(char *check, const char *argument)
+{
+	u_char		mask;
+	u_char		bit;
+
+	bit = (ft_atoi(argument) - MIN_INT) % 8;
+	if (bit == 0)
+		mask = 0x01;
+	else if (bit == 1)
+		mask = 0x02;
+	else if (bit == 2)
+		mask = 0x04;
+	else if (bit == 3)
+		mask = 0x08;
+	else if (bit == 4)
+		mask = 0x10;
+	else if (bit == 5)
+		mask = 0x20;
+	else if (bit == 6)
+		mask = 0x40;
+	else
+		mask = 0x80;
+	if (check[(ft_atoi(argument) - MIN_INT) / 8] & mask)
+		return (DUPLICATE);
+	else
+		check[(ft_atoi(argument) - MIN_INT) / 8] ^= mask;
+	return (OK);
+}
+
 int8_t			error_found(int ac, char **av)
 {
-	int		index;
-	int8_t	ret;
+	char		*dup_check;
+	int			index;
+	int8_t		ret;
 
+	ret = OK;
 	index = 1;
-	while (index < ac)
+	dup_check = (char *)ft_memalloc(MAX_UINT / 8 + 2);
+	while (index < ac && ret == OK)
 	{
-		if ((ret = not_a_number(av[index])) != OK)
-			return (ret);
-		if ((ret = not_an_int(av[index])) != OK)
-			return (ret);
+		if (ret == OK)
+			ret = not_a_number(av[index]);
+		if (ret == OK)
+			ret = not_an_int(av[index]);
+		if (ret == OK)
+			ret = duplicate(dup_check, av[index]);
 		++index;
 	}
-	return (OK);
+	free(dup_check);
+	return (ret);
 }
