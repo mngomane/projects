@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-# define I_NB		"NB: The first number displayed is on the top of the stack !!!"
+# define I_NB		"The first number displayed is on the top of the stack"
 # define I_FSS		"First stack state : "
 # define I_SSS		"Second stack state: "
 # define I_ERROR	"Error\n"

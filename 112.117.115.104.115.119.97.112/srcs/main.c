@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int			variations(t_stack *list)
+int				variations(t_stack *list)
 {
 	int		sign;
 	int		i;
