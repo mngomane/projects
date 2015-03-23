@@ -36,7 +36,7 @@ CC = /usr/bin/clang
 
 FLAGS = -Wall -Wextra -Werror
 
-HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall
+HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
 LIB = -Llibft -lft
 
