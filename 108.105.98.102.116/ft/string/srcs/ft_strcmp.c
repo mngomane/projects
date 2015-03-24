@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/11 20:25:26 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/11 20:25:26 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_string.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
+int			ft_strcmp(const char *s1, const char *s2)
+{
+	u_char	*string1;
+	u_char	*string2;
 
-#endif
+	string1 = (u_char *)s1;
+	string2 = (u_char *)s2;
+	while (*string1 != '\0' && *string2 != '\0')
+	{
+		if (*string1 != *string2)
+			return ((int)(*string1 - *string2));
+		++string1;
+		++string2;
+	}
+	return ((int)(*string1 - *string2));
+}

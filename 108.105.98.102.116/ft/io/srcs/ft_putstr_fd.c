@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 00:43:47 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 00:43:47 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_io.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
-
-#endif
+ssize_t		ft_putstr_fd(char const *s, int fd)
+{
+	if (s == (void *)0)
+		return (write(fd, "(null)", 6));
+	return (write(fd, s, ft_strlen(s)));
+}

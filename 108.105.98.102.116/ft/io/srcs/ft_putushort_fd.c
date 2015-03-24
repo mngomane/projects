@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putushort_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/18 03:04:15 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/18 03:04:15 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_io.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
+ssize_t			ft_putushort_fd(u_short n, int fd)
+{
+	char		c;
+	u_short		decim;
+	ssize_t		ret;
 
-#endif
+	ret = 0;
+	decim = 1;
+	while (decim && (n / decim) > 9)
+		decim *= 10;
+	while (decim > 0)
+	{
+		c = ((n / decim) % 10) + '0';
+		if (write(fd, &c, 1) < 0)
+			return (-1);
+		++ret;
+		decim /= 10;
+	}
+	return (ret);
+}

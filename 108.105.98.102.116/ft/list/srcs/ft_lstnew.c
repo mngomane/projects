@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 03:02:43 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 03:02:43 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_list.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
+t_list			*ft_lstnew(void const *content, size_t content_size)
+{
+	t_list		*tmp;
 
-#endif
+	if ((tmp = (t_list *)malloc(sizeof(t_list))) != (void *)0)
+	{
+		tmp->content = ft_memdup(content, content_size);
+		tmp->content_size = (content ? content_size : 0);
+		tmp->next = (void *)0;
+	}
+	return (tmp);
+}

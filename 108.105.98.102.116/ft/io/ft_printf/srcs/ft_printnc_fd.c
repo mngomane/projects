@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_printnc_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/19 02:20:31 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/19 02:20:31 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_printf.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
+ssize_t			ft_printnc_fd(int c, char *opt, int fd)
+{
+	size_t		size;
+	ssize_t		ret;
 
-#endif
+	ret = 0;
+	if (opt[PF_MINUS] == 1)
+		size = 0;
+	else
+		size = ft_mtoz(opt + PF_PREC);
+	if (size > 1)
+		ret += ft_putnchar_fd(opt[PF_PADC], (size - 1), fd);
+	ret += write(1, &c, 1);
+	return (ret);
+}

@@ -5,36 +5,51 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/01/20 00:10:37 by mngomane          #+#    #+#              #
-#    Updated: 2015/01/20 00:10:37 by mngomane         ###   ########.fr        #
+#    Created: 2015/03/23 22:27:15 by mngomane          #+#    #+#              #
+#    Updated: 2015/03/23 22:27:15 by mngomane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-ASMDIR = asm_folder/
+OBJSDIR = bins/
 
-VMDIR = vm_folder/
+SRCSDIR = srcs/
 
-TOOLSDIR = tools/
+NAME = ../../../libft.a
+
+SRCS = get_next_line.c
+
+OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
+
+CXX = gcc
+
+CC = /usr/bin/clang
+
+FLAGS = -Wall -Wextra -Werror
+
+HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
+
+INCS = -I../../../include
 
 
-.PHONY: all clean fclean re asm vm
+.PHONY: all clean fclean re
 
-all: asm vm
+all: $(OBJSDIR) $(NAME)
 
-asm:
-	@$(MAKE) -C $(ASMDIR)
+$(NAME): $(OBJS)
+	ar rc $(NAME) $^
+	ranlib $(NAME)
 
-vm:
-	@$(MAKE) -C $(VMDIR)
+$(OBJSDIR):
+	mkdir $(OBJSDIR)
+
+$(OBJSDIR)%.o: $(SRCSDIR)%.c
+	$(CXX) $(FLAGS) $(INCS) -c $< -o $@
+	@$(CC) $(HARDCORESFLAGS) $(INCS) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(TOOLSDIR) clean
-	@$(MAKE) -C $(ASMDIR) clean
-	@$(MAKE) -C $(VMDIR) clean
+	rm -rf $(OBJS)
 
-fclean:
-	@$(MAKE) -C $(TOOLSDIR) fclean
-	@$(MAKE) -C $(ASMDIR) fclean
-	@$(MAKE) -C $(VMDIR) fclean
+fclean: clean
+	rm -rf $(NAME)
 
 re: fclean all

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_tail.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/14 03:59:39 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/14 03:59:39 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_list.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
+void			ft_lstadd_tail(t_list **alst, t_list *new)
+{
+	t_list		*save;
 
-#endif
+	save = *alst;
+	while (*alst && (*alst)->next)
+		*alst = (*alst)->next;
+	if (*alst)
+	{
+		(*alst)->next = new;
+		if (new)
+			(*alst)->next->next = (void *)0;
+		*alst = save;
+	}
+	else
+		*alst = new;
+}

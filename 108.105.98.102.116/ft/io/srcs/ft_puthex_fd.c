@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_puthex_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 20:56:32 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/11 20:56:32 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/16 13:59:01 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/16 13:59:01 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_io.h"
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "ft_lib.h"
-# include "ft_list.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_wchar.h"
+ssize_t			ft_puthex_fd(uintptr_t p, int fd)
+{
+	char		c;
+	uintptr_t	hex;
+	ssize_t		ret;
 
-#endif
+	hex = 1;
+	ret = 0;
+	while ((p / hex) > 15)
+		hex *= 16;
+	while (hex > 0)
+	{
+		c = (p / hex) % 16;
+		c += ((c < 10) ? '0' : 'a' - 10);
+		if (write(fd, &c, 1) < 0)
+			return (-1);
+		++ret;
+		hex /= 16;
+	}
+	return (ret);
+}
