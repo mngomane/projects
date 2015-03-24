@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libfts.h                                           :+:      :+:    :+:   */
+/*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/30 21:09:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/01/30 21:09:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/24 14:36:33 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/24 14:36:33 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTS_H
-# define LIBFTS_H
+#ifndef FT_STRING_H
+# define FT_STRING_H
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_lib.h"
 # include "ft_memory.h"
-# include "ft_string.h"
+
+extern char		*ft_strcat(char *s1, const char *s2);
+extern size_t	ft_strlen(const char *s);
+extern char		*ft_strdup(const char *s1);
+extern char		*ft_prefixtrim(const char *str);
 
 #endif

@@ -23,6 +23,7 @@ WCHAR_DIR = ft/wchar/
 
 NAME = libft.a
 
+
 .PHONY: all\
 		clean\
 		fclean\
@@ -46,6 +47,9 @@ $(NAME): $(eval OBJS = $(shell grep -lr . $(OBJSDIR)))
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $^
 
+$(OBJSDIR):
+	mkdir -pm 0700 $(OBJSDIR)
+
 makeobjs:
 	@$(MAKE) -C $(CTYPE_DIR) nolib
 	@$(MAKE) -C $(IO_DIR) nolib
@@ -57,9 +61,6 @@ makeobjs:
 	@$(MAKE) -C $(STRING_DIR) nolib
 	@$(MAKE) -C $(WCHAR_DIR) nolib
 	@$(MAKE) $(NAME)
-
-$(OBJSDIR):
-	mkdir -pm 0700 $(OBJSDIR)
 
 ctype:
 	@$(MAKE) -C $(CTYPE_DIR) nolib
@@ -123,6 +124,6 @@ clean:
 	@$(MAKE) -C $(WCHAR_DIR) clean
 
 fclean: clean
-	rm -rf libft.a
+	rm -rf $(NAME)
 
 re: fclean all

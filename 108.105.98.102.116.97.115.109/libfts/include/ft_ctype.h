@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libfts.h                                           :+:      :+:    :+:   */
+/*   ft_ctype.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/30 21:09:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/01/30 21:09:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/24 14:34:58 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/24 14:34:58 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTS_H
-# define LIBFTS_H
+#ifndef FT_CTYPE_H
+# define FT_CTYPE_H
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_lib.h"
-# include "ft_memory.h"
-# include "ft_string.h"
+extern int		ft_isalpha(int c);
+extern int		ft_isdigit(int c);
+extern int		ft_isalnum(int c);
+extern int		ft_isascii(int c);
+extern int		ft_isprint(int c);
+extern int		ft_toupper(int c);
+extern int		ft_tolower(int c);
 
 #endif

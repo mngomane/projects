@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libfts.h                                           :+:      :+:    :+:   */
+/*   ft_memory.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/30 21:09:16 by mngomane          #+#    #+#             */
-/*   Updated: 2015/01/30 21:09:16 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/24 14:36:18 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/24 14:36:18 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTS_H
-# define LIBFTS_H
+#ifndef FT_MEMORY_H
+# define FT_MEMORY_H
 
-# include "ft_ctype.h"
-# include "ft_io.h"
-# include "ft_lib.h"
-# include "ft_memory.h"
-# include "ft_string.h"
+# include <sys/types.h>
+
+extern void		ft_bzero(void *s, size_t n);
+extern void		*ft_memset(void *b, int c, size_t len);
+extern void		*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
