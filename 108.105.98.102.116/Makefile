@@ -10,16 +10,16 @@
 #                                                                              #
 #******************************************************************************#
 
-CTYPE_DIR = ft/ctype
-IO_DIR = ft/io
-PRINTF_DIR = $(addprefix $(IO_DIR)/, ft_printf)
-GNL_DIR = $(addprefix $(IO_DIR)/, get_next_line)
-LIB_DIR = ft/lib
-LIST_DIR = ft/list
-MEMORY_DIR = ft/memory
+CTYPE_DIR = ft/ctype/
+IO_DIR = ft/io/
+PRINTF_DIR = $(addprefix $(IO_DIR), ft_printf/)
+GNL_DIR = $(addprefix $(IO_DIR), get_next_line/)
+LIB_DIR = ft/lib/
+LIST_DIR = ft/list/
+MEMORY_DIR = ft/memory/
 OBJSDIR = bins
-STRING_DIR = ft/string
-WCHAR_DIR = ft/wchar
+STRING_DIR = ft/string/
+WCHAR_DIR = ft/wchar/
 
 NAME = libft.a
 
