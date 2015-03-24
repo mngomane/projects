@@ -10,39 +10,13 @@
 #                                                                              #
 #******************************************************************************#
 
-OBJSDIR = bins/
+OBJSDIR = ../../bins/
 
 SRCSDIR = srcs/
 
 NAME = ../../libft.a
 
-SRCS = ft_strcat.c\
-		ft_strchr.c\
-		ft_strclr.c\
-		ft_strcmp.c\
-		ft_strcpy.c\
-		ft_strdel.c\
-		ft_strdup.c\
-		ft_strequ.c\
-		ft_striter.c\
-		ft_striteri.c\
-		ft_strjoin.c\
-		ft_strlcat.c\
-		ft_strlen.c\
-		ft_strmap.c\
-		ft_strmapi.c\
-		ft_strncat.c\
-		ft_strncmp.c\
-		ft_strncpy.c\
-		ft_strnequ.c\
-		ft_strnew.c\
-		ft_strnlen.c\
-		ft_strnstr.c\
-		ft_strrchr.c\
-		ft_strsplit.c\
-		ft_strstr.c\
-		ft_strsub.c\
-		ft_strtrim.c
+SRCS = $(notdir $(shell grep -rl . $(SRCSDIR)))
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
@@ -57,16 +31,17 @@ HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 INCS = -I../../include
 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re nolib
 
 all: $(OBJSDIR) $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $^
-	ranlib $(NAME)
+	ar -rcs $(NAME) $^
+
+nolib: $(OBJSDIR) $(OBJS)
 
 $(OBJSDIR):
-	mkdir $(OBJSDIR)
+	mkdir -pm 0700 $(OBJSDIR)
 
 $(OBJSDIR)%.o: $(SRCSDIR)%.c
 	$(CXX) $(FLAGS) $(INCS) -c $< -o $@

@@ -17,7 +17,6 @@
 # include "ft_ctype.h"
 # include "ft_io.h"
 # include "ft_lib.h"
-# include "ft_memory.h"
 # include "ft_wchar.h"
 
 # define PF_SHARP		0

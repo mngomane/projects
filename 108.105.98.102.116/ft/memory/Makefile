@@ -10,24 +10,13 @@
 #                                                                              #
 #******************************************************************************#
 
-OBJSDIR = bins/
+OBJSDIR = ../../bins/
 
 SRCSDIR = srcs/
 
 NAME = ../../libft.a
 
-SRCS = ft_bzero.c\
-		ft_memalloc.c\
-		ft_memccpy.c\
-		ft_memchr.c\
-		ft_memcmp.c\
-		ft_memcpy.c\
-		ft_memdel.c\
-		ft_memdup.c\
-		ft_memmove.c\
-		ft_memset.c\
-		ft_mtoz.c\
-		ft_ztom.c
+SRCS = $(notdir $(shell grep -rl . $(SRCSDIR)))
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
@@ -42,16 +31,17 @@ HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 INCS = -I../../include
 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re nolib
 
 all: $(OBJSDIR) $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $^
-	ranlib $(NAME)
+	ar -rcs $(NAME) $^
+
+nolib: $(OBJSDIR) $(OBJS)
 
 $(OBJSDIR):
-	mkdir $(OBJSDIR)
+	mkdir -pm 0700 $(OBJSDIR)
 
 $(OBJSDIR)%.o: $(SRCSDIR)%.c
 	$(CXX) $(FLAGS) $(INCS) -c $< -o $@

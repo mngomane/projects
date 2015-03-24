@@ -10,66 +10,105 @@
 #                                                                              #
 #******************************************************************************#
 
-CTYPE_DIR = ft/ctype/
-IO_DIR = ft/io/
-PRINTF_DIR = $(addprefix $(IO_DIR), ft_printf)
-GNL_DIR = $(addprefix $(IO_DIR), get_next_line)
-LIB_DIR = ft/lib/
-LIST_DIR = ft/list/
-MEMORY_DIR = ft/memory/
-STRING_DIR = ft/string/
-WCHAR_DIR = ft/wchar/
+CTYPE_DIR = ft/ctype
+IO_DIR = ft/io
+PRINTF_DIR = $(addprefix $(IO_DIR)/, ft_printf)
+GNL_DIR = $(addprefix $(IO_DIR)/, get_next_line)
+LIB_DIR = ft/lib
+LIST_DIR = ft/list
+MEMORY_DIR = ft/memory
+OBJSDIR = bins
+STRING_DIR = ft/string
+WCHAR_DIR = ft/wchar
+
+NAME = libft.a
 
 .PHONY: all\
 		clean\
 		fclean\
 		re\
+		makeobjs\
+		nolib\
 		ctype\
 		io\
 		ft_printf\
 		get_next_line\
+		gnl\
 		lib\
 		list\
 		memory\
 		string\
 		wchar
 
-all: ctype\
-		io\
-		ft_printf\
-		get_next_line\
-		lib\
-		list\
-		memory\
-		string\
-		wchar
+all: $(OBJSDIR) makeobjs
+
+$(NAME): $(eval OBJS = $(shell grep -lr . $(OBJSDIR)))
+$(NAME): $(OBJS)
+	ar -rcs $(NAME) $^
+
+makeobjs:
+	@$(MAKE) -C $(CTYPE_DIR) nolib
+	@$(MAKE) -C $(IO_DIR) nolib
+	@$(MAKE) -C $(PRINTF_DIR) nolib
+	@$(MAKE) -C $(GNL_DIR) nolib
+	@$(MAKE) -C $(LIB_DIR) nolib
+	@$(MAKE) -C $(LIST_DIR) nolib
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) -C $(WCHAR_DIR) nolib
+	@$(MAKE) $(NAME)
+
+$(OBJSDIR):
+	mkdir -pm 0700 $(OBJSDIR)
 
 ctype:
-	@$(MAKE) -C $(CTYPE_DIR)
+	@$(MAKE) -C $(CTYPE_DIR) nolib
+	@$(MAKE) $(NAME)
 
 io:
-	@$(MAKE) -C $(IO_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) -C $(IO_DIR) nolib
+	@$(MAKE) $(NAME)
 
 ft_printf:
-	@$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) -C $(IO_DIR) nolib
+	@$(MAKE) -C $(LIB_DIR) nolib
+	@$(MAKE) -C $(WCHAR_DIR) nolib
+	@$(MAKE) -C $(PRINTF_DIR) nolib
+	@$(MAKE) $(NAME)
 
+gnl: get_next_line
 get_next_line:
-	@$(MAKE) -C $(GNL_DIR)
+	@$(MAKE) -C $(GNL_DIR) nolib
+	@$(MAKE) $(NAME)
 
 lib:
-	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) -C $(LIB_DIR) nolib
+	@$(MAKE) $(NAME)
 
 list:
-	@$(MAKE) -C $(LIST_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(LIST_DIR) nolib
+	@$(MAKE) $(NAME)
 
 memory:
-	@$(MAKE) -C $(MEMORY_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) $(NAME)
 
 string:
-	@$(MAKE) -C $(STRING_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) $(NAME)
 
 wchar:
-	@$(MAKE) -C $(WCHAR_DIR)
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(WCHAR_DIR) nolib
+	@$(MAKE) $(NAME)
 
 
 clean:
@@ -83,15 +122,7 @@ clean:
 	@$(MAKE) -C $(STRING_DIR) clean
 	@$(MAKE) -C $(WCHAR_DIR) clean
 
-fclean:
-	@$(MAKE) -C $(CTYPE_DIR) fclean
-	@$(MAKE) -C $(IO_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
-	@$(MAKE) -C $(GNL_DIR) fclean
-	@$(MAKE) -C $(LIB_DIR) fclean
-	@$(MAKE) -C $(LIST_DIR) fclean
-	@$(MAKE) -C $(MEMORY_DIR) fclean
-	@$(MAKE) -C $(STRING_DIR) fclean
-	@$(MAKE) -C $(WCHAR_DIR) fclean
+fclean: clean
+	rm -rf libft.a
 
 re: fclean all
