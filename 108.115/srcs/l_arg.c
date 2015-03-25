@@ -44,8 +44,9 @@ static void	ft_display_rights(t_list *arg)
 
 static void	ft_display(char *str)
 {
-	write(1, " ", 1);
-	ft_putstr(str);
+	/*write(1, " ", 1);
+	ft_putstr(str);*/
+	ft_printf(" %s", str);
 }
 
 void		ft_larg(t_list *arg)

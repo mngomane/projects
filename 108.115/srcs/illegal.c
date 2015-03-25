@@ -43,6 +43,6 @@ int			valid_op(t_opt **op)
 
 void		whatelse(char *name)
 {
-	write(1, ILLEGAL, sizeof(ILLEGAL));
+	ft_putstr(ILLEGAL);
 	ft_putendl(name);
 }

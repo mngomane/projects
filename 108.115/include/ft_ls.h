@@ -74,7 +74,7 @@ void				sub_noofile2(t_list *arg);
 void				whatelse(char *name);
 void				free_link(t_list **arg);
 void				apptol(t_list *arg, void (*fct[2])(t_list *));
-void				appdir(t_list *arg, void (*fct[2])(t_list *));
+/*void				appdir(t_list *arg, void (*fct[2])(t_list *));*/
 void				free_opt(t_opt **op);
 
 #endif
