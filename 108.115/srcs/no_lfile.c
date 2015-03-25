@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void		sub_nolfile(t_list *arg)
+void			sub_nolfile(t_list *arg)
 {
 	LVALUE(t_var *, arg)->dirp = opendir(".");
 	if (LVALUE(t_var *, arg)->dirp != (void *)0)
@@ -34,7 +34,7 @@ void		sub_nolfile(t_list *arg)
 	}
 }
 
-void		sub_nolfile2(t_list *arg)
+void			sub_nolfile2(t_list *arg)
 {
 	LVALUE(t_var *, arg)->dirp = opendir("../.");
 	if (LVALUE(t_var *, arg)->dirp != (void *)0)
@@ -56,7 +56,7 @@ void		sub_nolfile2(t_list *arg)
 	}
 }
 
-void		no_lfile(t_list *arg, void (*fct[2])(t_list *), int ac)
+void			no_lfile(t_list *arg, void (*fct[2])(t_list *), int ac)
 {
 	if (ac < 3 || LVALUE(t_var *, arg)->fname == (void *)0)
 		sub_nolfile(arg);

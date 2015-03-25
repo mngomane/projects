@@ -12,10 +12,10 @@
 
 #include "ft_ls.h"
 
-int			valid_op(t_opt **op)
+int				valid_op(t_opt **op)
 {
-	t_opt	*save;
-	int		v;
+	t_opt		*save;
+	int			v;
 
 	save = *op;
 	v = 1;
@@ -39,10 +39,4 @@ int			valid_op(t_opt **op)
 		return (1);
 	}
 	return (0);
-}
-
-void		whatelse(char *name)
-{
-	ft_putstr(ILLEGAL);
-	ft_putendl(name);
 }

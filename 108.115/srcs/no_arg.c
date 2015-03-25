@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_noarg(t_list *arg)
+void			ft_noarg(t_list *arg)
 {
 	LVALUE(t_var *, arg)->dirp = opendir(".");
 	if (LVALUE(t_var *, arg)->dirp != (void *)0)

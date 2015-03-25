@@ -70,7 +70,7 @@ void			sub_main(t_list *arg, t_opt *op, int ac)
 	else
 	{
 		if (!valid_op(&op))
-			whatelse(op->oname);
+			ft_printf("%s%s\n", ILLEGAL, op->oname);
 		else
 		{
 			if (ft_strcmp(op->oname, "-l") == 0)
@@ -80,7 +80,7 @@ void			sub_main(t_list *arg, t_opt *op, int ac)
 			else if (ft_strcmp(op->oname, "-1") == 0)
 				no_ofile(arg, o_fct, ac);
 			else
-				whatelse(op->oname);
+				ft_printf("%s%s\n", ILLEGAL, op->oname);
 		}
 	}
 }
