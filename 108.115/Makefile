@@ -11,27 +11,22 @@
 #******************************************************************************#
 
 OBJSDIR = bins/
-
 SRCSDIR = srcs/
-
 LIBDIR = libft/
 
 NAME = ft_ls
 
 SRCS = $(notdir $(shell grep -rl . $(SRCSDIR)))
-
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
 CXX = gcc
-
 CC = /usr/bin/clang
 
 FLAGS = -Wall -Wextra -Werror
-
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
 LIB = -Llibft -lft
-
+LIBARG = ft_printf
 INCS = -Iinclude -Ilibft/include
 
 
@@ -40,7 +35,7 @@ INCS = -Iinclude -Ilibft/include
 all: $(OBJSDIR) $(NAME) check
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(LIBDIR)
+	@$(MAKE) -C $(LIBDIR) $(LIBARG)
 	$(CXX) $(FLAGS) $(LIB) $(INCS) -o $(NAME) $^
 
 $(OBJSDIR):

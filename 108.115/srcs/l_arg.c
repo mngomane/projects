@@ -21,10 +21,12 @@ static void		ft_time_init(t_list *arg)
 
 	index = 4;
 	LVALUE(t_var *, arg)->new_time = (char *)malloc(sizeof(char) * 13);
-	LVALUE(t_var *, arg)->tmp_time = ctime(&(LVALUE(t_var *, arg)->filestat.st_mtime));
+	LVALUE(t_var *, arg)->tmp_time =
+		ctime(&(LVALUE(t_var *, arg)->filestat.st_mtime));
 	while (index < 16)
 	{
-		LVALUE(t_var *, arg)->new_time[index - 4] = LVALUE(t_var *, arg)->tmp_time[index];
+		LVALUE(t_var *, arg)->new_time[index - 4] =
+			LVALUE(t_var *, arg)->tmp_time[index];
 		++index;
 	}
 	LVALUE(t_var *, arg)->new_time[index] = '\0';
@@ -54,7 +56,6 @@ void			ft_larg(t_list *arg)
 	ft_printf(" %ld", LVALUE(t_var *, arg)->filestat.st_size);
 	LVALUE(t_var *, arg)->size = LVALUE(t_var *, arg)->filestat.st_size;
 	ft_printf(" %s", LVALUE(t_var *, arg)->new_time);
-	ft_printf(" %s", LVALUE(t_var *, arg)->fname);
-	write(1, "\n", 1);
+	ft_printf(" %s\n", LVALUE(t_var *, arg)->fname);
 	free(LVALUE(t_var *, arg)->new_time);
 }
