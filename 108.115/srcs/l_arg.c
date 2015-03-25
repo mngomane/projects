@@ -17,15 +17,21 @@
 
 static void	ft_time_init(t_list *arg)
 {
-	LVALUE(t_var *, arg)->i = 4;
+	size_t		index;
+	/*LVALUE(t_var *, arg)->i = 4;*/
+	index = 4;
 	LVALUE(t_var *, arg)->new_time = (char *)malloc(sizeof(char) * 13);
 	LVALUE(t_var *, arg)->tmp_time = ctime(&(LVALUE(t_var *, arg)->filestat.st_mtime));
-	while (LVALUE(t_var *, arg)->i < 16)
+	/*while (LVALUE(t_var *, arg)->i < 16)*/
+	while (index < 16)
 	{
-		LVALUE(t_var *, arg)->new_time[LVALUE(t_var *, arg)->i - 4] = LVALUE(t_var *, arg)->tmp_time[LVALUE(t_var *, arg)->i];
-		++(LVALUE(t_var *, arg)->i);
+		/*LVALUE(t_var *, arg)->new_time[LVALUE(t_var *, arg)->i - 4] = LVALUE(t_var *, arg)->tmp_time[LVALUE(t_var *, arg)->i];*/
+		LVALUE(t_var *, arg)->new_time[index - 4] = LVALUE(t_var *, arg)->tmp_time[index];
+		/*++(LVALUE(t_var *, arg)->i);*/
+		++index;
 	}
-	LVALUE(t_var *, arg)->new_time[LVALUE(t_var *, arg)->i] = '\0';
+	/*LVALUE(t_var *, arg)->new_time[LVALUE(t_var *, arg)->i] = '\0';*/
+	LVALUE(t_var *, arg)->new_time[index] = '\0';
 }
 
 static void	ft_display_rights(t_list *arg)

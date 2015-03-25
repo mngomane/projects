@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-static void		apptoone(t_list *arg)
+/*static void		apptoone(t_list *arg)
 {
 	while (arg)
 	{
@@ -28,11 +28,27 @@ static void		apptoone(t_list *arg)
 		}
 		arg = arg->next;
 	}
+}*/
+
+static void		apptoone(t_list *arg)
+{
+	while (arg)
+	{
+		if (ft_strcmp(LVALUE(t_var *, arg)->fname, ".") &&
+			stat(LVALUE(t_var *, arg)->fname,
+			&(LVALUE(t_var *, arg)->filestat)) < 0)
+		{
+				ft_puterr(NAME);
+				ft_puterr(LVALUE(t_var *, arg)->fname);
+				ft_puterr(NO_FORDIR);
+		}
+		arg = arg->next;
+	}
 }
 
 static void		appdir(t_list *arg, void (*fct[2])(t_list *))
 {
-	char	*dir_name;
+	char		*dir_name;
 
 	dir_name = LVALUE(t_var *, arg)->fname;
 	LVALUE(t_var *, arg)->dirp = opendir(LVALUE(t_var *, arg)->fname);
@@ -57,7 +73,7 @@ static void		appdir(t_list *arg, void (*fct[2])(t_list *))
 	}
 }
 
-static void		apptotwo(t_list *arg, void (*fct[2])(t_list *))
+/*static void		apptotwo(t_list *arg, void (*fct[2])(t_list *))
 {
 	while (arg)
 	{
@@ -74,6 +90,26 @@ static void		apptotwo(t_list *arg, void (*fct[2])(t_list *))
 				else
 					ft_printf("%s    ", LVALUE(t_var *, arg)->fname);
 			}
+		}
+		arg = arg->next;
+	}
+}*/
+
+static void		apptotwo(t_list *arg, void (*fct[2])(t_list *))
+{
+	while (arg)
+	{
+		if (ft_strcmp(LVALUE(t_var *, arg)->fname, ".") &&
+			ft_strcmp(LVALUE(t_var *, arg)->fname, "..") &&
+			stat(LVALUE(t_var *, arg)->fname,
+			&(LVALUE(t_var *, arg)->filestat)) >= 0)
+		{
+			if (S_ISDIR(LVALUE(t_var *, arg)->filestat.st_mode))
+				appdir(arg, fct);
+			else if (fct[0] == sub_nolfile)
+				ft_larg(arg);
+			else
+				ft_printf("%s    ", LVALUE(t_var *, arg)->fname);
 		}
 		arg = arg->next;
 	}
@@ -96,7 +132,6 @@ static void		apptothree(t_list *arg)
 			write(1, "\n", 1);
 	}
 }
-
 
 void			apptol(t_list *arg, void (*fct[2])(t_list *))
 {

@@ -14,7 +14,7 @@
 
 void			fill_arg_list(t_list **arg, int ac, int j, char **av)
 {
-	int		i;
+	int			i;
 
 	i = ac - 2;
 	while (i > j - 1 && i >= 0)

@@ -14,7 +14,7 @@
 
 static t_var	*tmpdir(char *name, int ac)
 {
-	t_var	*tmp;
+	t_var		*tmp;
 
 	if ((tmp = (t_var *)malloc(sizeof(t_var))) != (void *)0)
 	{
@@ -28,7 +28,7 @@ static t_var	*tmpdir(char *name, int ac)
 
 t_list			*add_link(t_list *arg, char *name)
 {
-	t_list	*tmp;
+	t_list		*tmp;
 
 	if (LVALUE(t_var *, arg)->fname == (void *)0)
 	{
@@ -47,7 +47,7 @@ t_list			*add_link(t_list *arg, char *name)
 
 t_opt			*add_opt(t_opt *op, char *name)
 {
-	t_opt	*tmp;
+	t_opt		*tmp;
 
 	if ((tmp = (t_opt *)malloc(sizeof(t_opt))) != (void *)0)
 	{
@@ -62,7 +62,7 @@ t_opt			*add_opt(t_opt *op, char *name)
 
 void			free_link(t_list **arg)
 {
-	t_list	*save;
+	t_list		*save;
 
 	save = *arg;
 	while (*arg)
@@ -81,7 +81,7 @@ void			free_link(t_list **arg)
 
 void			free_opt(t_opt **op)
 {
-	t_opt	*save;
+	t_opt		*save;
 
 	save = *op;
 	while (*op)
