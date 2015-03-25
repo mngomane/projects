@@ -30,16 +30,16 @@ t_list			*add_link(t_list *arg, char *name)
 {
 	t_list	*tmp;
 
-	if (LCAST(t_var *, arg)->fname == (void *)0)
+	if (LVALUE(t_var *, arg)->fname == (void *)0)
 	{
-		LCAST(t_var *, arg)->fname = name;
+		LVALUE(t_var *, arg)->fname = name;
 		return (arg);
 	}
 	if ((tmp = (t_list *)malloc(sizeof(t_list))) == NULL)
 		ft_puterr(FAILED_ALLOC);
 	else
 	{
-		tmp->content = tmpdir(name, LCAST(t_var *, arg)->ac);
+		tmp->content = tmpdir(name, LVALUE(t_var *, arg)->ac);
 		tmp->next = arg;
 	}
 	return (tmp);
@@ -67,7 +67,7 @@ void			free_link(t_list **arg)
 	save = *arg;
 	while (*arg)
 	{
-		free(LCAST(t_var *, (*arg)));
+		free(LVALUE(t_var *, (*arg)));
 		*arg = (*arg)->next;
 	}
 	*arg = save;

@@ -18,17 +18,7 @@ LIBDIR = libft/
 
 NAME = ft_ls
 
-SRCS = main.c\
-		no_arg.c\
-		l_arg.c\
-		no_file.c\
-		no_lfile.c\
-		no_afile.c\
-		no_ofile.c\
-		illegal.c\
-		list_edit.c\
-		apply.c\
-		sub_main.c
+SRCS = $(notdir $(shell grep -rl . $(SRCSDIR)))
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
@@ -54,7 +44,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(FLAGS) $(LIB) $(INCS) -o $(NAME) $^
 
 $(OBJSDIR):
-	mkdir $(OBJSDIR)
+	mkdir -pm 0700 $(OBJSDIR)
 
 check: $(OBJS)
 	@$(CC) $(HARDCORESFLAGS) $(LIB) $(INCS) -o $(NAME) $^

@@ -16,13 +16,13 @@ static void		apptoone(t_list *arg)
 {
 	while (arg)
 	{
-		if (ft_strcmp(LCAST(t_var *, arg)->fname, "."))
+		if (ft_strcmp(LVALUE(t_var *, arg)->fname, "."))
 		{
-			if (stat(LCAST(t_var *, arg)->fname,
-				&(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LVALUE(t_var *, arg)->fname,
+				&(LVALUE(t_var *, arg)->filestat)) < 0)
 			{
 				ft_puterr(NAME);
-				ft_puterr(LCAST(t_var *, arg)->fname);
+				ft_puterr(LVALUE(t_var *, arg)->fname);
 				ft_puterr(NO_FORDIR);
 			}
 		}
@@ -34,19 +34,19 @@ static void		apptotwo(t_list *arg, void (*fct[2])(t_list *))
 {
 	while (arg)
 	{
-		if (ft_strcmp(LCAST(t_var *, arg)->fname, ".") &&
-			ft_strcmp(LCAST(t_var *, arg)->fname, ".."))
+		if (ft_strcmp(LVALUE(t_var *, arg)->fname, ".") &&
+			ft_strcmp(LVALUE(t_var *, arg)->fname, ".."))
 		{
-			if (stat(LCAST(t_var *, arg)->fname,
-				&(LCAST(t_var *, arg)->filestat)) >= 0)
+			if (stat(LVALUE(t_var *, arg)->fname,
+				&(LVALUE(t_var *, arg)->filestat)) >= 0)
 			{
-				if (S_ISDIR(LCAST(t_var *, arg)->filestat.st_mode))
+				if (S_ISDIR(LVALUE(t_var *, arg)->filestat.st_mode))
 					appdir(arg, fct);
 				else if (fct[0] == sub_nolfile)
 					ft_larg(arg);
 				else
 				{
-					ft_putstr(LCAST(t_var *, arg)->fname);
+					ft_putstr(LVALUE(t_var *, arg)->fname);
 					write(1, "    ", 4);
 				}
 			}
@@ -59,14 +59,14 @@ static void		apptothree(t_list *arg)
 {
 	while (arg)
 	{
-		if (!ft_strcmp(LCAST(t_var *, arg)->fname, "."))
+		if (!ft_strcmp(LVALUE(t_var *, arg)->fname, "."))
 		{
-			if (LCAST(t_var *, arg)->ac > 1)
+			if (LVALUE(t_var *, arg)->ac > 1)
 				write(1, ".:\n", 3);
-			ft_putstr(LCAST(t_var *, arg)->fname);
+			ft_putstr(LVALUE(t_var *, arg)->fname);
 		}
 		arg = arg->next;
-		if (arg && ft_strcmp(LCAST(t_var *, arg)->fname, "."))
+		if (arg && ft_strcmp(LVALUE(t_var *, arg)->fname, "."))
 			write(1, "    ", 4);
 		else
 			write(1, "\n", 1);
@@ -77,29 +77,29 @@ void			appdir(t_list *arg, void (*fct[2])(t_list *))
 {
 	char	*dir_name;
 
-	dir_name = LCAST(t_var *, arg)->fname;
-	LCAST(t_var *, arg)->dirp = opendir(LCAST(t_var *, arg)->fname);
-	if (LCAST(t_var *, arg)->dirp != NULL)
+	dir_name = LVALUE(t_var *, arg)->fname;
+	LVALUE(t_var *, arg)->dirp = opendir(LVALUE(t_var *, arg)->fname);
+	if (LVALUE(t_var *, arg)->dirp != NULL)
 	{
-		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-		while (LCAST(t_var *, arg)->dp != NULL)
+		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+		while (LVALUE(t_var *, arg)->dp != NULL)
 		{
-			if (stat(dir_name, &(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(dir_name, &(LVALUE(t_var *, arg)->filestat)) < 0)
 				ft_puterr(UNKNOWN_ERROR);
-			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			else if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
+				LVALUE(t_var *, arg)->fname = LVALUE(t_var *, arg)->dp->d_name;
 				if (fct[0] == sub_nolfile)
 					ft_larg(arg);
 				else
 				{
-					ft_putstr(LCAST(t_var *, arg)->fname);
+					ft_putstr(LVALUE(t_var *, arg)->fname);
 					write(1, "    ", 4);
 				}
 			}
-			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
 		}
-		closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LVALUE(t_var *, arg)->dirp);
 	}
 }
 
@@ -116,9 +116,9 @@ void			apptol(t_list *arg, void (*fct[2])(t_list *))
 	arg = save;
 	while (arg)
 	{
-		if (!ft_strcmp(LCAST(t_var *, arg)->fname, ".."))
+		if (!ft_strcmp(LVALUE(t_var *, arg)->fname, ".."))
 		{
-			if (LCAST(t_var *, arg)->ac > 1)
+			if (LVALUE(t_var *, arg)->ac > 1)
 				write(1, "\n..:\n", 5);
 			(fct[1])(arg);
 		}

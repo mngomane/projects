@@ -14,51 +14,51 @@
 
 void		sub_noofile(t_list *arg)
 {
-	LCAST(t_var *, arg)->dirp = opendir(".");
-	if (LCAST(t_var *, arg)->dirp != NULL)
+	LVALUE(t_var *, arg)->dirp = opendir(".");
+	if (LVALUE(t_var *, arg)->dirp != NULL)
 	{
-		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-		while (LCAST(t_var *, arg)->dp != NULL)
+		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+		while (LVALUE(t_var *, arg)->dp != NULL)
 		{
-			if (stat(LCAST(t_var *, arg)->dp->d_name,
-				&(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LVALUE(t_var *, arg)->dp->d_name,
+				&(LVALUE(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			else if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_putendl(LCAST(t_var *, arg)->fname);
+				LVALUE(t_var *, arg)->fname = LVALUE(t_var *, arg)->dp->d_name;
+				ft_putendl(LVALUE(t_var *, arg)->fname);
 			}
-			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
 		}
-		closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LVALUE(t_var *, arg)->dirp);
 	}
 }
 
 void		sub_noofile2(t_list *arg)
 {
-	LCAST(t_var *, arg)->dirp = opendir("../.");
-	if (LCAST(t_var *, arg)->dirp != NULL)
+	LVALUE(t_var *, arg)->dirp = opendir("../.");
+	if (LVALUE(t_var *, arg)->dirp != NULL)
 	{
-		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-		while (LCAST(t_var *, arg)->dp != NULL)
+		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+		while (LVALUE(t_var *, arg)->dp != NULL)
 		{
-			if (stat(LCAST(t_var *, arg)->dp->d_name,
-				&(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LVALUE(t_var *, arg)->dp->d_name,
+				&(LVALUE(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			else if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			else if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_putendl(LCAST(t_var *, arg)->fname);
+				LVALUE(t_var *, arg)->fname = LVALUE(t_var *, arg)->dp->d_name;
+				ft_putendl(LVALUE(t_var *, arg)->fname);
 			}
-			LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
+			LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
 		}
-		closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LVALUE(t_var *, arg)->dirp);
 	}
 }
 
 void		no_ofile(t_list *arg, void (*fct[3])(t_list *), int ac)
 {
-	if (ac < 3 || LCAST(t_var *, arg)->fname == NULL)
+	if (ac < 3 || LVALUE(t_var *, arg)->fname == NULL)
 		sub_noofile(arg);
 	else
 		apptol(arg, fct);

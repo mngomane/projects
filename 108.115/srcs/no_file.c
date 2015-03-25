@@ -14,63 +14,63 @@
 
 void		sub_nofile(t_list *arg)
 {
-	LCAST(t_var *, arg)->dirp = opendir(".");
-	if (LCAST(t_var *, arg)->dirp != NULL)
+	LVALUE(t_var *, arg)->dirp = opendir(".");
+	if (LVALUE(t_var *, arg)->dirp != NULL)
 	{
-		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-		while (LCAST(t_var *, arg)->dp != NULL)
+		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+		while (LVALUE(t_var *, arg)->dp != NULL)
 		{
-			if (stat(LCAST(t_var *, arg)->dp->d_name,
-				&(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LVALUE(t_var *, arg)->dp->d_name,
+				&(LVALUE(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_putstr(LCAST(t_var *, arg)->fname);
-				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-				if (LCAST(t_var *, arg)->dp)
+				LVALUE(t_var *, arg)->fname = LVALUE(t_var *, arg)->dp->d_name;
+				ft_putstr(LVALUE(t_var *, arg)->fname);
+				LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+				if (LVALUE(t_var *, arg)->dp)
 					write(1, "    ", 4);
 			}
 			else
-				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-			if (!LCAST(t_var *, arg)->dp)
+				LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+			if (!LVALUE(t_var *, arg)->dp)
 				write(1, "\n", 1);
 		}
-		closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LVALUE(t_var *, arg)->dirp);
 	}
 }
 
 void		sub_nofile2(t_list *arg)
 {
-	LCAST(t_var *, arg)->dirp = opendir("../.");
-	if (LCAST(t_var *, arg)->dirp != NULL)
+	LVALUE(t_var *, arg)->dirp = opendir("../.");
+	if (LVALUE(t_var *, arg)->dirp != NULL)
 	{
-		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-		while (LCAST(t_var *, arg)->dp != NULL)
+		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+		while (LVALUE(t_var *, arg)->dp != NULL)
 		{
-			if (stat(LCAST(t_var *, arg)->dp->d_name,
-				&(LCAST(t_var *, arg)->filestat)) < 0)
+			if (stat(LVALUE(t_var *, arg)->dp->d_name,
+				&(LVALUE(t_var *, arg)->filestat)) < 0)
 				ft_puterr(FAILED_STAT);
-			if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				LCAST(t_var *, arg)->fname = LCAST(t_var *, arg)->dp->d_name;
-				ft_putstr(LCAST(t_var *, arg)->fname);
-				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-				if (LCAST(t_var *, arg)->dp)
+				LVALUE(t_var *, arg)->fname = LVALUE(t_var *, arg)->dp->d_name;
+				ft_putstr(LVALUE(t_var *, arg)->fname);
+				LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+				if (LVALUE(t_var *, arg)->dp)
 					write(1, "    ", 4);
 			}
 			else
-				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-			if (!LCAST(t_var *, arg)->dp)
+				LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+			if (!LVALUE(t_var *, arg)->dp)
 				write(1, "\n", 1);
 		}
-		closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LVALUE(t_var *, arg)->dirp);
 	}
 }
 
 void		no_file(t_list *arg, void (*fct[2])(t_list *), int ac)
 {
-	if (ac < 2 || LCAST(t_var *, arg)->fname == NULL)
+	if (ac < 2 || LVALUE(t_var *, arg)->fname == NULL)
 		sub_nofile(arg);
 	else
 		apptol(arg, fct);

@@ -14,25 +14,25 @@
 
 void	ft_noarg(t_list *arg)
 {
-	LCAST(t_var *, arg)->dirp = opendir(".");
-	if (LCAST(t_var *, arg)->dirp != NULL)
+	LVALUE(t_var *, arg)->dirp = opendir(".");
+	if (LVALUE(t_var *, arg)->dirp != NULL)
 	{
-		LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-		while (LCAST(t_var *, arg)->dp != NULL)
+		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+		while (LVALUE(t_var *, arg)->dp != NULL)
 		{
-			if (LCAST(t_var *, arg)->dp->d_name[0] != '.')
+			if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{
-				ft_putstr(LCAST(t_var *, arg)->dp->d_name);
-				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-				if (LCAST(t_var *, arg)->dp)
+				ft_putstr(LVALUE(t_var *, arg)->dp->d_name);
+				LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+				if (LVALUE(t_var *, arg)->dp)
 					write(1, "    ", 4);
 			}
 			else
-				LCAST(t_var *, arg)->dp = readdir(LCAST(t_var *, arg)->dirp);
-			if (!LCAST(t_var *, arg)->dp)
+				LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
+			if (!LVALUE(t_var *, arg)->dp)
 				write(1, "\n", 1);
 		}
-		closedir(LCAST(t_var *, arg)->dirp);
+		closedir(LVALUE(t_var *, arg)->dirp);
 	}
 	else
 		ft_puterr(UNKNOWN_ERROR);

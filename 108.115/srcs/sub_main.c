@@ -34,7 +34,7 @@ void			fill_list(t_list **arg, t_opt **op, int ac, char **av)
 			*op = add_opt(*op, av[i++]);
 		if (i < ac)
 		{
-			LCAST(t_var *, (*arg))->fname = av[ac - 1];
+			LVALUE(t_var *, (*arg))->fname = av[ac - 1];
 			if (i < ac - 1)
 				fill_arg_list(arg, ac, i, av);
 		}
@@ -50,9 +50,9 @@ int				init_main(t_list **arg, t_opt **op, int ac)
 		ft_puterr(FAILED_ALLOC);
 		return (0);
 	}
-	LCAST(t_var *, *arg)->len = 0;
-	LCAST(t_var *, *arg)->ac = ac;
-	LCAST(t_var *, *arg)->fname = (void *)0;
+	LVALUE(t_var *, *arg)->len = 0;
+	LVALUE(t_var *, *arg)->ac = ac;
+	LVALUE(t_var *, *arg)->fname = (void *)0;
 	(*arg)->next = (void *)0;
 	(*op)->onbr = 0;
 	return (1);
@@ -95,8 +95,8 @@ void			body_main(t_list *arg, t_opt *op, int ac, char **av)
 		if (av[1][0] == '-')
 			op->oname = av[1];
 		else
-			LCAST(t_var *, arg)->fname = av[ac - 1];
-		if (LCAST(t_var *, arg)->fname == NULL)
+			LVALUE(t_var *, arg)->fname = av[ac - 1];
+		if (LVALUE(t_var *, arg)->fname == NULL)
 			fill_list(&arg, &op, ac, av);
 		else
 		{
