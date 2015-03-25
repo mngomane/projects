@@ -43,9 +43,9 @@ void			fill_list(t_list **arg, t_opt **op, int ac, char **av)
 
 int				init_main(t_list **arg, t_opt **op, int ac)
 {
-	if ((*arg = (t_list *)malloc(sizeof(t_list))) == NULL ||
-		((*arg)->content = (t_var *)malloc(sizeof(t_var))) == NULL ||
-		(*op = (t_opt *)malloc(sizeof(t_opt))) == NULL)
+	if ((*arg = (t_list *)malloc(sizeof(t_list))) == (void *)0 ||
+		((*arg)->content = (t_var *)malloc(sizeof(t_var))) == (void *)0 ||
+		(*op = (t_opt *)malloc(sizeof(t_opt))) == (void *)0)
 	{
 		ft_puterr(FAILED_ALLOC);
 		return (0);
@@ -65,7 +65,7 @@ void			sub_main(t_list *arg, t_opt *op, int ac)
 	static void	(*o_fct[2])(t_list *) = {sub_noofile, sub_noofile2};
 	static void	(*e_fct[2])(t_list *) = {sub_nofile, sub_nofile2};
 
-	if (op->oname == NULL)
+	if (op->oname == (void *)0)
 		no_file(arg, e_fct, ac);
 	else
 	{
@@ -96,7 +96,7 @@ void			body_main(t_list *arg, t_opt *op, int ac, char **av)
 			op->oname = av[1];
 		else
 			LVALUE(t_var *, arg)->fname = av[ac - 1];
-		if (LVALUE(t_var *, arg)->fname == NULL)
+		if (LVALUE(t_var *, arg)->fname == (void *)0)
 			fill_list(&arg, &op, ac, av);
 		else
 		{

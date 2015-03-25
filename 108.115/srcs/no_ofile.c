@@ -15,10 +15,10 @@
 void		sub_noofile(t_list *arg)
 {
 	LVALUE(t_var *, arg)->dirp = opendir(".");
-	if (LVALUE(t_var *, arg)->dirp != NULL)
+	if (LVALUE(t_var *, arg)->dirp != (void *)0)
 	{
 		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
-		while (LVALUE(t_var *, arg)->dp != NULL)
+		while (LVALUE(t_var *, arg)->dp != (void *)0)
 		{
 			if (stat(LVALUE(t_var *, arg)->dp->d_name,
 				&(LVALUE(t_var *, arg)->filestat)) < 0)
@@ -37,10 +37,10 @@ void		sub_noofile(t_list *arg)
 void		sub_noofile2(t_list *arg)
 {
 	LVALUE(t_var *, arg)->dirp = opendir("../.");
-	if (LVALUE(t_var *, arg)->dirp != NULL)
+	if (LVALUE(t_var *, arg)->dirp != (void *)0)
 	{
 		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
-		while (LVALUE(t_var *, arg)->dp != NULL)
+		while (LVALUE(t_var *, arg)->dp != (void *)0)
 		{
 			if (stat(LVALUE(t_var *, arg)->dp->d_name,
 				&(LVALUE(t_var *, arg)->filestat)) < 0)
@@ -58,7 +58,7 @@ void		sub_noofile2(t_list *arg)
 
 void		no_ofile(t_list *arg, void (*fct[3])(t_list *), int ac)
 {
-	if (ac < 3 || LVALUE(t_var *, arg)->fname == NULL)
+	if (ac < 3 || LVALUE(t_var *, arg)->fname == (void *)0)
 		sub_noofile(arg);
 	else
 		apptol(arg, fct);

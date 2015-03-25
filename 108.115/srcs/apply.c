@@ -36,10 +36,10 @@ static void		appdir(t_list *arg, void (*fct[2])(t_list *))
 
 	dir_name = LVALUE(t_var *, arg)->fname;
 	LVALUE(t_var *, arg)->dirp = opendir(LVALUE(t_var *, arg)->fname);
-	if (LVALUE(t_var *, arg)->dirp != NULL)
+	if (LVALUE(t_var *, arg)->dirp != (void *)0)
 	{
 		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
-		while (LVALUE(t_var *, arg)->dp != NULL)
+		while (LVALUE(t_var *, arg)->dp != (void *)0)
 		{
 			if (stat(dir_name, &(LVALUE(t_var *, arg)->filestat)) < 0)
 				ft_puterr(UNKNOWN_ERROR);

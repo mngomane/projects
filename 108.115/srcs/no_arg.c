@@ -15,10 +15,10 @@
 void	ft_noarg(t_list *arg)
 {
 	LVALUE(t_var *, arg)->dirp = opendir(".");
-	if (LVALUE(t_var *, arg)->dirp != NULL)
+	if (LVALUE(t_var *, arg)->dirp != (void *)0)
 	{
 		LVALUE(t_var *, arg)->dp = readdir(LVALUE(t_var *, arg)->dirp);
-		while (LVALUE(t_var *, arg)->dp != NULL)
+		while (LVALUE(t_var *, arg)->dp != (void *)0)
 		{
 			if (LVALUE(t_var *, arg)->dp->d_name[0] != '.')
 			{

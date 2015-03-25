@@ -16,7 +16,7 @@ static t_var	*tmpdir(char *name, int ac)
 {
 	t_var	*tmp;
 
-	if ((tmp = (t_var *)malloc(sizeof(t_var))) != NULL)
+	if ((tmp = (t_var *)malloc(sizeof(t_var))) != (void *)0)
 	{
 		tmp->fname = name;
 		tmp->ac = ac;
@@ -35,7 +35,7 @@ t_list			*add_link(t_list *arg, char *name)
 		LVALUE(t_var *, arg)->fname = name;
 		return (arg);
 	}
-	if ((tmp = (t_list *)malloc(sizeof(t_list))) == NULL)
+	if ((tmp = (t_list *)malloc(sizeof(t_list))) == (void *)0)
 		ft_puterr(FAILED_ALLOC);
 	else
 	{
@@ -49,7 +49,7 @@ t_opt			*add_opt(t_opt *op, char *name)
 {
 	t_opt	*tmp;
 
-	if ((tmp = (t_opt *)malloc(sizeof(t_opt))) != NULL)
+	if ((tmp = (t_opt *)malloc(sizeof(t_opt))) != (void *)0)
 	{
 		tmp->oname = name;
 		tmp->onbr += op->onbr;

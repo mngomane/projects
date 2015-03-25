@@ -19,7 +19,7 @@ int			valid_op(t_opt **op)
 
 	save = *op;
 	v = 1;
-	while (*op != NULL && v == 1)
+	while (*op != (void *)0 && v == 1)
 	{
 		v = 0;
 		if (!ft_strcmp((*op)->oname, "-l"))
