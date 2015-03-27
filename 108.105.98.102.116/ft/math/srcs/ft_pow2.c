@@ -18,7 +18,7 @@ size_t		ft_next_pow2(size_t x)
 
 	bit = 1;
 	x--;
-	while (bit < 8 * sizeof(long))
+	while (bit < sizeof(long) << 3)
 	{
 		x |= x >> bit;
 		bit <<= 1;

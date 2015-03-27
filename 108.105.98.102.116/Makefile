@@ -79,6 +79,7 @@ io:
 	@$(MAKE) $(NAME)
 
 ft_printf:
+	@$(MAKE) -C $(CTYPE_DIR) nolib
 	@$(MAKE) -C $(MEMORY_DIR) nolib
 	@$(MAKE) -C $(STRING_DIR) nolib
 	@$(MAKE) -C $(IO_DIR) nolib
@@ -117,6 +118,7 @@ string:
 	@$(MAKE) $(NAME)
 
 unix:
+	@$(MAKE) -C $(CTYPE_DIR) nolib
 	@$(MAKE) -C $(MEMORY_DIR) nolib
 	@$(MAKE) -C $(STRING_DIR) nolib
 	@$(MAKE) -C $(IO_DIR) nolib
