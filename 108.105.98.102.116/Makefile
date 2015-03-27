@@ -16,6 +16,7 @@ PRINTF_DIR = $(addprefix $(IO_DIR), ft_printf/)
 GNL_DIR = $(addprefix $(IO_DIR), get_next_line/)
 LIB_DIR = ft/lib/
 LIST_DIR = ft/list/
+MATH_DIR = ft/math/
 MEMORY_DIR = ft/memory/
 OBJSDIR = bins
 STRING_DIR = ft/string/
@@ -38,6 +39,7 @@ NAME = libft.a
 		gnl\
 		lib\
 		list\
+		math\
 		memory\
 		string\
 		unix\
@@ -59,6 +61,7 @@ makeobjs:
 	@$(MAKE) -C $(GNL_DIR) nolib
 	@$(MAKE) -C $(LIB_DIR) nolib
 	@$(MAKE) -C $(LIST_DIR) nolib
+	@$(MAKE) -C $(MATH_DIR) nolib
 	@$(MAKE) -C $(MEMORY_DIR) nolib
 	@$(MAKE) -C $(STRING_DIR) nolib
 	@$(MAKE) -C $(UNIX_DIR) nolib
@@ -98,6 +101,10 @@ lib:
 list:
 	@$(MAKE) -C $(MEMORY_DIR) nolib
 	@$(MAKE) -C $(LIST_DIR) nolib
+	@$(MAKE) $(NAME)
+
+math:
+	@$(MAKE) -C $(MATH_DIR) nolib
 	@$(MAKE) $(NAME)
 
 memory:
