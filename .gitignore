@@ -10,6 +10,7 @@ a.out
 
 # Project binaries#
 ###################
+42sh
 ft_ls
 ft_minishell3
 push_swap

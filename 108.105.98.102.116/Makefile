@@ -19,6 +19,7 @@ LIST_DIR = ft/list/
 MEMORY_DIR = ft/memory/
 OBJSDIR = bins
 STRING_DIR = ft/string/
+UNIX_DIR = ft/unix/
 WCHAR_DIR = ft/wchar/
 
 NAME = libft.a
@@ -39,6 +40,7 @@ NAME = libft.a
 		list\
 		memory\
 		string\
+		unix\
 		wchar
 
 all: $(OBJSDIR) makeobjs
@@ -59,6 +61,7 @@ makeobjs:
 	@$(MAKE) -C $(LIST_DIR) nolib
 	@$(MAKE) -C $(MEMORY_DIR) nolib
 	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) -C $(UNIX_DIR) nolib
 	@$(MAKE) -C $(WCHAR_DIR) nolib
 	@$(MAKE) $(NAME)
 
@@ -104,6 +107,16 @@ memory:
 string:
 	@$(MAKE) -C $(MEMORY_DIR) nolib
 	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) $(NAME)
+
+unix:
+	@$(MAKE) -C $(MEMORY_DIR) nolib
+	@$(MAKE) -C $(STRING_DIR) nolib
+	@$(MAKE) -C $(IO_DIR) nolib
+	@$(MAKE) -C $(LIB_DIR) nolib
+	@$(MAKE) -C $(WCHAR_DIR) nolib
+	@$(MAKE) -C $(PRINTF_DIR) nolib
+	@$(MAKE) -C $(UNIX_DIR) nolib
 	@$(MAKE) $(NAME)
 
 wchar:
