@@ -143,6 +143,7 @@ clean:
 	@$(MAKE) -C $(LIST_DIR) clean
 	@$(MAKE) -C $(MEMORY_DIR) clean
 	@$(MAKE) -C $(STRING_DIR) clean
+	@$(MAKE) -C $(UNIX_DIR) clean
 	@$(MAKE) -C $(WCHAR_DIR) clean
 
 fclean: clean

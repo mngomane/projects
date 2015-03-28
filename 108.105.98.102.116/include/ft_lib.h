@@ -17,7 +17,7 @@
 
 int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
-void		ft_msort(int *tab, size_t size);
-void		ft_qsort(int *tab, size_t size);
+void		msort_int_tab(int *tab, size_t size, int (*cmp)(int, int));
+void		qsort_int_tab(int *tab, size_t size, int (*cmp)(int, int));
 
 #endif

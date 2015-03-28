@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_qsort.c                                         :+:      :+:    :+:   */
+/*   qsort_int_tab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_lib.h"
 
-void			ft_qsort(int *tab, size_t size)
+void			qsort_int_tab(int *tab, size_t size, int (*cmp)(int, int))
 {
 	size_t		i;
 	size_t		j;
@@ -26,9 +26,9 @@ void			ft_qsort(int *tab, size_t size)
 	pivot = tab[size >> 1];
 	while (42)
 	{
-		while (tab[i] < pivot)
+		while (cmp(tab[i], pivot))
 			i++;
-		while (pivot < tab[j])
+		while (cmp(pivot, tab[j]))
 			j--;
 		if (i >= j)
 			break ;
@@ -36,6 +36,6 @@ void			ft_qsort(int *tab, size_t size)
 		tab[i++] = tab[j];
 		tab[j--] = tmp;
 	}
-	ft_qsort(tab, i);
-	ft_qsort(tab + i, size - i);
+	qsort_int_tab(tab, i, cmp);
+	qsort_int_tab(tab + i, size - i, cmp);
 }
