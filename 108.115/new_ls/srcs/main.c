@@ -42,33 +42,37 @@ static t_lut	*init_lookup_table(void)
 	return (lookup);
 }
 
-static void		get_options(int *ac, char ***av)
+static int		get_options(int *ac, char ***av)
 {
 	t_lut		*lookup;
 	int			opti;
 	int			c;
 	int			i;
 
-	i = 0;
 	opti = 1;
 	lookup = init_lookup_table();
-	while ((c = ft_getopt(*ac, *av, "Rlart", &opti)) != -1)
+	c = ft_getopt(*ac, *av, "Rlart", &opti);
+	while (c != -1 && c != '?')
 	{
+		i = 0;
 		while (lookup[i].fct != (void *)0)
 		{
 			if (*((char *)lookup[i].key) == c)
 				lookup[i].fct();
 			++i;
 		}
+		c = ft_getopt(*ac, *av, "Rlart", &opti);
 	}
 	*ac -= opti;
 	av += opti;
 	free(lookup);
+	return (c);
 }
 
 int				main(int ac, char **av)
 {
 	(void)ac, (void)av;
-	get_options(&ac, &av);
+	if (get_options(&ac, &av) == '?')
+		return (-1);
 	return (0);
 }
