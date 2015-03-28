@@ -15,6 +15,7 @@
 static void		merge(int *tab, size_t size, size_t mid)
 {
 	int			*tmp;
+	size_t		offset;
 	size_t		i;
 	size_t		j;
 	size_t		k;
@@ -22,7 +23,8 @@ static void		merge(int *tab, size_t size, size_t mid)
 	i = 0;
 	j = mid;
 	k = 0;
-	tmp = (int *)malloc(size * sizeof(int));
+	offset = (uintptr_t)(&tab + 1) - (uintptr_t)&tab;
+	tmp = (int *)malloc(size * offset);
 	while (k < size)
 		tmp[k++] = ((j != size && (i == mid || tab[j] < tab[i])) ?
 			tab[j++] : tab[i++]);
