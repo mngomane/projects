@@ -12,15 +12,17 @@
 
 #include "ft_list.h"
 
-void	sort_lstadd(t_list **root, t_list **end, t_list *new, int PROTO_CMP)
+void	sort_lstadd(t_list **root, t_list *new, int (*cmp)(t_list *, t_list *))
 {
+	static t_list	*end;
+
 	if (cmp(new, *root))
 		ft_lstadd(root, new);
-	else if (!cmp(new, *end) || !(*root)->next)
+	else if ((end && !cmp(new, end)) || !(*root)->next)
 	{
-		(!cmp(new, *end) ? *end : *root)->next = new;
-		*end = new;
+		((end && !cmp(new, end)) ? end : *root)->next = new;
+		end = new;
 	}
 	else
-		sort_lstadd(&(*root)->next, end, new, cmp);
+		sort_lstadd(&(*root)->next, new, cmp);
 }

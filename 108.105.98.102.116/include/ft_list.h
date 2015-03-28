@@ -18,8 +18,6 @@
 # define LVALUE(x, y)	((x)((y)->content))
 # define LSIZE(y)		((y)->content_size)
 
-# define PROTO_CMP		(*cmp)(t_list *, t_list *)
-
 typedef struct		s_list
 {
 	void			*content;
@@ -34,7 +32,7 @@ void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
-void				sort_lstadd(t_list **root, t_list **end,
-								t_list *new, int (*cmp)(t_list *, t_list *));
+void				sort_lstadd(t_list **root, t_list *new,
+								int (*cmp)(t_list *, t_list *));
 
 #endif
