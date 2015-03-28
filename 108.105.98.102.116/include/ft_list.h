@@ -25,6 +25,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+t_list				*ft_get_tail(t_list *lst);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstadd_tail(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));

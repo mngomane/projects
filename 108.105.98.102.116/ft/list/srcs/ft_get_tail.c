@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_lstadd.c                                      :+:      :+:    :+:   */
+/*   ft_get_tail.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/28 13:07:02 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/28 13:07:02 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/28 21:25:52 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/28 21:25:52 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	sort_lstadd(t_list **root, t_list *new, int (*cmp)(t_list *, t_list *))
+t_list			*ft_get_tail(t_list *lst)
 {
-	static t_list	*end;
-
-	end = (root ? end : (void *)0);
-	if (!new || !root || !*root)
-		return ;
-	if (cmp(new, *root))
-		ft_lstadd(root, new);
-	else if ((end && !cmp(new, end)) || !(*root)->next)
-	{
-		((end && !cmp(new, end)) ? end : *root)->next = new;
-		end = new;
-	}
-	else
-		sort_lstadd(&(*root)->next, new, cmp);
+	while (lst && lst->next)
+		lst = lst->next;
+	return (lst);
 }
