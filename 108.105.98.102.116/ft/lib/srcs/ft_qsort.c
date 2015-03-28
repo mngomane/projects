@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lib.h                                           :+:      :+:    :+:   */
+/*   ft_qsort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/23 23:52:40 by mngomane          #+#    #+#             */
-/*   Updated: 2015/03/23 23:52:40 by mngomane         ###   ########.fr       */
+/*   Created: 2015/03/28 00:45:10 by mngomane          #+#    #+#             */
+/*   Updated: 2015/03/28 00:45:10 by mngomane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIB_H
-# define FT_LIB_H
+#include "ft_lib.h"
 
-# include "ft_string.h"
+void			ft_qsort(int *tab, size_t size)
+{
+	size_t		i;
+	size_t		j;
+	int			pivot;
+	int			tmp;
 
-int			ft_atoi(const char *str);
-char		*ft_itoa(int n);
-void		ft_msort(int *tab, size_t size);
-void		ft_qsort(int *tab, size_t size);
-
-#endif
+	if (size < 2)
+		return ;
+	i = 0;
+	j = size - 1;
+	pivot = tab[size >> 1];
+	while (42)
+	{
+		while (tab[i] < pivot)
+			i++;
+		while (pivot < tab[j])
+			j--;
+		if (i >= j)
+			break ;
+		tmp = tab[i];
+		tab[i++] = tab[j];
+		tab[j--] = tmp;
+	}
+	ft_qsort(tab, i);
+	ft_qsort(tab + i, size - i);
+}

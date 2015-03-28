@@ -38,7 +38,7 @@ void			ft_msort(int *tab, size_t size)
 	size_t		mid;
 
 	if (size < 2)
-		return;
+		return ;
 	mid = size >> 1;
 	ft_msort(tab, mid);
 	ft_msort(tab + mid, size - mid);
