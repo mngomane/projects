@@ -14,28 +14,29 @@
 
 void			qsort_int_tab(int *tab, size_t size, int (*cmp)(int, int))
 {
-	size_t		i;
-	size_t		j;
+	size_t		index[2];
 	int			pivot;
-	int			tmp;
+	int			tmp[2];
 
 	if (size < 2)
 		return ;
-	i = 0;
-	j = size - 1;
+	I = 0;
+	tmp[1] = 1;
+	J = size - 1;
 	pivot = tab[size >> 1];
-	while (42)
+	while ((tmp[1] = (I >= J ? 0 : 42)))
 	{
-		while (cmp(tab[i], pivot))
-			i++;
-		while (cmp(pivot, tab[j]))
-			j--;
-		if (i >= j)
-			break ;
-		tmp = tab[i];
-		tab[i++] = tab[j];
-		tab[j--] = tmp;
+		while (cmp(tab[I], pivot))
+			I++;
+		while (cmp(pivot, tab[J]))
+			J--;
+		if (I < J)
+		{
+			tmp[0] = tab[index[0]];
+			tab[I++] = tab[J];
+			tab[J--] = tmp[0];
+		}
 	}
-	qsort_int_tab(tab, i, cmp);
-	qsort_int_tab(tab + i, size - i, cmp);
+	qsort_int_tab(tab, I, cmp);
+	qsort_int_tab(tab + I, size - I, cmp);
 }

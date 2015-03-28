@@ -13,6 +13,9 @@
 #ifndef FT_LIB_H
 # define FT_LIB_H
 
+# define I	(index[0])
+# define J	(index[1])
+
 # include "ft_string.h"
 
 int			ft_atoi(const char *str);
