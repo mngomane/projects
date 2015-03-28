@@ -15,7 +15,7 @@
 
 # include "ft_memory.h"
 
-# define FLOOR(x)		(x / 2)
+# define FLOOR(x)		(x >> 1)
 # define CEIL(x)		(x - FLOOR(x))
 
 char		*ft_strcat(char *s1, const char *s2);
