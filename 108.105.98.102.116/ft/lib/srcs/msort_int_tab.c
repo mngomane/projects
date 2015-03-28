@@ -12,37 +12,35 @@
 
 #include "ft_lib.h"
 
-static void		merge(int *tab, size_t size, size_t mid, int (*cmp)(int, int))
+static void		merge(int *tab, size_t size, size_t med, int (*cmp)(int, int))
 {
 	int			*tmp;
 	size_t		offset;
-	size_t		i;
-	size_t		j;
-	size_t		k;
+	size_t		index[3];
 
-	i = 0;
-	j = mid;
-	k = 0;
+	I = 0;
+	J = med;
+	K = 0;
 	offset = (uintptr_t)(&tab + 1) - (uintptr_t)&tab;
 	tmp = (int *)malloc(size * offset);
-	while (k < size)
-		tmp[k++] = ((j != size && (i == mid || cmp(tab[j], tab[i]))) ?
-			tab[j++] : tab[i++]);
-	i = size;
-	while (--i)
-		tab[i] = tmp[i];
+	while (K < size)
+		tmp[K++] = ((J != size && (I == med || cmp(tab[J], tab[I]))) ?
+			tab[J++] : tab[I++]);
+	I = size;
+	while (--I)
+		tab[I] = tmp[I];
 	tab[0] = tmp[0];
 	free(tmp);
 }
 
 void			msort_int_tab(int *tab, size_t size, int (*cmp)(int, int))
 {
-	size_t		mid;
+	size_t		med;
 
 	if (size < 2)
 		return ;
-	mid = size >> 1;
-	msort_int_tab(tab, mid, cmp);
-	msort_int_tab(tab + mid, size - mid, cmp);
-	merge(tab, size, mid, cmp);
+	med = size >> 1;
+	msort_int_tab(tab, med, cmp);
+	msort_int_tab(tab + med, size - med, cmp);
+	merge(tab, size, med, cmp);
 }

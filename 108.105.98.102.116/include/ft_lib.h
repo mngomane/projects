@@ -15,6 +15,7 @@
 
 # define I	(index[0])
 # define J	(index[1])
+# define K	(index[2])
 
 # include "ft_string.h"
 
