@@ -22,7 +22,7 @@ static void		merge(int *tab, size_t size, size_t mid)
 	i = 0;
 	j = mid;
 	k = 0;
-	tmp = malloc(size * sizeof(int));
+	tmp = (int *)malloc(size * sizeof(int));
 	while (k < size)
 		tmp[k++] = ((j != size && (i == mid || tab[j] < tab[i])) ?
 			tab[j++] : tab[i++]);
