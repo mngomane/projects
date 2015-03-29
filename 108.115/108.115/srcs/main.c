@@ -24,7 +24,7 @@ static t_file	*new_file(void *path, void *name)
 	{
 		file->path = ft_strdup(path);
 		if ((file->stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
-			if (stat(".", file->stat) == -1)
+			if (stat(ft_strjoin(path, name), file->stat) == -1)
 				perror("ft_ls: stat");
 		file->name = ft_strdup(name);
 	}
@@ -46,6 +46,7 @@ static void		print_list(t_list *lst)
 {
 	while (lst)
 	{
+		ft_putendl((char *)(LVALUE(t_file *, lst)->path));
 		ft_putendl((char *)(LVALUE(t_file *, lst)->name));
 		lst = lst->next;
 	}
@@ -57,65 +58,72 @@ static int		cmp(t_list *lst1, t_list *lst2)
 			(char *)(LVALUE(t_file *, lst2)->name)) < 0);
 }
 
+static t_list	*init_lst_dot(char *dir_name, int (*cmp)(t_list *, t_list *))
+{
+	DIR				*dirp;
+	struct dirent	*dp;
+	t_list			*lst;
+	char			*tmp;
+
+	lst = (void *)0;
+	dirp = opendir(dir_name);
+	if (dirp == NULL)
+	{
+		tmp = (char *)ft_memalloc(sizeof(char) << 9);
+		tmp = ft_strcat(tmp, BIN_NAME);
+		tmp = ft_strcat(tmp, ": ");
+		tmp = ft_strcat(tmp, dir_name);
+		perror(tmp);
+		free(tmp);
+		/*(void)closedir(dirp);
+		return (dirp);*/
+	}
+	sort_lstadd(NULL, NULL, NULL);
+	while (dirp && (dp = readdir(dirp)) != NULL)
+	{
+		tmp = (!ft_strcmp(dir_name, ".") ? "" : ft_strjoin(dir_name, "/"));
+		sort_lstadd(&lst, ft_lstnew(new_file(tmp, dp->d_name), sizeof(t_file)), cmp);
+	}
+	(void)closedir(dirp);
+	return (lst);
+}
+
+/*static void		fct2(int ac, char **av, u_char flags)
+{
+
+}*/
+
+static int		fct1(int ac, char **av, u_char flags)
+{
+	t_list		*lst;
+	t_list		*lstf;
+	t_list		*lstd;
+	int			i;
+
+	i = 0;
+	(void)av, (void)flags, (void)lstf, (void)lstd;
+	if (ac < 1)
+	{
+		if ((lst = init_lst_dot(".", cmp)) == (void *)0)
+			return (-1);
+		print_list(lst);
+		ft_lstdel(&lst, del_lstf);
+	}
+	/*else
+	{
+		if ((lstf = init_lstf(".")) == (void *)0)
+			return (-1);
+	}*/
+	return (0);
+}
+
 int				main(int ac, char **av)
 {
 	u_char		flags;
 
-
-	t_list		*lstf;
-	/*t_file		tmp;*/
-
-	DIR				*dirp;
-	struct dirent	*dp;
-	size_t			len;
-	char			*error_msg;
-	char			*dir_name;
-
-
-
-
-	/*lstf = ft_lstnew(new_file("", "."), sizeof(t_file));*/
-	lstf = (void *)0;
-
-	(void)ac, (void)av;
 	flags = 0;
 	if (get_options(&ac, &av, &flags) == '?')
 		return (-1);
-	/*if (F_RECURSIVE(flags))
-		ft_putendl("flag R set!!!!");
-	if (F_ALL(flags))
-		ft_putendl("flag a set!!!!");
-	if (F_LONG(flags))
-		ft_putendl("flag l set!!!!");
-	if (F_REVERSE(flags))
-		ft_putendl("flag r set!!!!");
-	if (F_TIME(flags))
-		ft_putendl("flag t set!!!!");*/
-	dir_name = (av[1] ? av[1] : ".");
-	dirp = opendir(dir_name);
-	if (dirp == NULL)
-	{
-		error_msg = (char *)ft_memalloc(sizeof(char) << 9);
-		error_msg = ft_strcat(error_msg, BIN_NAME);
-		error_msg = ft_strcat(error_msg, ": ");
-		error_msg = ft_strcat(error_msg, dir_name);
-		perror(error_msg);
-		free(error_msg);
-		return (-1);
-	}
-	len = ft_strlen(av[1]);
-	while ((dp = readdir(dirp)) != NULL)
-	{
-		sort_lstadd(&lstf, ft_lstnew(new_file("", dp->d_name), sizeof(t_file)), cmp);
-		/*if (dp->d_namlen == len && !ft_strcmp(dp->d_name, av[1]))
-		{
-			(void)closedir(dirp);
-			ft_putendl(av[1]);
-			return (0);
-		}*/
-	}
-	print_list(lstf);
-	ft_lstdel(&lstf, del_lstf);
-	(void)closedir(dirp);
+	fct1(ac, av, flags);
 	return (0);
 }
