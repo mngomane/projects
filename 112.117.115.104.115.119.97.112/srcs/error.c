@@ -50,13 +50,15 @@ static int8_t	duplicate(int8_t *check, const char *argument)
 {
 	u_char		mask;
 	u_char		bit;
+	long		convert;
 
-	bit = (ft_atoi(argument) - MIN_INT) & 7;
+	convert = (long)ft_atoi(argument) - MIN_INT;
+	bit = convert & 7;
 	mask = (u_char)(1 << bit);
-	if (check[(ft_atoi(argument) - MIN_INT) / 8] & mask)
+	if (check[convert / 8] & mask)
 		return (DUPLICATE);
 	else
-		check[(ft_atoi(argument) - MIN_INT) / 8] ^= mask;
+		check[convert / 8] ^= mask;
 	return (OK);
 }
 
