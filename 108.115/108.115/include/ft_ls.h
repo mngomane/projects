@@ -14,6 +14,7 @@
 # define FT_LS_H
 
 # include <dirent.h>
+# include <sys/stat.h>
 # include "libft.h"
 
 # define BIN_NAME		"ft_ls"
@@ -25,7 +26,7 @@
 # define F_REVERSE(x)	(x & 0x08)
 # define F_TIME(x)		(x & 0x10)
 
-
+typedef struct stat		t_stat;
 
 typedef struct			s_lut
 {
@@ -36,6 +37,7 @@ typedef struct			s_lut
 typedef struct			s_file
 {
 	DIR					*dirp;
+	struct stat			*stat;
 	void				*path;
 	void				*name;
 	void				*type;

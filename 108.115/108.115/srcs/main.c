@@ -22,7 +22,10 @@ static t_file	*new_file(void *path, void *name)
 	(void)path;
 	if ((file = (t_file *)ft_memalloc(sizeof(t_file))) != (void *)0)
 	{
-		/*file->path = ft_strdup(path);*/
+		file->path = ft_strdup(path);
+		if ((file->stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
+			if (stat(".", file->stat) == -1)
+				perror("ft_ls: stat");
 		file->name = ft_strdup(name);
 	}
 	return (file);
@@ -32,9 +35,10 @@ static void		del_lstf(void *file, size_t size)
 {
 	size = 0;
 	free(((t_file *)file)->dirp);
+	free(((t_file *)file)->stat);
 	free(((t_file *)file)->path);
 	free(((t_file *)file)->name);
-	/*free(((t_file *)file)->path);*/
+	free(((t_file *)file)->type);
 	free(file);
 }
 
@@ -87,8 +91,8 @@ int				main(int ac, char **av)
 		ft_putendl("flag r set!!!!");
 	if (F_TIME(flags))
 		ft_putendl("flag t set!!!!");*/
-	dir_name = (av[1] ? av[1] : "");
-	dirp = opendir(".");
+	dir_name = (av[1] ? av[1] : ".");
+	dirp = opendir(dir_name);
 	if (dirp == NULL)
 	{
 		error_msg = (char *)ft_memalloc(sizeof(char) << 9);
