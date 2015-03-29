@@ -21,7 +21,9 @@
 typedef struct			s_lut
 {
 	void				*key;
-	void				(*fct)(void *);
+	void				(*fct)(void *, void *);
 }						t_lut;
+
+int						get_options(int *ac, char ***av, void *flags);
 
 #endif
