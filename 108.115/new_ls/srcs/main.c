@@ -54,19 +54,19 @@ static int		get_options(int *ac, char ***av, void *flags)
 	int			c;
 	int			i;
 
+	c = 0;
 	opti = 1;
 	lookup = init_lookup_table();
-	c = ft_getopt(*ac, *av, "Rlart", &opti);
 	while (c != -1 && c != '?')
 	{
 		i = 0;
+		c = ft_getopt(*ac, *av, "Rlart", &opti);
 		while (lookup[i].fct != (void *)0)
 		{
 			if (*((char *)lookup[i].key) == c)
 				lookup[i].fct(flags);
 			++i;
 		}
-		c = ft_getopt(*ac, *av, "Rlart", &opti);
 	}
 	*ac -= opti;
 	av += opti;
