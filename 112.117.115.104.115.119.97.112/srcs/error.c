@@ -58,7 +58,7 @@ static int8_t	duplicate(int8_t *check, const char *argument)
 	if (check[convert / 8] & mask)
 		return (DUPLICATE);
 	else
-		check[convert / 8] ^= mask;
+		check[convert / 8] |= mask;
 	return (OK);
 }
 
