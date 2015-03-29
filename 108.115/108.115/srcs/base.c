@@ -24,7 +24,7 @@ static void		dir_part(t_list **lst, u_char flags, u_char check)
 			(LVALUE(t_file *, *lst)->stat->st_mode & S_IFDIR))
 		{
 			((check & M_FIRST) ? check ^= M_FIRST : ft_putendl(""));
-			if (check & M_MOREDIR)
+			if (check & M_MOREDIR || ((check & M_ONEDIR) && (check & M_FILE)))
 				ft_printf("%s:\n", (char *)(LVALUE(t_file *, *lst)->name));
 			fdisplay(0, (void *)0, (char *)(LVALUE(t_file *, *lst)->name),
 				flags);
@@ -66,13 +66,15 @@ static t_list	*file_part(t_list *lst, u_char flags, u_char *check)
 static t_list	*finit(int ac, char **av, u_char flags)
 {
 	t_list		*lst;
+	int			(*cmp)(t_list *, t_list *);
 
 	(void)ac, (void)av, (void)flags;
 	lst = (void *)0;
+	cmp = lexical_cmp;
 	sort_lstadd((void *)0, (void *)0, (void *)0);
 	while (ac--)
 		sort_lstadd(&lst, ft_lstnew(new_file("", av[ac]), sizeof(t_file)),
-			lexical_cmp);
+			cmp);
 	return (lst);
 }
 
@@ -80,7 +82,9 @@ int				fdisplay(int ac, char **av, char *name, u_char flags)
 {
 	t_list		*lst;
 	u_char		check;
+	int			(*cmp)(t_list *, t_list *);
 
+	cmp = lexical_cmp;
 	if (ac < 1)
 	{
 		if ((lst = ilst(name, lexical_cmp)) == (void *)0)
