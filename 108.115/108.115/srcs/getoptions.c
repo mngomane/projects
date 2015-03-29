@@ -33,7 +33,8 @@ static void		set_flag(void *flags, void *i)
 	copy = (u_char *)flags;
 	bit = (u_char)(*(int *)i);
 	mask = (u_char)(1 << bit);
-	*copy ^= mask;
+	if (!(*copy & mask))
+		*copy ^= mask;
 }
 
 static t_lut	*init_lookup_table(void)
@@ -78,7 +79,7 @@ int				get_options(int *ac, char ***av, void *flags)
 		}
 	}
 	*ac -= opt_i;
-	av += opt_i;
+	*av += opt_i;
 	free(lookup);
 	return (c);
 }

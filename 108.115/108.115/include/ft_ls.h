@@ -36,11 +36,11 @@ typedef struct			s_lut
 
 typedef struct			s_file
 {
-	DIR					*dirp;
+	/*DIR					*dirp;*/
 	struct stat			*stat;
-	void				*path;
+	/*void				*path;*/
 	void				*name;
-	void				*type;
+	/*void				*type;*/
 }						t_file;
 
 int						get_options(int *ac, char ***av, void *flags);
