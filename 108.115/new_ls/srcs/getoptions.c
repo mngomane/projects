@@ -34,7 +34,6 @@ static void		set_flag(void *flags, void *i)
 	bit = (u_char)(*(int *)i);
 	mask = (u_char)(1 << bit);
 	*copy ^= mask;
-	write(1, "OK!\n", 4);
 }
 
 static t_lut	*init_lookup_table(void)
@@ -44,9 +43,9 @@ static t_lut	*init_lookup_table(void)
 	lookup = (t_lut *)ft_memalloc(sizeof(t_lut) << 3);
 	lookup[0].key = "R";
 	lookup[0].fct = set_flag;
-	lookup[1].key = "l";
+	lookup[1].key = "a";
 	lookup[1].fct = set_flag;
-	lookup[2].key = "a";
+	lookup[2].key = "l";
 	lookup[2].fct = set_flag;
 	lookup[3].key = "r";
 	lookup[3].fct = set_flag;
@@ -70,7 +69,7 @@ int				get_options(int *ac, char ***av, void *flags)
 	while (c != -1 && c != '?')
 	{
 		i = 0;
-		c = ft_getopt(*ac, *av, "Rlart", &opti);
+		c = ft_getopt(*ac, *av, "Ralrt", &opti);
 		while (lookup[i].fct != (void *)0)
 		{
 			if (*((char *)lookup[i].key) == c)
