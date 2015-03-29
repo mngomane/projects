@@ -17,9 +17,9 @@ void	sort_lstadd(t_list **root, t_list *new, int (*cmp)(t_list *, t_list *))
 	static t_list	*end;
 
 	end = (root ? end : (void *)0);
-	if (!new || !root || !*root)
+	if (!new || !root)
 		return ;
-	if (cmp(new, *root))
+	if (!*root || cmp(new, *root))
 		ft_lstadd(root, new);
 	else if ((end && !cmp(new, end)) || !(*root)->next)
 	{

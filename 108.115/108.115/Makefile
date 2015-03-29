@@ -40,7 +40,7 @@ INCS = -Iinclude -Ilibft/include
 all: $(OBJSDIR) $(NAME) check
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(LIBDIR) unix
+	@$(MAKE) -C $(LIBDIR)
 	$(CXX) $(FLAGS) $(LIB) $(INCS) -o $(NAME) $^
 
 $(OBJSDIR):

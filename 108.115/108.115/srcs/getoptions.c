@@ -21,7 +21,7 @@ static void		display_usage(void *flags, void *i)
 	index = (int *)i;
 	*copy = 0;
 	*index = *index;
-	ft_puterr(LS_USAGE);
+	ft_puterr(BIN_USAGE);
 }
 
 static void		set_flag(void *flags, void *i)
@@ -59,17 +59,17 @@ static t_lut	*init_lookup_table(void)
 int				get_options(int *ac, char ***av, void *flags)
 {
 	t_lut		*lookup;
-	int			opti;
+	int			opt_i;
 	int			c;
 	int			i;
 
 	c = 0;
-	opti = 1;
+	opt_i = 1;
 	lookup = init_lookup_table();
 	while (c != -1 && c != '?')
 	{
 		i = 0;
-		c = ft_getopt(*ac, *av, "Ralrt", &opti);
+		c = ft_getopt(*ac, *av, "Ralrt", &opt_i);
 		while (lookup[i].fct != (void *)0)
 		{
 			if (*((char *)lookup[i].key) == c)
@@ -77,8 +77,8 @@ int				get_options(int *ac, char ***av, void *flags)
 			++i;
 		}
 	}
-	*ac -= opti;
-	av += opti;
+	*ac -= opt_i;
+	av += opt_i;
 	free(lookup);
 	return (c);
 }
