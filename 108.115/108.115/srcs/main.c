@@ -22,5 +22,13 @@ int				main(int ac, char **av)
 		return (-1);
 	if (flags & 0x01)
 		ft_putendl("flag R set!!!!");
+	if (flags & 0x02)
+		ft_putendl("flag a set!!!!");
+	if (flags & 0x04)
+		ft_putendl("flag l set!!!!");
+	if (flags & 0x08)
+		ft_putendl("flag r set!!!!");
+	if (flags & 0x10)
+		ft_putendl("flag t set!!!!");
 	return (0);
 }
