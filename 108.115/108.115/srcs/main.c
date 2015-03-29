@@ -27,7 +27,6 @@ static t_file	*new_file(void *path, void *name)
 		{
 			if (stat(ft_strjoin(path, name), file->stat) == -1)
 			{
-				ft_putendl("NEWFILE");
 				free(file->stat);
 				file->stat = (void *)0;
 				ft_puterr(BIN_NAME);
@@ -128,8 +127,10 @@ static void		fct4(t_list **lst, u_char flags)
 static t_list	*fct3(t_list *lst, u_char flags)
 {
 	t_list		*save;
+	int			dir;
 
 	(void)flags;
+	dir = 0;
 	save = lst;
 	while (lst)
 	{
@@ -141,9 +142,12 @@ static t_list	*fct3(t_list *lst, u_char flags)
 				F_ALL(flags)))
 				ft_putendl((char *)(LVALUE(t_file *, lst)->name));
 		}
+		else if (LVALUE(t_file *, lst)->stat != (void *)0 && !dir)
+			dir = 1;
 		lst = lst->next;
 	}
 	lst = save;
+	(dir ? ft_putendl("") : 0);
 	return (lst);
 }
 
