@@ -21,7 +21,7 @@
 typedef struct			s_lut
 {
 	void				*key;
-	void				(*fct)(void);
+	void				(*fct)(void *);
 }						t_lut;
 
 #endif

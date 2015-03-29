@@ -12,13 +12,18 @@
 
 #include "ft_ls.h"
 
-static void		display_usage(void)
+static void		display_usage(void *flags)
 {
+	char		*copy;
+
+	copy = (char *)flags;
+	*copy = 0;
 	ft_puterr(LS_USAGE);
 }
 
-static void		display_ok(void)
+static void		display_ok(void *flags)
 {
+	(void)flags;
 	write(1, "OK!\n", 4);
 }
 
@@ -42,7 +47,7 @@ static t_lut	*init_lookup_table(void)
 	return (lookup);
 }
 
-static int		get_options(int *ac, char ***av)
+static int		get_options(int *ac, char ***av, void *flags)
 {
 	t_lut		*lookup;
 	int			opti;
@@ -58,7 +63,7 @@ static int		get_options(int *ac, char ***av)
 		while (lookup[i].fct != (void *)0)
 		{
 			if (*((char *)lookup[i].key) == c)
-				lookup[i].fct();
+				lookup[i].fct(flags);
 			++i;
 		}
 		c = ft_getopt(*ac, *av, "Rlart", &opti);
@@ -71,8 +76,11 @@ static int		get_options(int *ac, char ***av)
 
 int				main(int ac, char **av)
 {
+	char		flags;
+
 	(void)ac, (void)av;
-	if (get_options(&ac, &av) == '?')
+	flags = 0;
+	if (get_options(&ac, &av, &flags) == '?')
 		return (-1);
 	return (0);
 }
