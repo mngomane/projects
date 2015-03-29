@@ -44,6 +44,12 @@
 
 # define BF_LIMIT	5
 
+typedef struct		s_lut
+{
+	void			*key;
+	int8_t			(*fct)(const char *);
+}					t_lut;
+
 typedef struct		s_stack
 {
 	int				*value;

@@ -18,15 +18,7 @@ LIBDIR = libft/
 
 NAME = push_swap
 
-SRCS = main.c\
-		brute.c\
-		bubble.c\
-		display.c\
-		error.c\
-		options.c\
-		push.c\
-		rotate.c\
-		swap.c
+SRCS = $(notdir $(shell grep -rl . $(SRCSDIR)))
 
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 

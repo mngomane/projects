@@ -52,22 +52,7 @@ static int8_t	duplicate(int8_t *check, const char *argument)
 	u_char		bit;
 
 	bit = (ft_atoi(argument) - MIN_INT) % 8;
-	if (bit == 0)
-		mask = 0x01;
-	else if (bit == 1)
-		mask = 0x02;
-	else if (bit == 2)
-		mask = 0x04;
-	else if (bit == 3)
-		mask = 0x08;
-	else if (bit == 4)
-		mask = 0x10;
-	else if (bit == 5)
-		mask = 0x20;
-	else if (bit == 6)
-		mask = 0x40;
-	else
-		mask = 0x80;
+	mask = (u_char)(1 << bit);
 	if (check[(ft_atoi(argument) - MIN_INT) / 8] & mask)
 		return (DUPLICATE);
 	else
@@ -75,19 +60,36 @@ static int8_t	duplicate(int8_t *check, const char *argument)
 	return (OK);
 }
 
+static t_lut	*init_lookup_table(void)
+{
+	t_lut		*lookup;
+	int8_t		ret;
+
+	ret = OK;
+	lookup = (t_lut *)ft_memalloc(sizeof(t_lut) << 1);
+	lookup[0].key = &ret;
+	lookup[0].fct = not_a_number;
+	return (lookup);
+}
+
 int8_t			error_found(int ac, char **av)
 {
+	t_lut		*lookup;
 	int8_t		*dup_check;
 	int8_t		ret;
 	int			index;
+	int			i;
 
 	index = 1;
 	ret = OK;
 	dup_check = (int8_t *)ft_memalloc(sizeof(int8_t) * (MAX_UINT / 8 + 2));
+	lookup = init_lookup_table();
 	while (index < ac && ret == OK)
 	{
-		if (ret == OK)
-			ret = not_a_number(av[index]);
+		i = 0;
+		while (lookup[i].fct != (void *)0)
+			(*((int8_t *)lookup[i].key) == OK ?
+				lookup[i++].fct(av[index]) : i++);
 		if (ret == OK)
 			ret = not_an_int(av[index]);
 		if (ret == OK && dup_check)
@@ -95,5 +97,6 @@ int8_t			error_found(int ac, char **av)
 		++index;
 	}
 	free(dup_check);
+	free(lookup);
 	return (ret);
 }
