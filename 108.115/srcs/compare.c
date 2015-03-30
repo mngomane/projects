@@ -14,32 +14,42 @@
 
 int			rtime_cmp(t_list *lst1, t_list *lst2)
 {
-	if (LVALUE(t_file *, lst1)->stat->st_mtimespec.tv_sec ==
-		LVALUE(t_file *, lst2)->stat->st_mtimespec.tv_sec)
-		return (LVALUE(t_file *, lst1)->stat->st_mtimespec.tv_nsec <
-				LVALUE(t_file *, lst2)->stat->st_mtimespec.tv_nsec );
-	return (LVALUE(t_file *, lst1)->stat->st_mtimespec.tv_sec <
-				LVALUE(t_file *, lst2)->stat->st_mtimespec.tv_sec );
+	time_t		sec1;
+	time_t		sec2;
+	long		nsec1;
+	long		nsec2;
+
+	sec1 = LSTAT(lst1)->st_mtimespec.tv_sec;
+	sec2 = LSTAT(lst2)->st_mtimespec.tv_sec;
+	nsec1 = LSTAT(lst1)->st_mtimespec.tv_nsec;
+	nsec2 = LSTAT(lst2)->st_mtimespec.tv_nsec;
+	if (sec1 == sec2)
+		return (nsec1 < nsec2);
+	return (sec1 < sec2);
 }
 
 int			time_cmp(t_list *lst1, t_list *lst2)
 {
-	if (LVALUE(t_file *, lst1)->stat->st_mtimespec.tv_sec ==
-		LVALUE(t_file *, lst2)->stat->st_mtimespec.tv_sec)
-		return (LVALUE(t_file *, lst1)->stat->st_mtimespec.tv_nsec >
-				LVALUE(t_file *, lst2)->stat->st_mtimespec.tv_nsec );
-	return (LVALUE(t_file *, lst1)->stat->st_mtimespec.tv_sec >
-				LVALUE(t_file *, lst2)->stat->st_mtimespec.tv_sec );
+	time_t		sec1;
+	time_t		sec2;
+	long		nsec1;
+	long		nsec2;
+
+	sec1 = LSTAT(lst1)->st_mtimespec.tv_sec;
+	sec2 = LSTAT(lst2)->st_mtimespec.tv_sec;
+	nsec1 = LSTAT(lst1)->st_mtimespec.tv_nsec;
+	nsec2 = LSTAT(lst2)->st_mtimespec.tv_nsec;
+	if (sec1 == sec2)
+		return (nsec1 > nsec2);
+	return (sec1 > sec2);
 }
 
 int			reverse_cmp(t_list *lst1, t_list *lst2)
 {
-	return (ft_strcmp((char *)(LVALUE(t_file *, lst1)->name),
-			(char *)(LVALUE(t_file *, lst2)->name)) > 0);
+	return (ft_strcmp(LNAME(lst1), LNAME(lst2)) > 0);
 }
 
 int			lexical_cmp(t_list *lst1, t_list *lst2)
 {
-	return (ft_strcmp((char *)(LVALUE(t_file *, lst1)->name),
-			(char *)(LVALUE(t_file *, lst2)->name)) < 0);
+	return (ft_strcmp(LNAME(lst1), LNAME(lst2)) < 0);
 }

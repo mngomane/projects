@@ -14,6 +14,8 @@
 # define FT_LS_H
 
 # include <dirent.h>
+# include <grp.h>
+# include <pwd.h>
 # include <sys/stat.h>
 # include "libft.h"
 
@@ -31,6 +33,14 @@
 # define M_MOREDIR		0x04
 # define M_FIRST		0x08
 
+# define LGROUP(x)		((t_group *)LVALUE(t_file *, x)->group)
+# define LLINK(x)		((char *)LVALUE(t_file *, x)->link)
+# define LNAME(x)		((char *)LVALUE(t_file *, x)->name)
+# define LPASS(x)		((t_passwd *)LVALUE(t_file *, x)->passwd)
+# define LSTAT(x)		((t_stat *)LVALUE(t_file *, x)->stat)
+
+typedef struct group	t_group;
+typedef struct passwd	t_passwd;
 typedef struct stat		t_stat;
 
 typedef struct			s_lut
@@ -41,8 +51,11 @@ typedef struct			s_lut
 
 typedef struct			s_file
 {
+	struct group		*group;
+	struct passwd		*passwd;
 	struct stat			*stat;
 	void				*name;
+	void				*link;
 }						t_file;
 
 void					del_lst(void *file, size_t size);

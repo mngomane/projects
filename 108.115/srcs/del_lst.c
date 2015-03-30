@@ -15,7 +15,8 @@
 void			del_lst(void *file, size_t size)
 {
 	size = 0;
-	free(((t_file *)file)->stat);
+	free(((t_file *)file)->link);
 	free(((t_file *)file)->name);
+	free(((t_file *)file)->stat);
 	free(file);
 }

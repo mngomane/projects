@@ -27,9 +27,11 @@ static char		*iforest(mode_t mode)
 		return ("b");
 	if (S_ISSOCK(mode))
 		return ("s");
-	if (S_ISDOOR(mode))
+	if (S_ISWHT(mode))
 		return ("D");
-	return ("-");
+	if (S_ISREG(mode))
+		return ("-");
+	return ("?");
 }
 
 char			*init_time(t_stat *cstat)

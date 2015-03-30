@@ -20,14 +20,12 @@ static void		dir_part(t_list **lst, u_char flags, u_char check)
 	save = *lst;
 	while (*lst)
 	{
-		if (LVALUE(t_file *, *lst)->stat != (void *)0 &&
-			(LVALUE(t_file *, *lst)->stat->st_mode & S_IFDIR))
+		if (LSTAT(*lst) != (void *)0 && (LSTAT(*lst)->st_mode & S_IFDIR))
 		{
 			((check & M_FIRST) ? check ^= M_FIRST : ft_putendl(""));
 			if (check & M_MOREDIR || ((check & M_ONEDIR) && (check & M_FILE)))
-				ft_printf("%s:\n", (char *)(LVALUE(t_file *, *lst)->name));
-			fdisplay(0, (void *)0, (char *)(LVALUE(t_file *, *lst)->name),
-				flags);
+				ft_printf("%s:\n", LNAME(*lst));
+			fdisplay(0, (void *)0, LNAME(*lst), flags);
 		}
 		*lst = (*lst)->next;
 	}
@@ -42,19 +40,15 @@ static t_list	*file_part(t_list *lst, u_char flags, u_char *check)
 	save = lst;
 	while (lst)
 	{
-		if (LVALUE(t_file *, lst)->stat != (void *)0 &&
-			!(LVALUE(t_file *, lst)->stat->st_mode & S_IFDIR))
+		if (LSTAT(lst) != (void *)0 && !(LSTAT(lst)->st_mode & S_IFDIR))
 		{
-			if (((char *)LVALUE(t_file *, lst)->name)[0] != '.' ||
-				(((char *)LVALUE(t_file *, lst)->name)[0] == '.' &&
-				F_ALL(flags)))
+			if (LNAME(lst)[0] != '.' || (LNAME(lst)[0] == '.' && F_ALL(flags)))
 			{
 				*check |= M_FILE;
-				(F_LONG(flags) ? putendlong(lst) :
-					ft_putendl((char *)(LVALUE(t_file *, lst)->name)));
+				(F_LONG(flags) ? putendlong(lst) : ft_putendl(LNAME(lst)));
 			}
 		}
-		else if (LVALUE(t_file *, lst)->stat != (void *)0)
+		else if (LSTAT(lst) != (void *)0)
 			*check |= ((*check & M_ONEDIR) ? M_MOREDIR : M_ONEDIR);
 		lst = lst->next;
 	}
