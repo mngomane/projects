@@ -5,28 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mngomane <mngomane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/03/10 04:09:10 by mngomane          #+#    #+#              #
-#    Updated: 2015/03/10 04:09:10 by mngomane         ###   ########.fr        #
+#    Created: 2015/03/26 23:34:04 by mngomane          #+#    #+#              #
+#    Updated: 2015/03/26 23:34:04 by mngomane         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 OBJSDIR = bins/
+
 SRCSDIR = srcs/
+
 LIBDIR = libft/
 
 NAME = ft_ls
 
 SRCS = $(notdir $(shell grep -rl . $(SRCSDIR)))
+
 OBJS = $(addprefix $(OBJSDIR), $(SRCS:%.c=%.o))
 
 CXX = gcc
+
 CC = /usr/bin/clang
 
 FLAGS = -Wall -Wextra -Werror
+
 HARDCORESFLAGS = -Weverything -Wextra -Werror -Wall -pedantic-errors -std=c89
 
 LIB = -Llibft -lft
-LIBARG = ft_printf
+
 INCS = -Iinclude -Ilibft/include
 
 
@@ -35,7 +40,7 @@ INCS = -Iinclude -Ilibft/include
 all: $(OBJSDIR) $(NAME) check
 
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(LIBDIR) $(LIBARG)
+	@$(MAKE) -C $(LIBDIR)
 	$(CXX) $(FLAGS) $(LIB) $(INCS) -o $(NAME) $^
 
 $(OBJSDIR):
