@@ -58,7 +58,6 @@ char					*init_time(t_stat *cstat);
 int						lexical_cmp(t_list *lst1, t_list *lst2);
 t_file					*new_file(void *path, void *name);
 void					print_lst(t_list *lst, u_char flags);
-/*void					printl_lst(t_list *lst, u_char flags);*/
 void					putendlong(t_list *lst);
 int						reverse_cmp(t_list *lst1, t_list *lst2);
 int						time_cmp(t_list *lst1, t_list *lst2);

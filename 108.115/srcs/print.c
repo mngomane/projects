@@ -29,18 +29,6 @@ void			putendlong(t_list *lst)
 	free(tmp);
 }
 
-/*void			printl_lst(t_list *lst, u_char flags)
-{
-	while (lst)
-	{
-		if (((char *)LVALUE(t_file *, lst)->name)[0] != '.' ||
-			(((char *)LVALUE(t_file *, lst)->name)[0] == '.' &&
-			F_ALL(flags)))
-			putendlong(lst);
-		lst = lst->next;
-	}
-}*/
-
 void			print_lst(t_list *lst, u_char flags)
 {
 	while (lst)

@@ -16,10 +16,8 @@ t_file			*new_file(void *path, void *name)
 {
 	t_file		*file;
 
-	/*(void)path;*/
 	if ((file = (t_file *)ft_memalloc(sizeof(t_file))) != (void *)0)
 	{
-		/*file->path = ft_strdup(path);*/
 		if ((file->stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
 		{
 			if (stat(ft_strjoin(path, name), file->stat) == -1)
