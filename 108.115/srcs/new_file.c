@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "ft_ls.h"
 
 t_file			*new_file(void *path, void *name, u_char flags)

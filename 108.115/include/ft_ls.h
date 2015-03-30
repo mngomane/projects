@@ -14,11 +14,7 @@
 # define FT_LS_H
 
 # include <dirent.h>
-# include <grp.h>
-# include <pwd.h>
-# include <stdio.h>
 # include <sys/stat.h>
-# include <time.h>
 # include "libft.h"
 
 # define BIN_NAME		"ft_ls"

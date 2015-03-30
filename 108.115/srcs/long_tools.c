@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <time.h>
 #include "ft_ls.h"
 
 static char		*iforest(mode_t mode)

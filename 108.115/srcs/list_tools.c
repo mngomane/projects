@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "ft_ls.h"
 
 t_list			*ilst(char *name, int (*cmp)(t_list *, t_list *), u_char flags)
