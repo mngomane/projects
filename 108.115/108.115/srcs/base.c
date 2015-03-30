@@ -51,7 +51,10 @@ static t_list	*file_part(t_list *lst, u_char flags, u_char *check)
 				F_ALL(flags)))
 			{
 				*check |= M_FILE;
-				ft_putendl((char *)(LVALUE(t_file *, lst)->name));
+				if (F_LONG(flags))
+					putendlong(lst);
+				else
+					ft_putendl((char *)(LVALUE(t_file *, lst)->name));
 			}
 		}
 		else if (LVALUE(t_file *, lst)->stat != (void *)0)
@@ -99,10 +102,10 @@ int				fdisplay(int ac, char **av, char *name, u_char flags)
 	{
 		if ((lst = ilst(name, cmp)) == (void *)0)
 			return (-1);
-		if (F_LONG(flags))
+		/*if (F_LONG(flags))
 			printl_lst(lst, flags);
-		else
-			print_lst(lst, flags);
+		else*/
+		print_lst(lst, flags);
 		ft_lstdel(&lst, del_lst);
 	}
 	else
