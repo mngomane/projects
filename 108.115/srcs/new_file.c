@@ -16,12 +16,13 @@
 t_file			*new_file(void *path, void *name, u_char flags)
 {
 	t_file		*file;
+	int			(*ft_stat)(const char *, struct stat *);
 
 	if ((file = (t_file *)ft_memalloc(sizeof(t_file))) != (void *)0)
 	{
 		if ((file->stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
 		{
-			if (!F_LONG(flags) ||
+			/*if (!F_LONG(flags) ||
 				(lstat(ft_strjoin(path, name), file->stat) == -1))
 			{
 				if (stat(ft_strjoin(path, name), file->stat) == -1)
@@ -32,6 +33,15 @@ t_file			*new_file(void *path, void *name, u_char flags)
 					ft_puterr(": ");
 					perror(name);
 				}
+			}*/
+			ft_stat = (F_LONG(flags) ? lstat : stat);
+			if (ft_stat(ft_strjoin(path, name), file->stat) == -1)
+			{
+				free(file->stat);
+				file->stat = (void *)0;
+				ft_puterr(BIN_NAME);
+				ft_puterr(": ");
+				perror(name);
 			}
 		}
 		file->name = ft_strdup(name);

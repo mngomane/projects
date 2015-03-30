@@ -27,6 +27,8 @@ static char		*iforest(mode_t mode)
 		return ("b");
 	if (S_ISSOCK(mode))
 		return ("s");
+	if (S_ISDOOR(mode))
+		return ("D");
 	return ("-");
 }
 
