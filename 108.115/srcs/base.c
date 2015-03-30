@@ -39,7 +39,6 @@ static t_list	*file_part(t_list *lst, u_char flags, u_char *check)
 {
 	t_list		*save;
 
-	(void)flags;
 	save = lst;
 	while (lst)
 	{
@@ -51,10 +50,8 @@ static t_list	*file_part(t_list *lst, u_char flags, u_char *check)
 				F_ALL(flags)))
 			{
 				*check |= M_FILE;
-				if (F_LONG(flags))
-					putendlong(lst);
-				else
-					ft_putendl((char *)(LVALUE(t_file *, lst)->name));
+				(F_LONG(flags) ? putendlong(lst) :
+					ft_putendl((char *)(LVALUE(t_file *, lst)->name)));
 			}
 		}
 		else if (LVALUE(t_file *, lst)->stat != (void *)0)
@@ -86,8 +83,8 @@ static t_list	*finit(int ac, char **av, u_char flags)
 	cmp = iforest(flags);
 	sort_lstadd((void *)0, (void *)0, (void *)0);
 	while (ac--)
-		sort_lstadd(&lst, ft_lstnew(new_file("", av[ac]), sizeof(t_file)),
-			cmp);
+		sort_lstadd(&lst, ft_lstnew(new_file("", av[ac], flags),
+									sizeof(t_file)), cmp);
 	return (lst);
 }
 
@@ -100,7 +97,7 @@ int				fdisplay(int ac, char **av, char *name, u_char flags)
 	cmp = iforest(flags);
 	if (ac < 1)
 	{
-		if ((lst = ilst(name, cmp)) == (void *)0)
+		if ((lst = ilst(name, cmp, flags)) == (void *)0)
 			return (-1);
 		print_lst(lst, flags);
 		ft_lstdel(&lst, del_lst);

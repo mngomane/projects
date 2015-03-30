@@ -50,15 +50,16 @@ typedef struct			s_file
 }						t_file;
 
 void					del_lst(void *file, size_t size);
-void					display_rights(t_stat *cstat);
+ssize_t					display_rights(t_stat *cstat);
 int						fdisplay(int ac, char **av, char *name, u_char flags);
 int						get_options(int *ac, char ***av, void *flags);
-t_list					*ilst(char *dir_name, int (*cmp)(t_list *, t_list *));
+t_list					*ilst(char *name, int (*cmp)(t_list *, t_list *),
+							u_char flags);
 char					*init_time(t_stat *cstat);
 int						lexical_cmp(t_list *lst1, t_list *lst2);
-t_file					*new_file(void *path, void *name);
+t_file					*new_file(void *path, void *name, u_char flags);
 void					print_lst(t_list *lst, u_char flags);
-void					putendlong(t_list *lst);
+int						putendlong(t_list *lst);
 int						reverse_cmp(t_list *lst1, t_list *lst2);
 int						time_cmp(t_list *lst1, t_list *lst2);
 int						rtime_cmp(t_list *lst1, t_list *lst2);

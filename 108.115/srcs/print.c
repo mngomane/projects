@@ -10,23 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_ls.h"
 
-void			putendlong(t_list *lst)
+int			putendlong(t_list *lst)
 {
 	t_stat		*cstat;
 	char		*tmp;
+	ssize_t		ret;
 
+	ret = 0;
 	cstat = LVALUE(t_file *, lst)->stat;
 	tmp = init_time(cstat);
-	display_rights(cstat);
-	ft_printf("  %2ld", cstat->st_nlink);
-	ft_printf(" %s", getpwuid(cstat->st_uid)->pw_name);
-	ft_printf(" %s", getgrgid(cstat->st_gid)->gr_name);
-	ft_printf(" %5ld", cstat->st_size);
-	ft_printf(" %s", tmp);
-	ft_printf(" %s\n", (char *)(LVALUE(t_file *, lst)->name));
+	ret += display_rights(cstat);
+	ret += ft_printf("  %2ld", cstat->st_nlink);
+	ret += ft_printf(" %s", getpwuid(cstat->st_uid)->pw_name);
+	ret += ft_printf(" %s", getgrgid(cstat->st_gid)->gr_name);
+	ret += ft_printf("  %5ld", cstat->st_size);
+	ret += ft_printf(" %s", tmp);
+	ret += ft_printf(" %s", (char *)(LVALUE(t_file *, lst)->name));
 	free(tmp);
+	if (S_ISLNK(cstat->st_mode))
+	{
+		tmp = ft_memalloc(sizeof(char) << 9);
+		readlink((char *)(LVALUE(t_file *, lst)->name), tmp, 1 << 9);
+		ret += ft_printf(" -> %s", tmp);
+		free(tmp);
+	}
+	ret += write(1, "\n", 1);
+	return ((int)ret);
 }
 
 void			print_lst(t_list *lst, u_char flags)

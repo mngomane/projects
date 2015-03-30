@@ -14,19 +14,17 @@
 
 static char		*iforest(mode_t mode)
 {
-	if (mode & S_IFREG)
-		return ("-");
-	if (mode & S_IFLNK)
+	if (S_ISLNK(mode))
 		return ("l");
-	if (mode & S_IFCHR)
+	if (S_ISCHR(mode))
 		return ("c");
-	if (mode & S_IFIFO)
+	if (S_ISFIFO(mode))
 		return ("p");
-	if (mode & S_IFDIR)
+	if (S_ISDIR(mode))
 		return ("d");
-	if (mode & S_IFBLK)
+	if (S_ISBLK(mode))
 		return ("b");
-	if (mode & S_IFSOCK)
+	if (S_ISSOCK(mode))
 		return ("s");
 	return ("-");
 }
@@ -49,16 +47,20 @@ char			*init_time(t_stat *cstat)
 	return (new_time);
 }
 
-void			display_rights(t_stat *cstat)
+ssize_t			display_rights(t_stat *cstat)
 {
-	write(1, iforest(cstat->st_mode), 1);
-	write(1, (cstat->st_mode & S_IRUSR) ? "r" : "-", 1);
-	write(1, (cstat->st_mode & S_IWUSR) ? "w" : "-", 1);
-	write(1, (cstat->st_mode & S_IXUSR) ? "x" : "-", 1);
-	write(1, (cstat->st_mode & S_IRGRP) ? "r" : "-", 1);
-	write(1, (cstat->st_mode & S_IWGRP) ? "w" : "-", 1);
-	write(1, (cstat->st_mode & S_IXGRP) ? "x" : "-", 1);
-	write(1, (cstat->st_mode & S_IROTH) ? "r" : "-", 1);
-	write(1, (cstat->st_mode & S_IWOTH) ? "w" : "-", 1);
-	write(1, (cstat->st_mode & S_IXOTH) ? "x" : "-", 1);
+	ssize_t		ret;
+
+	ret = 0;
+	ret += write(1, iforest(cstat->st_mode), 1);
+	ret += write(1, (cstat->st_mode & S_IRUSR) ? "r" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IWUSR) ? "w" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IXUSR) ? "x" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IRGRP) ? "r" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IWGRP) ? "w" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IXGRP) ? "x" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IROTH) ? "r" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IWOTH) ? "w" : "-", 1);
+	ret += write(1, (cstat->st_mode & S_IXOTH) ? "x" : "-", 1);
+	return (ret);
 }

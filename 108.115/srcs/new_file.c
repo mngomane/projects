@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-t_file			*new_file(void *path, void *name)
+t_file			*new_file(void *path, void *name, u_char flags)
 {
 	t_file		*file;
 
@@ -20,13 +20,17 @@ t_file			*new_file(void *path, void *name)
 	{
 		if ((file->stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
 		{
-			if (stat(ft_strjoin(path, name), file->stat) == -1)
+			if (!F_LONG(flags) ||
+				(lstat(ft_strjoin(path, name), file->stat) == -1))
 			{
-				free(file->stat);
-				file->stat = (void *)0;
-				ft_puterr(BIN_NAME);
-				ft_puterr(": ");
-				perror(name);
+				if (stat(ft_strjoin(path, name), file->stat) == -1)
+				{
+					free(file->stat);
+					file->stat = (void *)0;
+					ft_puterr(BIN_NAME);
+					ft_puterr(": ");
+					perror(name);
+				}
 			}
 		}
 		file->name = ft_strdup(name);
