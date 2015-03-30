@@ -99,7 +99,10 @@ int				fdisplay(int ac, char **av, char *name, u_char flags)
 	{
 		if ((lst = ilst(name, cmp)) == (void *)0)
 			return (-1);
-		print_lst(lst, flags);
+		if (F_LONG(flags))
+			printl_lst(lst, flags);
+		else
+			print_lst(lst, flags);
 		ft_lstdel(&lst, del_lst);
 	}
 	else

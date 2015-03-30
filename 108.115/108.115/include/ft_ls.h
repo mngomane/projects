@@ -42,11 +42,8 @@ typedef struct			s_lut
 
 typedef struct			s_file
 {
-	/*DIR					*dirp;*/
 	struct stat			*stat;
-	/*void				*path;*/
 	void				*name;
-	/*void				*type;*/
 }						t_file;
 
 void					del_lst(void *file, size_t size);
@@ -59,5 +56,7 @@ void					print_lst(t_list *lst, u_char flags);
 int						reverse_cmp(t_list *lst1, t_list *lst2);
 int						time_cmp(t_list *lst1, t_list *lst2);
 int						rtime_cmp(t_list *lst1, t_list *lst2);
+
+void					printl_lst(t_list *lst, u_char flags);
 
 #endif
