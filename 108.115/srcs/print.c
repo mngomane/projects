@@ -20,14 +20,14 @@ int			putendlong(t_list *lst)
 	ret = 0;
 	tmp = init_time(LSTAT(lst));
 	ret += display_rights(LSTAT(lst));
-	ret += ft_printf("  %2ld", LSTAT(lst)->st_nlink);
+	ret += ft_printf("%4ld", LSTAT(lst)->st_nlink);
 	ret += ft_printf(" %s", LPASS(lst)->pw_name);
 	ret += ft_printf(" %s", LGROUP(lst)->gr_name);
 	if (S_ISCHR(LSTAT(lst)->st_mode) || S_ISBLK(LSTAT(lst)->st_mode))
-		ret += ft_printf("  %5u, %3u", major(LSTAT(lst)->st_rdev),
+		ret += ft_printf("%7u, %3u", major(LSTAT(lst)->st_rdev),
 							minor(LSTAT(lst)->st_rdev));
 	else
-		ret += ft_printf("  %5ld", LSTAT(lst)->st_size);
+		ret += ft_printf("%7ld", LSTAT(lst)->st_size);
 	ret += ft_printf(" %s", tmp);
 	ret += ft_printf(" %s", LNAME(lst));
 	free(tmp);

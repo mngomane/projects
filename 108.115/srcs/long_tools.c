@@ -13,23 +13,6 @@
 #include <time.h>
 #include "ft_ls.h"
 
-static char		*iforest(mode_t mode)
-{
-	if (S_ISLNK(mode))
-		return ("l");
-	if (S_ISCHR(mode))
-		return ("c");
-	if (S_ISFIFO(mode))
-		return ("P");
-	if (S_ISDIR(mode))
-		return ("d");
-	if (S_ISBLK(mode))
-		return ("b");
-	if (S_ISSOCK(mode))
-		return ("s");
-	return ("-");
-}
-
 char			*init_time(t_stat *cstat)
 {
 	size_t		index;
@@ -53,56 +36,15 @@ ssize_t			display_rights(t_stat *cstat)
 	ssize_t		ret;
 
 	ret = 0;
-	ret += write(1, iforest(cstat->st_mode), 1);
+	ret += write(1, entry_type(cstat->st_mode), 1);
 	ret += write(1, (cstat->st_mode & S_IRUSR) ? "r" : "-", 1);
 	ret += write(1, (cstat->st_mode & S_IWUSR) ? "w" : "-", 1);
-
-
-
-	/*ret += write(1, (cstat->st_mode & S_IXUSR) ? "x" : "-", 1);*/
-	if (!(cstat->st_mode & S_IXUSR) && (cstat->st_mode & S_ISUID))
-		ret += write(1, "S", 1);
-	else if ((cstat->st_mode & S_IXUSR) && (cstat->st_mode & S_ISUID))
-		ret += write(1, "s", 1);
-	else if ((cstat->st_mode & S_IXUSR))
-		ret += write(1, "x", 1);
-	else
-		ret += write(1, "-", 1);
-
-
-
+	ret += write(1, owner_perm(cstat->st_mode), 1);
 	ret += write(1, (cstat->st_mode & S_IRGRP) ? "r" : "-", 1);
 	ret += write(1, (cstat->st_mode & S_IWGRP) ? "w" : "-", 1);
-
-
-
-	/*ret += write(1, (cstat->st_mode & S_IXGRP) ? "x" : "-", 1);*/
-	if (!(cstat->st_mode & S_IXUSR) && (cstat->st_mode & S_ISGID))
-		ret += write(1, "S", 1);
-	else if ((cstat->st_mode & S_IXUSR) && (cstat->st_mode & S_ISGID))
-		ret += write(1, "s", 1);
-	else if ((cstat->st_mode & S_IXUSR))
-		ret += write(1, "x", 1);
-	else
-		ret += write(1, "-", 1);
-
-
+	ret += write(1, group_perm(cstat->st_mode), 1);
 	ret += write(1, (cstat->st_mode & S_IROTH) ? "r" : "-", 1);
 	ret += write(1, (cstat->st_mode & S_IWOTH) ? "w" : "-", 1);
-
-
-
-	/*ret += write(1, (cstat->st_mode & S_IXOTH) ? "x" : "-", 1);*/
-	if (!(cstat->st_mode & S_IXUSR) && (cstat->st_mode & S_ISVTX))
-		ret += write(1, "T", 1);
-	else if ((cstat->st_mode & S_IXUSR) && (cstat->st_mode & S_ISVTX))
-		ret += write(1, "t", 1);
-	else if ((cstat->st_mode & S_IXUSR))
-		ret += write(1, "x", 1);
-	else
-		ret += write(1, "-", 1);
-
-
-
+	ret += write(1, other_perm(cstat->st_mode), 1);
 	return (ret);
 }
