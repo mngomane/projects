@@ -41,8 +41,6 @@
 
 # define SIZE_MONTHS	2592000
 
-# define PROTO_CMP		(*cmp)(t_list *, t_list *)
-
 typedef struct group	t_group;
 typedef struct passwd	t_passwd;
 typedef struct stat		t_stat;
@@ -55,9 +53,9 @@ typedef struct			s_lut
 
 typedef struct			s_file
 {
-	struct group		*group;
-	struct passwd		*passwd;
-	struct stat			*stat;
+	t_group				*group;
+	t_passwd			*passwd;
+	t_stat				*stat;
 	void				*name;
 	void				*link;
 }						t_file;

@@ -21,7 +21,7 @@ char			*init_time(t_stat *cstat)
 	size_t		index;
 
 	index = 4;
-	if((new = (char *)ft_memalloc(sizeof(char) << 5)))
+	if ((new = (char *)ft_memalloc(sizeof(char) << 5)))
 	{
 		diff = (time(0) - cstat->st_mtime) / SIZE_MONTHS;
 		tmp = ctime(&(cstat->st_mtime));

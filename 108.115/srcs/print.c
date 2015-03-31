@@ -12,10 +12,10 @@
 
 #include "ft_ls.h"
 
-int			putendlong(t_list *lst)
+int				putendlong(t_list *lst)
 {
-	char			*tmp;
-	ssize_t			ret;
+	char		*tmp;
+	ssize_t		ret;
 
 	ret = 0;
 	ret += display_rights(LSTAT(lst));

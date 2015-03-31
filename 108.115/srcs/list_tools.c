@@ -19,7 +19,8 @@ static t_list	*open_error(char *name)
 
 	if ((tmp = (char *)ft_memalloc(sizeof(char) << 9)))
 	{
-		tmp = ft_strcat(tmp, BIN_NAME": ");
+		tmp = ft_strcat(tmp, BIN_NAME);
+		tmp = ft_strcat(tmp, ": ");
 		tmp = ft_strcat(tmp, name);
 		perror(tmp);
 		free(tmp);
@@ -27,7 +28,8 @@ static t_list	*open_error(char *name)
 	return ((void *)0);
 }
 
-t_list			*ilst(char *name, int PROTO_CMP, u_char flags, quad_t *block)
+t_list			*ilst(char *name, int (*cmp)(t_list *, t_list *),
+					u_char flags, quad_t *block)
 {
 	struct dirent	*dp;
 	DIR				*dirp;
