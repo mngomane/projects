@@ -34,7 +34,18 @@ static void		set_infos(t_file **file, void *name, quad_t *block)
 	(*file)->group = getgrgid((*file)->stat->st_gid);
 	if (S_ISLNK((*file)->stat->st_mode) &&
 		((*file)->link = (void *)ft_memalloc(sizeof(char) << 9)))
-		readlink((char *)name, (char *)((*file)->link), 1 << 9);
+	{
+		if (readlink((char *)name, (char *)((*file)->link), 1 << 9) == -1 &&
+			!ft_strncmp(strerror(ENOENT), E_ENOENT_MSG, sizeof(E_ENOENT_MSG)))
+		{
+			if (!ft_strcmp(name, "stdin"))
+				(*file)->link = ft_strcat((*file)->link, "fd/0");
+			if (!ft_strcmp(name, "stdout"))
+				(*file)->link = ft_strcat((*file)->link, "fd/1");
+			if (!ft_strcmp(name, "stderr"))
+				(*file)->link = ft_strcat((*file)->link, "fd/2");
+		}
+	}
 }
 
 t_file			*new_file(void *path, void *name, u_char flags, quad_t *block)

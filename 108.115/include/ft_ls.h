@@ -42,6 +42,7 @@
 # define SIZE_MONTHS	2592000
 
 # define E_ELOOP_MSG	"Too many levels of symbolic links"
+# define E_ENOENT_MSG	"No such file or directory"
 
 typedef struct group	t_group;
 typedef struct passwd	t_passwd;
