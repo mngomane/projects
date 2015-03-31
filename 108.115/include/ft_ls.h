@@ -41,6 +41,8 @@
 
 # define SIZE_MONTHS	2592000
 
+# define E_ELOOP_MSG	"Too many levels of symbolic links"
+
 typedef struct group	t_group;
 typedef struct passwd	t_passwd;
 typedef struct stat		t_stat;

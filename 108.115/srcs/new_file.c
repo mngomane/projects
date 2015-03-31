@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
+#include <sys/errno.h>
 #include <unistd.h>
 #include "ft_ls.h"
 
@@ -23,6 +25,18 @@ static void		stat_error(t_file **file, void *name)
 	perror(name);
 }
 
+static void		set_infos(t_file **file, void *name, quad_t *block)
+{
+	if (block && (S_ISREG((*file)->stat->st_mode) ||
+		S_ISLNK((*file)->stat->st_mode)))
+		*block += (*file)->stat->st_blocks;
+	(*file)->passwd = getpwuid((*file)->stat->st_uid);
+	(*file)->group = getgrgid((*file)->stat->st_gid);
+	if (S_ISLNK((*file)->stat->st_mode) &&
+		((*file)->link = (void *)ft_memalloc(sizeof(char) << 9)))
+		readlink((char *)name, (char *)((*file)->link), 1 << 9);
+}
+
 t_file			*new_file(void *path, void *name, u_char flags, quad_t *block)
 {
 	t_file		*file;
@@ -33,19 +47,11 @@ t_file			*new_file(void *path, void *name, u_char flags, quad_t *block)
 		if ((file->stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
 		{
 			ft_stat = (F_LONG(flags) ? lstat : stat);
-			if (ft_stat(ft_strjoin(path, name), file->stat) == -1)
+			if ((ft_stat(ft_strjoin(path, name), file->stat) == -1) &&
+				ft_strncmp(strerror(ELOOP), E_ELOOP_MSG, sizeof(E_ELOOP_MSG)))
 				stat_error(&file, name);
 			else
-			{
-				if (block && (S_ISREG(file->stat->st_mode) ||
-					S_ISLNK(file->stat->st_mode)))
-					*block += file->stat->st_blocks;
-				file->passwd = getpwuid(file->stat->st_uid);
-				file->group = getgrgid(file->stat->st_gid);
-				if (S_ISLNK(file->stat->st_mode) &&
-					(file->link = (void *)ft_memalloc(sizeof(char) << 9)))
-					readlink((char *)name, (char *)(file->link), 1 << 9);
-			}
+				set_infos(&file, name, block);
 		}
 		file->name = ft_strdup(name);
 	}
