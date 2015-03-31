@@ -38,7 +38,7 @@ t_file			*new_file(void *path, void *name, u_char flags)
 			else
 			{
 				file->passwd = getpwuid(file->stat->st_uid);
-				file->group = getgrgid(file->stat->st_uid);
+				file->group = getgrgid(file->stat->st_gid);
 				if (S_ISLNK(file->stat->st_mode) &&
 					(file->link = (void *)ft_memalloc(sizeof(char) << 9)))
 					readlink((char *)name, (char *)(file->link), 1 << 9);

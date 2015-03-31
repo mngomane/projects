@@ -13,23 +13,32 @@
 #include <time.h>
 #include "ft_ls.h"
 
+
+
+
+#include <stdio.h>
+
+
+
 char			*init_time(t_stat *cstat)
 {
+	char		*tmp;
+	char		*new;
+	time_t		diff;
 	size_t		index;
-	char		*tmp_time;
-	char		*new_time;
 
 	index = 4;
-	if((new_time = (char *)ft_memalloc(sizeof(char) << 4)))
+	if((new = (char *)ft_memalloc(sizeof(char) << 5)))
 	{
-		tmp_time = ctime(&(cstat->st_mtime));
+		diff = (time(0) - cstat->st_mtime) / SIZE_MONTHS;
+		tmp = ctime(&(cstat->st_mtime));
 		while (index < 16)
 		{
-			new_time[index - 4] = tmp_time[index];
+			new[index - 4] = tmp[index + (diff && index > 10 ? 8 : 0)];
 			++index;
 		}
-		new_time[index] = '\0';
-		return (new_time);
+		new[index] = '\0';
+		return (new);
 	}
 	return ((void *)0);
 }

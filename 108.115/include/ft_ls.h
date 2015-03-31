@@ -39,6 +39,8 @@
 # define LPASS(x)		((t_passwd *)LVALUE(t_file *, x)->passwd)
 # define LSTAT(x)		((t_stat *)LVALUE(t_file *, x)->stat)
 
+# define SIZE_MONTHS	2592000
+
 typedef struct group	t_group;
 typedef struct passwd	t_passwd;
 typedef struct stat		t_stat;
