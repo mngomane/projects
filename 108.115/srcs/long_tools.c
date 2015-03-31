@@ -20,15 +20,18 @@ char			*init_time(t_stat *cstat)
 	char		*new_time;
 
 	index = 4;
-	new_time = (char *)ft_memalloc(sizeof(char) << 4);
-	tmp_time = ctime(&(cstat->st_mtime));
-	while (index < 16)
+	if((new_time = (char *)ft_memalloc(sizeof(char) << 4)))
 	{
-		new_time[index - 4] = tmp_time[index];
-		++index;
+		tmp_time = ctime(&(cstat->st_mtime));
+		while (index < 16)
+		{
+			new_time[index - 4] = tmp_time[index];
+			++index;
+		}
+		new_time[index] = '\0';
+		return (new_time);
 	}
-	new_time[index] = '\0';
-	return (new_time);
+	return ((void *)0);
 }
 
 ssize_t			display_rights(t_stat *cstat)

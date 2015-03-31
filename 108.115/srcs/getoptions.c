@@ -40,19 +40,21 @@ static t_lut	*init_lookup_table(void)
 {
 	t_lut		*lookup;
 
-	lookup = (t_lut *)ft_memalloc(sizeof(t_lut) << 3);
-	lookup[0].key = "R";
-	lookup[0].fct = set_flag;
-	lookup[1].key = "a";
-	lookup[1].fct = set_flag;
-	lookup[2].key = "l";
-	lookup[2].fct = set_flag;
-	lookup[3].key = "r";
-	lookup[3].fct = set_flag;
-	lookup[4].key = "t";
-	lookup[4].fct = set_flag;
-	lookup[5].key = "?";
-	lookup[5].fct = display_usage;
+	if ((lookup = (t_lut *)ft_memalloc(sizeof(t_lut) << 3)))
+	{
+		lookup[0].key = "R";
+		lookup[0].fct = set_flag;
+		lookup[1].key = "a";
+		lookup[1].fct = set_flag;
+		lookup[2].key = "l";
+		lookup[2].fct = set_flag;
+		lookup[3].key = "r";
+		lookup[3].fct = set_flag;
+		lookup[4].key = "t";
+		lookup[4].fct = set_flag;
+		lookup[5].key = "?";
+		lookup[5].fct = display_usage;
+	}
 	return (lookup);
 }
 
@@ -66,7 +68,7 @@ int				get_options(int *ac, char ***av, void *flags)
 	c = 0;
 	opt_i = 1;
 	lookup = init_lookup_table();
-	while (c != -1 && c != '?')
+	while (lookup && c != -1 && c != '?')
 	{
 		i = 0;
 		c = ft_getopt(*ac, *av, "Ralrt", &opt_i);

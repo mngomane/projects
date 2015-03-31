@@ -34,14 +34,7 @@ t_file			*new_file(void *path, void *name, u_char flags)
 		{
 			ft_stat = (F_LONG(flags) ? lstat : stat);
 			if (ft_stat(ft_strjoin(path, name), file->stat) == -1)
-			{
-				/*free(file->stat);
-				file->stat = (void *)0;
-				ft_puterr(BIN_NAME);
-				ft_puterr(": ");
-				perror(name);*/
 				stat_error(&file, name);
-			}
 			else
 			{
 				file->passwd = getpwuid(file->stat->st_uid);

@@ -18,7 +18,6 @@ int			putendlong(t_list *lst)
 	ssize_t			ret;
 
 	ret = 0;
-	tmp = init_time(LSTAT(lst));
 	ret += display_rights(LSTAT(lst));
 	ret += ft_printf("%4ld", LSTAT(lst)->st_nlink);
 	ret += ft_printf(" %s", LPASS(lst)->pw_name);
@@ -28,9 +27,9 @@ int			putendlong(t_list *lst)
 							minor(LSTAT(lst)->st_rdev));
 	else
 		ret += ft_printf("%7ld", LSTAT(lst)->st_size);
+	tmp = init_time(LSTAT(lst));
 	ret += ft_printf(" %s", tmp);
 	ret += ft_printf(" %s", LNAME(lst));
-	free(tmp);
 	if (S_ISLNK(LSTAT(lst)->st_mode))
 		ret += ft_printf(" -> %s", LLINK(lst));
 	ret += write(1, "\n", 1);
