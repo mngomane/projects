@@ -19,7 +19,7 @@ char		*entry_type(mode_t mode)
 	if (S_ISCHR(mode))
 		return ("c");
 	if (S_ISFIFO(mode))
-		return ("P");
+		return ("p");
 	if (S_ISDIR(mode))
 		return ("d");
 	if (S_ISBLK(mode))
