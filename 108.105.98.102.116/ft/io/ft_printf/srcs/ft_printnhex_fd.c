@@ -30,7 +30,7 @@ static void		fill_buffer(wchar_t **buf, uintptr_t p)
 	}
 }
 
-ssize_t		ft_printnhex_fd(uintptr_t p, char *opt, int fd)
+ssize_t			ft_printnhex_fd(uintptr_t p, char *opt, int fd)
 {
 	wchar_t		*buf;
 	ssize_t		len;

@@ -24,7 +24,7 @@ static int		opt_error(const char *arg, const char *msg, const int c)
 static int		syntax_error(int ac, char *const *av, int *opti)
 {
 	if (*opti >= ac || av[*opti][0] != '-' || av[*opti][1] == '\0')
-			return (-1);
+		return (-1);
 	else if (ft_strcmp(av[*opti], "--") == 0)
 	{
 		(*opti)++;

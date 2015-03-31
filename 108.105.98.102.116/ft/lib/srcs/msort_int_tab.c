@@ -21,7 +21,7 @@ static void		merge(int *tab, size_t size, size_t med, int (*cmp)(int, int))
 	I = 0;
 	J = med;
 	K = 0;
-	offset = (uintptr_t)(&tab + 1) - (uintptr_t)&tab;
+	offset = (uintptr_t)(&tab + 1) - (uintptr_t)(&tab);
 	tmp = (int *)malloc(size * offset);
 	while (K < size)
 		tmp[K++] = ((J != size && (I == med || cmp(tab[J], tab[I]))) ?

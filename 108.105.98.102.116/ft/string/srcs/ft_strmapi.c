@@ -12,7 +12,7 @@
 
 #include "ft_string.h"
 
-char		*ft_strmapi(char const *s, char (*f)(u_int, char))
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
 	u_int	index;
