@@ -23,7 +23,7 @@ static void		stat_error(t_file **file, void *name)
 	perror(name);
 }
 
-t_file			*new_file(void *path, void *name, u_char flags)
+t_file			*new_file(void *path, void *name, u_char flags, quad_t *block)
 {
 	t_file		*file;
 	int			(*ft_stat)(const char *, struct stat *);
@@ -37,6 +37,9 @@ t_file			*new_file(void *path, void *name, u_char flags)
 				stat_error(&file, name);
 			else
 			{
+				if (block && (S_ISREG(file->stat->st_mode) ||
+					S_ISLNK(file->stat->st_mode)))
+					*block += file->stat->st_blocks;
 				file->passwd = getpwuid(file->stat->st_uid);
 				file->group = getgrgid(file->stat->st_gid);
 				if (S_ISLNK(file->stat->st_mode) &&

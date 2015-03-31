@@ -27,7 +27,7 @@ static t_list	*open_error(char *name)
 	return ((void *)0);
 }
 
-t_list			*ilst(char *name, int (*cmp)(t_list *, t_list *), u_char flags)
+t_list			*ilst(char *name, int PROTO_CMP, u_char flags, quad_t *block)
 {
 	struct dirent	*dp;
 	DIR				*dirp;
@@ -42,7 +42,7 @@ t_list			*ilst(char *name, int (*cmp)(t_list *, t_list *), u_char flags)
 	while (dirp && (dp = readdir(dirp)) != (void *)0)
 	{
 		tmp = (!ft_strcmp(name, ".") ? "" : ft_strjoin(name, "/"));
-		sort_lstadd(&lst, ft_lstnew(new_file(tmp, dp->d_name, flags),
+		sort_lstadd(&lst, ft_lstnew(new_file(tmp, dp->d_name, flags, block),
 					sizeof(t_file)), cmp);
 	}
 	(void)closedir(dirp);

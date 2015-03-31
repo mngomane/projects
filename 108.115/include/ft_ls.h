@@ -41,6 +41,8 @@
 
 # define SIZE_MONTHS	2592000
 
+# define PROTO_CMP		(*cmp)(t_list *, t_list *)
+
 typedef struct group	t_group;
 typedef struct passwd	t_passwd;
 typedef struct stat		t_stat;
@@ -67,13 +69,14 @@ int						fdisplay(int ac, char **av, char *name, u_char flags);
 int						get_options(int *ac, char ***av, void *flags);
 char					*group_perm(mode_t mode);
 t_list					*ilst(char *name, int (*cmp)(t_list *, t_list *),
-							u_char flags);
+							u_char flags, quad_t *block);
 char					*init_time(t_stat *cstat);
 int						lexical_cmp(t_list *lst1, t_list *lst2);
-t_file					*new_file(void *path, void *name, u_char flags);
+t_file					*new_file(void *path, void *name, u_char flags,
+							quad_t *block);
 char					*other_perm(mode_t mode);
 char					*owner_perm(mode_t mode);
-void					print_lst(t_list *lst, u_char flags);
+void					print_lst(t_list *lst, u_char flags, quad_t block);
 int						putendlong(t_list *lst);
 int						reverse_cmp(t_list *lst1, t_list *lst2);
 int						rtime_cmp(t_list *lst1, t_list *lst2);

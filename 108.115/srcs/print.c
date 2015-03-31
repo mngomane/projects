@@ -36,8 +36,11 @@ int			putendlong(t_list *lst)
 	return ((int)ret);
 }
 
-void			print_lst(t_list *lst, u_char flags)
+void			print_lst(t_list *lst, u_char flags, quad_t block)
 {
+	u_char		check;
+
+	check = 0;
 	while (lst)
 	{
 		if (LSTAT(lst) != (void *)0)
@@ -45,7 +48,11 @@ void			print_lst(t_list *lst, u_char flags)
 			if (LNAME(lst)[0] != '.' || (LNAME(lst)[0] == '.' && F_ALL(flags)))
 			{
 				if (F_LONG(flags))
+				{
+					(!(check & 0x01) ? ft_printf("total %lld\n", block) : 0);
+					check |= 0x01;
 					putendlong(lst);
+				}
 				else
 					ft_putendl(LNAME(lst));
 			}

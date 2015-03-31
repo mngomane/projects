@@ -13,13 +13,6 @@
 #include <time.h>
 #include "ft_ls.h"
 
-
-
-
-#include <stdio.h>
-
-
-
 char			*init_time(t_stat *cstat)
 {
 	char		*tmp;

@@ -77,7 +77,7 @@ static t_list	*finit(int ac, char **av, u_char flags)
 	cmp = iforest(flags);
 	sort_lstadd((void *)0, (void *)0, (void *)0);
 	while (ac--)
-		sort_lstadd(&lst, ft_lstnew(new_file("", av[ac], flags),
+		sort_lstadd(&lst, ft_lstnew(new_file("", av[ac], flags, 0),
 									sizeof(t_file)), cmp);
 	return (lst);
 }
@@ -87,13 +87,15 @@ int				fdisplay(int ac, char **av, char *name, u_char flags)
 	t_list		*lst;
 	u_char		check;
 	int			(*cmp)(t_list *, t_list *);
+	quad_t		block;
 
+	block = 0;
 	cmp = iforest(flags);
 	if (ac < 1)
 	{
-		if ((lst = ilst(name, cmp, flags)) == (void *)0)
+		if ((lst = ilst(name, cmp, flags, &block)) == (void *)0)
 			return (-1);
-		print_lst(lst, flags);
+		print_lst(lst, flags, block);
 		ft_lstdel(&lst, del_lst);
 	}
 	else
