@@ -80,7 +80,7 @@ ssize_t		ft_printnwstr(wchar_t const *wstr, char *opt);
 ssize_t		ft_printnwstr_fd(wchar_t const *s, char *opt, int fd);
 ssize_t		ft_putwchar(wchar_t const wc);
 ssize_t		ft_putwchar_fd(wchar_t const wc, int fd);
-ssize_t		ft_putwstr(wchar_t const *wstr);
+// ssize_t		ft_putwstr(wchar_t const *wstr);
 ssize_t		ft_putwstr_fd(wchar_t const *wstr, int fd);
 
 #endif

@@ -12,25 +12,25 @@
 
 #include "ft_string.h"
 
-char		*ft_strtrim(char const *s)
-{
-	char	*str;
-	size_t	len;
-	size_t	index;
+// char		*ft_strtrim(char const *s)
+// {
+// 	char	*str;
+// 	size_t	len;
+// 	size_t	index;
 
-	index = 0;
-	len = ft_strlen(s);
-	str = ft_strnew(len);
-	while (s && (*s == ' ' || *s == '\t' || *s == '\n'))
-		++s;
-	while (s && *s)
-		str[index++] = *(s++);
-	--s;
-	--index;
-	while (*s == ' ' || *s == '\t' || *s == '\n')
-	{
-		str[index--] = '\0';
-		--s;
-	}
-	return (str);
-}
+// 	index = 0;
+// 	len = ft_strlen(s);
+// 	str = ft_strnew(len);
+// 	while (s && (*s == ' ' || *s == '\t' || *s == '\n'))
+// 		++s;
+// 	while (s && *s)
+// 		str[index++] = *(s++);
+// 	--s;
+// 	--index;
+// 	while (*s == ' ' || *s == '\t' || *s == '\n')
+// 	{
+// 		str[index--] = '\0';
+// 		--s;
+// 	}
+// 	return (str);
+// }

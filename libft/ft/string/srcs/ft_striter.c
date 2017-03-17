@@ -12,8 +12,8 @@
 
 #include "ft_string.h"
 
-void		ft_striter(char *s, void (*f)(char *))
-{
-	while (s && *s)
-		f(s++);
-}
+// void		ft_striter(char *s, void (*f)(char *))
+// {
+// 	while (s && *s)
+// 		f(s++);
+// }

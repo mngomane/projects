@@ -121,7 +121,7 @@ typedef struct				s_jmp
 
 void		set_instruction_in_file(t_file **f);
 void		set_instruction(t_file **f);
-void		print_file(t_file **f);
+// void		print_file(t_file **f);
 void		set_file_cmd(t_file **f, char *cmd);
 
 #endif

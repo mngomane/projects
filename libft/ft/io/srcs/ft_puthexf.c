@@ -12,7 +12,7 @@
 
 #include "ft_io.h"
 
-ssize_t		ft_puthexf(uintptr_t p)
-{
-	return (ft_puthexf_fd(p, 1));
-}
+// ssize_t		ft_puthexf(uintptr_t p)
+// {
+// 	return (ft_puthexf_fd(p, 1));
+// }

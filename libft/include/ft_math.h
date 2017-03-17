@@ -15,6 +15,6 @@
 
 # include <sys/types.h>
 
-size_t		ft_next_pow2(size_t x);
+// size_t		ft_next_pow2(size_t x);
 
 #endif

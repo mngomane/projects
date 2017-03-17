@@ -12,7 +12,7 @@
 
 #include "ft_io.h"
 
-ssize_t		ft_putlong(long n)
-{
-	return (ft_putlong_fd(n, 1));
-}
+// ssize_t		ft_putlong(long n)
+// {
+// 	return (ft_putlong_fd(n, 1));
+// }

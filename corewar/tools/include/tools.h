@@ -28,14 +28,14 @@ t_pstring			*delcare_t_pstring(void);
 struct s_parameter	*declare_s_parameter(void);
 t_instruction		*declare_t_instruction(void);
 t_entry				*declare_t_entry(void);
-t_jmp				*declare_t_jmp(void);
+// t_jmp				*declare_t_jmp(void);
 void				free_t_pstring(t_pstring **tmp);
 void				free_t_cmd(t_cmd **tmp);
 void				free_s_parameter(struct s_parameter **tmp);
 void				free_t_instruction(t_instruction **tmp);
-void				free_t_file(t_file **tmp);
+// void				free_t_file(t_file **tmp);
 void				free_t_entry(t_entry **tmp);
-void				free_t_jmp(t_jmp **tmp);
+// void				free_t_jmp(t_jmp **tmp);
 void				putpstr(t_pstring *pstring);
 
 #endif

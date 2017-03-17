@@ -12,7 +12,7 @@
 
 #include "ft_io.h"
 
-ssize_t		ft_putulong(u_long n)
-{
-	return (ft_putulong_fd(n, 1));
-}
+// ssize_t		ft_putulong(u_long n)
+// {
+// 	return (ft_putulong_fd(n, 1));
+// }

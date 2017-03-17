@@ -12,13 +12,13 @@
 
 #include "ft_wchar.h"
 
-wchar_t		*ft_wcsdup(wchar_t const *wstr)
-{
-	wchar_t	*copy;
-	size_t	len;
+// wchar_t		*ft_wcsdup(wchar_t const *wstr)
+// {
+// 	wchar_t	*copy;
+// 	size_t	len;
 
-	len = ft_wcslen(wstr) + 1;
-	if ((copy = malloc(len * sizeof(wchar_t))) == (void *)0)
-		return ((void *)0);
-	return (ft_wmemcpy(copy, wstr, len));
-}
+// 	len = ft_wcslen(wstr) + 1;
+// 	if ((copy = malloc(len * sizeof(wchar_t))) == (void *)0)
+// 		return ((void *)0);
+// 	return (ft_wmemcpy(copy, wstr, len));
+// }

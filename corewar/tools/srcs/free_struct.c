@@ -52,15 +52,15 @@ void	free_t_instruction(t_instruction **tmp)
 	*tmp = NULL;
 }
 
-void	free_t_file(t_file **tmp)
-{
-	if ((*tmp)->name != NULL)
-		free_t_cmd(&(*tmp)->name);
-	if ((*tmp)->comment != NULL)
-		free_t_cmd(&(*tmp)->comment);
-	free(*tmp);
-	*tmp = NULL;
-}
+// void	free_t_file(t_file **tmp)
+// {
+// 	if ((*tmp)->name != NULL)
+// 		free_t_cmd(&(*tmp)->name);
+// 	if ((*tmp)->comment != NULL)
+// 		free_t_cmd(&(*tmp)->comment);
+// 	free(*tmp);
+// 	*tmp = NULL;
+// }
 
 void	free_t_entry(t_entry **tmp)
 {
@@ -70,8 +70,8 @@ void	free_t_entry(t_entry **tmp)
 	*tmp = NULL;
 }
 
-void	free_t_jmp(t_jmp **tmp)
-{
-	free(*tmp);
-	*tmp = NULL;
-}
+// void	free_t_jmp(t_jmp **tmp)
+// {
+// 	free(*tmp);
+// 	*tmp = NULL;
+// }

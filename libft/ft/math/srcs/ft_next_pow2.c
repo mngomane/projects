@@ -12,17 +12,17 @@
 
 #include "ft_math.h"
 
-size_t		ft_next_pow2(size_t x)
-{
-	size_t	bit;
+// size_t		ft_next_pow2(size_t x)
+// {
+// 	size_t	bit;
 
-	bit = 1;
-	x--;
-	while (bit < sizeof(long) << 3)
-	{
-		x |= x >> bit;
-		bit <<= 1;
-	}
-	x++;
-	return (x);
-}
+// 	bit = 1;
+// 	x--;
+// 	while (bit < sizeof(long) << 3)
+// 	{
+// 		x |= x >> bit;
+// 		bit <<= 1;
+// 	}
+// 	x++;
+// 	return (x);
+// }

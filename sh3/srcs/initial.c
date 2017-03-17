@@ -66,32 +66,32 @@ int	envl_init(t_env **el, char **ep)
 	return (1);
 }
 
-void	env_set(t_entry *ent, t_env *envl)
-{
-	char	**tmp;
-	t_env	*save;
-	size_t	i;
+// void	env_set(t_entry *ent, t_env *envl)
+// {
+// 	char	**tmp;
+// 	t_env	*save;
+// 	size_t	i;
 
-	i = 0;
-	save = envl;
-	while (envl != NULL)
-	{
-		++i;
-		envl = envl->next;
-	}
-	envl = save;
-	if ((tmp = (char **)malloc(sizeof(char *) * (i + 1))) == NULL)
-		write(2, FAILED_ALLOC, sizeof(FAILED_ALLOC));
-	i = 0;
-	while (envl)
-	{
-		tmp[i] = envl->ename;
-		++i;
-		envl = envl->next;
-	}
-	tmp[i] = NULL;
-	ent->ep = tmp;
-}
+// 	i = 0;
+// 	save = envl;
+// 	while (envl != NULL)
+// 	{
+// 		++i;
+// 		envl = envl->next;
+// 	}
+// 	envl = save;
+// 	if ((tmp = (char **)malloc(sizeof(char *) * (i + 1))) == NULL)
+// 		write(2, FAILED_ALLOC, sizeof(FAILED_ALLOC));
+// 	i = 0;
+// 	while (envl)
+// 	{
+// 		tmp[i] = envl->ename;
+// 		++i;
+// 		envl = envl->next;
+// 	}
+// 	tmp[i] = NULL;
+// 	ent->ep = tmp;
+// }
 
 void	arg_set(t_entry *ent, t_sent *sent)
 {
