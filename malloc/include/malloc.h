@@ -49,7 +49,7 @@ char					*find_available_space(t_area *address, size_t size,
 size_t					ft_btos(t_area *address);
 size_t					ft_get_right_size(size_t size);
 t_area					find_mblock(t_area *address, char needle);
-void					show_alloc_mem(void);
+// void					show_alloc_mem(void);
 void					free(void *ptr);
 void					*malloc(size_t size);
 void					*realloc(void *ptr, size_t size);

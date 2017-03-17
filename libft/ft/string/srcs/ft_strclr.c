@@ -12,7 +12,7 @@
 
 #include "ft_string.h"
 
-void	ft_strclr(char *s)
-{
-	ft_bzero(s, ft_strlen(s));
-}
+// void	ft_strclr(char *s)
+// {
+// 	ft_bzero(s, ft_strlen(s));
+// }

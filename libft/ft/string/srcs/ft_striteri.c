@@ -12,11 +12,11 @@
 
 #include "ft_string.h"
 
-void		ft_striteri(char *s, void (*f)(unsigned int, char *))
-{
-	u_int	index;
+// void		ft_striteri(char *s, void (*f)(unsigned int, char *))
+// {
+// 	u_int	index;
 
-	index = 0;
-	while (s && *s)
-		f(index++, s++);
-}
+// 	index = 0;
+// 	while (s && *s)
+// 		f(index++, s++);
+// }

@@ -12,7 +12,7 @@
 
 #include "ft_wchar.h"
 
-wchar_t		*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len)
-{
-	return ((wchar_t *)ft_memmove(dst, src, len * sizeof(wchar_t)));
-}
+// wchar_t		*ft_wmemmove(wchar_t *dst, const wchar_t *src, size_t len)
+// {
+// 	return ((wchar_t *)ft_memmove(dst, src, len * sizeof(wchar_t)));
+// }

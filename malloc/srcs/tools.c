@@ -93,31 +93,31 @@ t_area		find_mblock(t_area *address, char needle)
 	return (tmp);
 }
 
-void		show_alloc_mem(void)
-{
-	t_area	save;
-	t_area	next;
-	size_t	size;
+// void		show_alloc_mem(void)
+// {
+// 	t_area	save;
+// 	t_area	next;
+// 	size_t	size;
 
-	save = g_area;
-	size = 0;
-	while (g_area)
-	{
-		if (*(g_area + AREA_TYPE) == 'T')
-			write(1, "\nTINY  : ", 9);
-		else if (*(g_area + AREA_TYPE) == 'S')
-			write(1, "\nSMALL : ", 9);
-		else
-			write(1, "\nLARGE : ", 9);
-		ft_putnbr_hex((uintptr_t)g_area);
-		next = NEXT(g_area);
-		next = (next ? NBR_TO_PTR(ft_btos(&next)) : (t_area)0);
-		g_area += AREA_SIZE;
-		size += ft_btos(&g_area);
-		g_area = next;
-	}
-	g_area = save;
-	write(1, "\nTotal : ", 9);
-	ft_putnbr_off_t((off_t)size, 1);
-	ft_puts(" octets");
-}
+// 	save = g_area;
+// 	size = 0;
+// 	while (g_area)
+// 	{
+// 		if (*(g_area + AREA_TYPE) == 'T')
+// 			write(1, "\nTINY  : ", 9);
+// 		else if (*(g_area + AREA_TYPE) == 'S')
+// 			write(1, "\nSMALL : ", 9);
+// 		else
+// 			write(1, "\nLARGE : ", 9);
+// 		ft_putnbr_hex((uintptr_t)g_area);
+// 		next = NEXT(g_area);
+// 		next = (next ? NBR_TO_PTR(ft_btos(&next)) : (t_area)0);
+// 		g_area += AREA_SIZE;
+// 		size += ft_btos(&g_area);
+// 		g_area = next;
+// 	}
+// 	g_area = save;
+// 	write(1, "\nTotal : ", 9);
+// 	ft_putnbr_off_t((off_t)size, 1);
+// 	ft_puts(" octets");
+// }

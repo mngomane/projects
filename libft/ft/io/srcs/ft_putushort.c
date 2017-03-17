@@ -12,7 +12,7 @@
 
 #include "ft_io.h"
 
-ssize_t		ft_putushort(u_short n)
-{
-	return (ft_putushort_fd(n, 1));
-}
+// ssize_t		ft_putushort(u_short n)
+// {
+// 	return (ft_putushort_fd(n, 1));
+// }

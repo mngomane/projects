@@ -114,22 +114,22 @@ t_entry				*declare_t_entry(void)
 	return (tmp);
 }
 
-t_jmp				*declare_t_jmp(void)
-{
-	t_jmp		*tmp;
+// t_jmp				*declare_t_jmp(void)
+// {
+// 	t_jmp		*tmp;
 
-	tmp = (t_jmp *)malloc(sizeof(t_jmp));
-	if (tmp == NULL)
-		return (NULL);
-	tmp->tmp = NULL;
-	tmp->wrd = 0;
-	tmp->letter[0] = 0;
-	tmp->letter[1] = 0;
-	tmp->i = 0;
-	tmp->save = 0;
-	tmp->len_word = 0;
-	return (tmp);
-}
+// 	tmp = (t_jmp *)malloc(sizeof(t_jmp));
+// 	if (tmp == NULL)
+// 		return (NULL);
+// 	tmp->tmp = NULL;
+// 	tmp->wrd = 0;
+// 	tmp->letter[0] = 0;
+// 	tmp->letter[1] = 0;
+// 	tmp->i = 0;
+// 	tmp->save = 0;
+// 	tmp->len_word = 0;
+// 	return (tmp);
+// }
 
 t_pstring		*init_pstring(char *start, char *end)
 {

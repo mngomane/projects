@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-ssize_t		ft_putwstr(wchar_t const *wstr)
-{
-	return (ft_putwstr_fd(wstr, 1));
-}
+// ssize_t		ft_putwstr(wchar_t const *wstr)
+// {
+// 	return (ft_putwstr_fd(wstr, 1));
+// }

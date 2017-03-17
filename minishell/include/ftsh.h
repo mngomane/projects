@@ -168,7 +168,7 @@ void			arg_set(t_entry *ent, t_sent *sent);
 void			clean_job(t_job **job);
 void			cmdnf(t_sent *sent);
 void			dash_cd(t_entry *ent);
-void			env_set(t_entry *ent, t_env *envl);
+// void			env_set(t_entry *ent, t_env *envl);
 void			exec_cmd(t_entry *ent, t_sent *sent, t_bin *b);
 void			ft_bg(t_entry *ent, t_sent *sent);
 void			ft_cd(t_entry *ent, t_env *envl, t_sent *sent);

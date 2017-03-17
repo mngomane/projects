@@ -240,27 +240,27 @@ void			set_file_cmd(t_file **f, char *cmd)
 	(*f)->syntax = KO;
 }
 
-void			print_file(t_file **f)
-{
-	t_instruction		*save;
-	struct s_parameter	*saved_p;
+// void			print_file(t_file **f)
+// {
+// 	t_instruction		*save;
+// 	struct s_parameter	*saved_p;
 
-	save = (*f)->instruct;
-	while ((*f)->instruct)
-	{
-		ft_putstr("file->instruction->content: ");
-		putpstr((*f)->instruct->content);
-		ft_puts("");
-		saved_p = (*f)->instruct->parameter;
-		while ((*f)->instruct->parameter)
-		{
-			ft_putstr("file->instruction->parameter->value: ");
-			putpstr((*f)->instruct->parameter->value);
-			ft_puts("");
-			(*f)->instruct->parameter = (*f)->instruct->parameter->next;
-		}
-		(*f)->instruct->parameter = saved_p;
-		(*f)->instruct = (*f)->instruct->next;
-	}
-	(*f)->instruct = save;
-}
+// 	save = (*f)->instruct;
+// 	while ((*f)->instruct)
+// 	{
+// 		ft_putstr("file->instruction->content: ");
+// 		putpstr((*f)->instruct->content);
+// 		ft_puts("");
+// 		saved_p = (*f)->instruct->parameter;
+// 		while ((*f)->instruct->parameter)
+// 		{
+// 			ft_putstr("file->instruction->parameter->value: ");
+// 			putpstr((*f)->instruct->parameter->value);
+// 			ft_puts("");
+// 			(*f)->instruct->parameter = (*f)->instruct->parameter->next;
+// 		}
+// 		(*f)->instruct->parameter = saved_p;
+// 		(*f)->instruct = (*f)->instruct->next;
+// 	}
+// 	(*f)->instruct = save;
+// }

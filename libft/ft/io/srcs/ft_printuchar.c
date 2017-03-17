@@ -12,7 +12,7 @@
 
 #include "ft_io.h"
 
-ssize_t		ft_printuchar(u_char n)
-{
-	return (ft_printuchar_fd(n, 1));
-}
+// ssize_t		ft_printuchar(u_char n)
+// {
+// 	return (ft_printuchar_fd(n, 1));
+// }

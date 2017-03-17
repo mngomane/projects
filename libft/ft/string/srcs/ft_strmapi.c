@@ -12,17 +12,17 @@
 
 #include "ft_string.h"
 
-char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
-	char	*str;
-	u_int	index;
+// char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+// {
+// 	char	*str;
+// 	u_int	index;
 
-	index = 0;
-	str = ft_strnew(ft_strlen(s));
-	while (s && s[index])
-	{
-		str[index] = f(index, s[index]);
-		++index;
-	}
-	return (str);
-}
+// 	index = 0;
+// 	str = ft_strnew(ft_strlen(s));
+// 	while (s && s[index])
+// 	{
+// 		str[index] = f(index, s[index]);
+// 		++index;
+// 	}
+// 	return (str);
+// }
