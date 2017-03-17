@@ -74,6 +74,8 @@ ssize_t			ft_printnhexpf_fd(uintptr_t p, char *opt, int fd)
 	buf = ft_memalloc(25 * sizeof(wchar_t));
 	fill_buffer(&buf, p);
 	len = (ssize_t)get_size(opt) - ((ssize_t)ft_wcslen(buf) + 2);
+	ret = get_ret(buf, opt, fd, len);
 	free(buf);
-	return (get_ret(buf, opt, fd, len));
+
+	return (ret);
 }

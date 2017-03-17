@@ -39,16 +39,12 @@ int			compare_files(char *fname1, char *fname2)
 {
 	FILE	*fp1;
 	FILE	*fp2;
-	int		result;
 
-	result = OK;
-	fp1 = fopen(fname1, "r");
-	fp2 = fopen(fname2, "r");
-	if (fp1 == NULL)
+	if ((fp1 = fopen(fname1, "r")) == NULL)
 		return (KO);
-	else if (fp2 == NULL)
+	if ((fp2 = fopen(fname2, "r")) == NULL) {
+		fclose(fp1);
 		return (KO);
-	else
-		result = compare_char(fp1, fp2);
-	return (result);
+	}
+	return (compare_char(fp1, fp2));
 }
