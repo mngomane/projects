@@ -1,9 +1,11 @@
 import sublime_plugin, datetime
 
 class Makefile():
+	@classmethod
 	def comment(self):
 		comment = ["#**", "**#\n", "#  ", "  #\n"]
 		return comment
+	@classmethod
 	def body(self):
 		body = (
 			"OBJSDIR = bins/\n\n"
@@ -41,6 +43,7 @@ class HppFile():
 	def comment(self):
 		comment = ["/* ", " */\n", "/* ", " */\n"]
 		return comment
+	@classmethod
 	def body(self, fileName):
 		className = fileName[:-4].capitalize();
 		body = (
