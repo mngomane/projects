@@ -1,4 +1,4 @@
-import sublime, sublime_plugin, datetime
+import sublime_plugin, datetime
 
 class Makefile():
 	def comment(self):
@@ -293,5 +293,5 @@ class HeaderCommand(sublime_plugin.TextCommand):
 			skeleton = getHeader(fileName, comment) + body
 		self.view.insert(
 			edit,
-			0, 
+			0,
 			skeleton)
