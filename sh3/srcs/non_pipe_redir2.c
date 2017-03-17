@@ -36,6 +36,7 @@ static void	sub_lred(t_entry *ent, t_sent **tab)
 	ent->av[1] = tab[1]->word;
 	ent->av[2] = NULL;
 	execve("/usr/bin/more", ent->av, ent->ep);
+	free(sent);
 }
 
 void		red_left(t_entry *ent, t_env **envl, t_sent **tab)
