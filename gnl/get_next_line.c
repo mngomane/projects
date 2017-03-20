@@ -16,6 +16,7 @@ static size_t	seek_len(const char *str, char needle)
 {
 	char	*origin;
 	char	*copy;
+	char	*copy2;
 
 	copy = (char *)str;
 	origin = copy;
