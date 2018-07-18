@@ -14,3 +14,5 @@ a.out
 ft_ls
 ft_minishell3
 push_swap
+
+snail/docker-compose.yml
