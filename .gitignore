@@ -18,5 +18,6 @@ push_swap
 ###################
 # Symfony Project #
 ###################
-snail/node_modules
+snail/composer.phar
 snail/docker-compose.yml
+snail/node_modules
