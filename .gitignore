@@ -15,4 +15,8 @@ ft_ls
 ft_minishell3
 push_swap
 
+###################
+# Symfony Project #
+###################
+snail/node_modules
 snail/docker-compose.yml
