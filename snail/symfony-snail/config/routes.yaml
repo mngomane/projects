@@ -1,3 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+snail_index:
+  controller: App\Controller\SnailController::index
+  path: /
