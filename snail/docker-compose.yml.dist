@@ -1,0 +1,11 @@
+version: '2'
+services:
+  nginx_php_fpm:
+    image: xxxxxxxxxxx
+    ports:
+      - "80:8080"
+    volumes:
+      - /home/vagrant/projects/snail:/var/www/dev/www
+    extra_hosts:
+      - "wiz.local fr.wiz.local www.wiz.local:10.0.0.7"
+    shm_size: 1G

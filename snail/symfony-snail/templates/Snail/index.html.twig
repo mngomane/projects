@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <table>
+    {% for row in matrix|batch(dimension, 'X') %}
+      <tr>
+        {% for column in row %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

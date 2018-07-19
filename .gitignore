@@ -14,3 +14,10 @@ a.out
 ft_ls
 ft_minishell3
 push_swap
+
+###################
+# Symfony Project #
+###################
+snail/composer.phar
+snail/docker-compose.yml
+snail/node_modules
