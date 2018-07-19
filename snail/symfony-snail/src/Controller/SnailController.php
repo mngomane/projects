@@ -20,10 +20,6 @@ class SnailController extends AbstractController
         $index     = 0;
         while (++$index < $dimension ** 2 + 1) {
             $matrix[$snailShifting->getIndex($index, $dimension)] = $index;
-            dump($matrix);
-            if (5 === $snailShifting->getIndex($index, $dimension)) {
-                dump($index, $snailShifting->getIndex($index, $dimension));
-            }
         }
 
         return $this->render('Snail/index.html.twig', [
